@@ -5,4 +5,11 @@
 
   /* titles */
   --purple64: #643a6b;
+
+  /* text */
+  --purple97: #9759a1;
+
+  /* font families */
+  --latosans: "Lato", sans-serif;
+  --merriserif: "Merriweather", serif;
 }

@@ -6,7 +6,11 @@ html {
 }
 
 body {
-  background: linear-gradient(90deg, #f7d060 0% 30%, #f3e99f 30.1% 100%);
+  background: linear-gradient(
+    90deg,
+    var(--yellowf7) 0% 30%,
+    var(--yellowf3) 30.1% 100%
+  );
   height: 100vh;
   padding: 3rem 2rem;
 }
@@ -16,9 +20,10 @@ body {
 }
 
 .project-title h1 {
-  color: #643a6b;
+  color: var(--purple64);
   font-size: 3rem;
   margin: 0;
+  font-family: var(--latosans);
 }
 
 .project-card-title,
@@ -26,11 +31,28 @@ body {
   margin: 0;
 }
 
+.project-card-title {
+  font-size: 2rem;
+  color: var(--purple64);
+  font-family: var(--latosans);
+}
+
+.project-card-text {
+  font-size: 1.5rem;
+  color: var(--purple97);
+  font-weight: 600;
+  font-family: var(--merriserif);
+}
+
 /* Mobile */
 
 @media (min-width: 576px) {
   body {
-    background: linear-gradient(105deg, #f7d060 0% 38%, #f3e99f 38.1% 100%);
+    background: linear-gradient(
+      105deg,
+      var(--yellowf7) 0% 38%,
+      var(--yellowf3) 38.1% 100%
+    );
     height: 100vh;
   }
 }
@@ -39,7 +61,11 @@ body {
 /* Tablet */
 @media (min-width: 992px) {
   body {
-    background: linear-gradient(112deg, #f7d060 0% 30%, #f3e99f 30.1% 100%);
+    background: linear-gradient(
+      112deg,
+      var(--yellowf7) 0% 30%,
+      var(--yellowf3) 30.1% 100%
+    );
   }
 }
 
