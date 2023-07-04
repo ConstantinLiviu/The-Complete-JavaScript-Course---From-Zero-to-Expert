@@ -1,7 +1,12 @@
 :root {
+  --white: #fff;
+  --black: #000;
+
   /* backgrounds */
   --yellowf7: #f7d060;
   --yellowf3: #f3e99f;
+  --green28: #28b487;
+  --green7d: #7dd56f;
 
   /* titles */
   --purple64: #643a6b;
