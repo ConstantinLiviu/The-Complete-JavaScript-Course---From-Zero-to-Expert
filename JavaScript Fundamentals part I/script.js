@@ -41,7 +41,7 @@ calcBtn.addEventListener("click", () => {
   let massJohn = document.querySelector(".weightJ").value;
   let heightJohn = document.querySelector(".heightJ").value;
 
-  if (massMark || heightMark || massJohn || heightJohn) {
+  if (massMark && heightMark && massJohn && heightJohn) {
     document.querySelector(".error-msg").style.opacity = 0;
   } else {
     document.querySelector(".error-msg").style.opacity = 1;
@@ -116,3 +116,87 @@ calcBtn.addEventListener("click", () => {
 // } else {
 //   let century = 21;
 // }
+
+/*****************************************************************************************/
+
+// Type conversion and Coercion
+
+// // conversion
+// const inputYear = "1991";
+// console.log(Number(inputYear), inputYear);
+// console.log(inputYear + 18);
+
+// console.log(Number("Jonas"));
+// console.log(typeof NaN);
+
+// console.log(String(23), 23);
+
+// // coercion
+// console.log("I am " + 23 + " years old");
+// console.log("I am " + "23 " + "years old");
+
+// console.log("23" - "10" - 3);
+// console.log("23" + "10" - 3);
+// console.log("23" * "2");
+// console.log("23" - "3");
+// console.log("jonas" - "nas");
+
+/*****************************************************************************************/
+
+// Truthy / Falsy values
+
+// // Falsy
+// // 0, '', undefined, null, NaN;
+// console.log(Boolean(0));
+// console.log(Boolean(""));
+// console.log(Boolean(undefined));
+// console.log(Boolean(null));
+// console.log(Boolean(NaN));
+
+// console.log(Boolean("Jonas"));
+// console.log(Boolean({}));
+
+// // const money = 0;
+// const money = 100;
+// if (money) {
+//   console.log("Don't spend it all!");
+// } else {
+//   console.log("You should get a job!");
+// }
+
+// // let height;
+// // let height = 123;
+// let height = 0;
+// if (height) {
+//   console.log("Yay! Height is defined");
+// } else {
+//   console.log("Height is undefined");
+// }
+
+/*****************************************************************************************/
+
+// // Equality operators
+
+// const age = 18;
+// // const age = 19;
+// if (age === 18) console.log("You just became an adult");
+
+// // === strict equality operator - doesn't perform type coercion
+// // == loose equality operator - does type coercion
+
+// console.log(18 === 18);
+// console.log(18 === "18");
+
+// if (age == "18") console.log("You just became an adult");
+
+// let favorite = prompt("what's your favorite number?");
+// console.log(favorite);
+// if (favorite == 18) console.log("Cool! 18 is an amazing number!");
+
+// let favorite2 = Number(prompt("what's your favorite number?"));
+// console.log(favorite2);
+// if (favorite2 === 20) console.log("Cool! 20 is an amazing number!");
+
+/*****************************************************************************************/
+
+// Equality operators
