@@ -68,15 +68,40 @@
           <div class="input-group">
             <label>Mark</label>
             <span class="input-group-text">Mass and height</span>
-            <input type="text" class="form-control" placeholder="78" />
-            <input type="text" class="form-control" placeholder="1.69" />
+            <input
+              type="number"
+              class="form-control weightM"
+              placeholder="78"
+              onkeyup="if(value<0) value=''"
+            />
+            <input
+              type="number"
+              class="form-control heightM"
+              placeholder="1.69"
+              onkeyup="if(value<0) value=''"
+            />
           </div>
           <div class="input-group mb-3">
             <label>John</label>
             <span class="input-group-text">Mass and height</span>
-            <input type="text" class="form-control" placeholder="92" />
-            <input type="text" class="form-control" placeholder="1.95" />
+            <input
+              type="number"
+              class="form-control weightJ"
+              placeholder="92"
+              onkeyup="if(value<0) value=''"
+            />
+            <input
+              type="number"
+              class="form-control heightJ"
+              placeholder="1.95"
+              onkeyup="if(value<0) value=''"
+            />
           </div>
+          <button class="mb-2 btn btn-primary calc-btn">Calculate BMI</button>
+          <p class="error-msg text-danger">
+            * One or more required field were left empty. Please input all
+            required info
+          </p>
           <div class="results">
             <p>Mark's BMI is <span class="mark-BMI-value"></span></p>
             <p>John's BMI is <span class="john-BMI-value"></span></p>
