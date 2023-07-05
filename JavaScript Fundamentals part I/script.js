@@ -414,7 +414,7 @@ tipCalcBtnEl.addEventListener("click", () => {
     return;
   } else {
     let bill = Number(billAmountEl.value);
-    const tip = 300 > bill && bill > 50 ? 0.15 * bill : 0.2 * bill;
+    const tip = 300 >= bill && bill >= 50 ? 0.15 * bill : 0.2 * bill;
     document.querySelector(".error-msg3").style.opacity = 0;
     billAmountEl.value = "";
     fullAmountEl.textContent = `The bill was ${bill}$, the tip was ${tip}$ and the total value ${
