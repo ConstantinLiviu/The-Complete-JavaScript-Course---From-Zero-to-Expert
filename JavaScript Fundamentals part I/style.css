@@ -52,6 +52,16 @@ body {
   font-size: 1.4rem;
 }
 
+.input-group input::-webkit-outer-spin-button,
+.input-group input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.input-group input[type="number"] {
+  -moz-appearance: textfield;
+}
+
 .form-control::placeholder {
   font-style: italic;
   opacity: 0.5;
@@ -66,6 +76,14 @@ body {
 .boolean-value {
   color: var(--orangeff);
   font-weight: bold;
+}
+
+.calc-btn {
+  font-size: 1.6rem;
+}
+
+.error-msg {
+  opacity: 0;
 }
 
 /* Mobile */
