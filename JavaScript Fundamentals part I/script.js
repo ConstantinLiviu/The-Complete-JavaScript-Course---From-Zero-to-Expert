@@ -27,12 +27,13 @@ alert("Hello World!");
 // console.log($aba);
 
 /*****************************************************************************************/
-// CHALLENGE #1
+// CHALLENGE #1 & #2
 const calcBtn = document.querySelector(".calc-btn");
 
 const markBMIEl = document.querySelector(".mark-BMI-value");
 const johnBMIEl = document.querySelector(".john-BMI-value");
 const markVsJohnEl = document.querySelector(".boolean-value");
+const secondChallengeAddon = document.querySelector(".challenge2addon");
 
 calcBtn.addEventListener("click", () => {
   let massMark = document.querySelector(".weightM").value;
@@ -47,6 +48,7 @@ calcBtn.addEventListener("click", () => {
     markBMIEl.textContent = "";
     johnBMIEl.textContent = "";
     markVsJohnEl.textContent = "";
+    secondChallengeAddon.textContent = "\u00A0";
     return;
   }
 
@@ -59,8 +61,10 @@ calcBtn.addEventListener("click", () => {
 
   if (BMIMark > BMIJohn) {
     document.querySelector(".boolean-value").style.color = "var(--green28)";
+    secondChallengeAddon.textContent = `Mark's BMI (${BMIMark}) is higher than John's (${BMIJohn})!`;
   } else {
     document.querySelector(".boolean-value").style.color = "var(--redff)";
+    secondChallengeAddon.textContent = `John's BMI (${BMIJohn}) is higher than Mark's (${BMIMark})!`;
   }
 
   document.querySelector(".weightM").value = "";
@@ -69,3 +73,46 @@ calcBtn.addEventListener("click", () => {
   document.querySelector(".heightJ").value = "";
 });
 /*****************************************************************************************/
+
+// Strings and Template Literals
+
+// const firstName = "Jonas";
+// const job = "teacher";
+// const birthYear = 1991;
+// const year = 2037;
+
+// const jonas =
+//   "I'm " + firstName + ", a " + (year - birthYear) + " years old " + job + "!";
+
+// console.log(jonas);
+
+// const jonasConcat = `I'm ${firstName}, a ${year - birthYear} years old ${job}!`;
+// console.log(jonasConcat);
+
+// console.log("String \nwith\nmultiple \nlines");
+// console.log(`String
+// with
+// multiple
+// lines`);
+
+/*****************************************************************************************/
+
+// If/else statements
+
+// const age = 19;
+// // const age = 15;
+// const isOldEnough = age >= 18;
+// console.log(isOldEnough);
+
+// if (isOldEnough) {
+//   console.log("Sarah can start driving 🚗");
+// } else {
+//   console.log(`Sarah must wait ${18 - age} more years to start driving`);
+// }
+
+// const birthYear = 1991;
+// if (birthYear <= 2000) {
+//   let century = 20;
+// } else {
+//   let century = 21;
+// }
