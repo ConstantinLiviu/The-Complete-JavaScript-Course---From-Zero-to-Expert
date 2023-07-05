@@ -1,1 +1,89 @@
 @import "../variables.css";
+
+/* Common */
+html {
+  font-size: 62.5%;
+}
+
+body {
+  height: 200vh;
+  background: linear-gradient(to top left, var(--green28), var(--green7d));
+}
+
+/* TASK DIV */
+.taskVariable {
+  color: var(--orangeff);
+  font-style: italic;
+}
+
+.main-page-btn {
+  top: 2rem;
+  right: 2rem;
+  margin-left: auto;
+  font-size: 1.6rem;
+  color: var(--purple97);
+}
+
+.main-page-btn:hover {
+  color: var(--white);
+}
+
+.row {
+  border-radius: 1rem;
+}
+
+.task p {
+  font-size: 1.6rem;
+}
+
+/* SOLUTION DIV */
+
+.input-group {
+  width: 70%;
+}
+
+.input-group label {
+  width: 100%;
+  font-size: 1.6rem;
+}
+
+.input-group-text,
+.input-group input {
+  font-size: 1.4rem;
+}
+
+.form-control::placeholder {
+  font-style: italic;
+  opacity: 0.5;
+}
+
+.results p {
+  font-size: 1.5rem;
+}
+
+.mark-BMI-value,
+.john-BMI-value,
+.boolean-value {
+  color: var(--orangeff);
+  font-weight: bold;
+}
+
+/* Mobile */
+@media (min-width: 576px) {
+}
+
+@media (min-width: 768px) {
+}
+
+/* ************************************************************* */
+/* Tablet */
+@media (min-width: 992px) {
+}
+
+@media (min-width: 1200px) {
+}
+
+/* ************************************************************* */
+/* Desktop */
+@media (min-width: 1400px) {
+}
