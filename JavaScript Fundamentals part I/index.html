@@ -32,7 +32,7 @@
     <section
       class="challenges d-flex flex-column align-items-center justify-content-center py-5 px-4"
     >
-      <div class="row bg-light-subtle">
+      <div class="row bg-light-subtle mb-5">
         <div class="task p-3">
           <h3 class="text-uppercase fst-italic">challenge #1</h3>
           <p>
@@ -115,12 +115,95 @@
             <p>Mark's BMI is <span class="mark-BMI-value"></span></p>
             <p>John's BMI is <span class="john-BMI-value"></span></p>
             <p>markHigherBMI is <span class="boolean-value"></span></p>
-            <p class="challenge2addon">&nbsp;</p>
+            <p class="challenge2addon taskVariable">&nbsp;</p>
           </div>
         </div>
       </div>
 
-      <div class="row"></div>
+      <div class="row bg-light-subtle third-challenge">
+        <div class="task p-3">
+          <h3 class="text-uppercase fst-italic">challenge #3</h3>
+          <p>
+            There are two gymnastics teams: Dolphins and Koalas. They compete
+            against each other 3 times. The winner with the highest average
+            score wins a trophy!
+          </p>
+          <p>
+            Calculate the average score for each team (input info). The average
+            score for Dolphins should be assigned to the
+            <span class="taskVariable">scoreDolphins</span> variable, and the
+            average score of Koalas should be assigned to the
+            <span class="taskVariable">scoreKoalas</span> variable.
+          </p>
+          <p class="border-bottom border-dark pb-3">
+            Compare the team's average scores to determine the winner of the
+            competition, and print to the console: <br />
+            <span class="taskVariable">"Dolphins win the trophy"</span> if
+            Dolphins win, <br />
+            <span class="taskVariable">"Koalas win the trophy"</span> if Koalas
+            win or <br />
+            <span class="taskVariable">"Both win the trophy"</span> if their
+            average scores are equal.
+          </p>
+        </div>
+        <div class="solution p-3">
+          <h3 class="text-uppercase fst-italic">solution</h3>
+          <div class="input-group dolphins">
+            <label>Dolphins</label>
+            <span class="input-group-text">Game scores</span>
+            <input
+              type="number"
+              class="form-control"
+              placeholder="96"
+              onkeyup="if(value<0) value=''"
+            />
+            <input
+              type="number"
+              class="form-control"
+              placeholder="108"
+              onkeyup="if(value<0) value=''"
+            />
+            <input
+              type="number"
+              class="form-control"
+              placeholder="89"
+              onkeyup="if(value<0) value=''"
+            />
+          </div>
+          <div class="input-group mb-3 koalas">
+            <label>Koalas</label>
+            <span class="input-group-text">Game scores</span>
+            <input
+              type="number"
+              class="form-control"
+              placeholder="88"
+              onkeyup="if(value<0) value=''"
+            />
+            <input
+              type="number"
+              class="form-control"
+              placeholder="91"
+              onkeyup="if(value<0) value=''"
+            />
+            <input
+              type="number"
+              class="form-control"
+              placeholder="110"
+              onkeyup="if(value<0) value=''"
+            />
+          </div>
+          <button class="mb-2 btn btn-primary winner-btn">
+            Announce winner
+          </button>
+          <p class="error-msg2 text-danger">
+            * One or more required field were left empty. Please input all
+            required info
+          </p>
+          <p class="text-uppercase taskVariable fw-semibold fs-4 champion">
+            &nbsp;
+          </p>
+        </div>
+      </div>
     </section>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"

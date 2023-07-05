@@ -79,12 +79,20 @@ body {
   font-weight: bold;
 }
 
-.calc-btn {
+.calc-btn,
+.winner-btn {
   font-size: 1.6rem;
 }
 
-.error-msg {
+.error-msg,
+.error-msg2 {
   opacity: 0;
+}
+
+/* Third challenge */
+
+.third-challenge .input-group {
+  width: 100%;
 }
 
 /* Mobile */

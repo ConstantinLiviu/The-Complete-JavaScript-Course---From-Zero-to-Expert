@@ -199,4 +199,92 @@ calcBtn.addEventListener("click", () => {
 
 /*****************************************************************************************/
 
-// Equality operators
+// Logical operators
+
+// const hasDriverLicense = true;
+// // const hasGoodVision = false;
+// const hasGoodVision = true;
+
+// console.log(hasDriverLicense && hasGoodVision);
+// console.log(hasDriverLicense || hasGoodVision);
+// console.log(!hasDriverLicense || hasGoodVision);
+// console.log(hasDriverLicense && !hasGoodVision);
+
+// const shouldDrive = hasDriverLicense && hasGoodVision;
+// if (shouldDrive) {
+//   console.log("Sarah is able to drive.");
+// } else {
+//   console.log("Someone else should drive!");
+// }
+
+// // const isTired = true;
+// const isTired = false;
+
+// console.log(hasDriverLicense || hasGoodVision || isTired);
+// console.log(hasDriverLicense && hasGoodVision && isTired);
+
+// if (hasDriverLicense && hasGoodVision && !isTired) {
+//   console.log("Sarah is able to drive.");
+// } else {
+//   console.log("Someone else should drive!");
+// }
+
+/*****************************************************************************************/
+// CHALLENGE #3
+
+const winnerBtnEl = document.querySelector(".winner-btn");
+const dolphinsGamesEl = document.querySelectorAll(".dolphins input");
+const koalasGamesEl = document.querySelectorAll(".koalas input");
+const championEl = document.querySelector(".champion");
+
+function clearFields() {
+  dolphinsGamesEl.forEach((score) => {
+    score.value = "";
+  });
+  koalasGamesEl.forEach((score) => {
+    score.value = "";
+  });
+}
+
+winnerBtnEl.addEventListener("click", () => {
+  let scoreDolphins = 0;
+  let scoreKoalas = 0;
+  for (i = 0; i < dolphinsGamesEl.length; i++) {
+    if (dolphinsGamesEl[i].value) {
+      scoreDolphins += Number(dolphinsGamesEl[i].value);
+      document.querySelector(".error-msg2").style.opacity = 0;
+    } else {
+      document.querySelector(".error-msg2").style.opacity = 1;
+      scoreDolphins = 0;
+      scoreKoalas = 0;
+      championEl.textContent = "\u00A0";
+      return;
+    }
+  }
+
+  for (i = 0; i < koalasGamesEl.length; i++) {
+    if (koalasGamesEl[i].value) {
+      scoreKoalas += Number(koalasGamesEl[i].value);
+      document.querySelector(".error-msg2").style.opacity = 0;
+    } else {
+      document.querySelector(".error-msg2").style.opacity = 1;
+      scoreDolphins = 0;
+      scoreKoalas = 0;
+      championEl.textContent = "\u00A0";
+      return;
+    }
+  }
+
+  if (scoreDolphins > scoreKoalas) {
+    championEl.textContent = "Dolphins win the trophy! 🏆";
+    clearFields();
+  } else if (scoreKoalas > scoreDolphins) {
+    championEl.textContent = "Koalas win the trophy! 🏆";
+    clearFields();
+  } else {
+    championEl.textContent = "Both win the trophy. 🤝";
+    clearFields();
+  }
+});
+
+/*****************************************************************************************/
