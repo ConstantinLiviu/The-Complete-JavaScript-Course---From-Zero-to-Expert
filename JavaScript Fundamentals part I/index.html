@@ -32,7 +32,7 @@
     <section
       class="challenges d-flex flex-column align-items-center justify-content-center py-5 px-4"
     >
-      <div class="row bg-light-subtle mb-5">
+      <div class="row bg-light-subtle mb-5 col-12">
         <div class="task p-3">
           <h3 class="text-uppercase fst-italic">challenge #1</h3>
           <p>
@@ -120,7 +120,7 @@
         </div>
       </div>
 
-      <div class="row bg-light-subtle third-challenge">
+      <div class="row bg-light-subtle third-challenge mb-5 col-12">
         <div class="task p-3">
           <h3 class="text-uppercase fst-italic">challenge #3</h3>
           <p>
@@ -200,6 +200,55 @@
             required info
           </p>
           <p class="text-uppercase taskVariable fw-semibold fs-4 champion">
+            &nbsp;
+          </p>
+        </div>
+      </div>
+
+      <div class="row bg-light-subtle fourth-challenge col-12">
+        <div class="task p-3">
+          <h3 class="text-uppercase fst-italic">challenge #4</h3>
+          <p>
+            Steven needs a very simple tip calculator for whenever he goes to
+            eat in a restaurant. In his country, it's usual to tip 15% if the
+            bill value is between 50 and 300. If the value is different, the tip
+            is 20%.
+          </p>
+          <p>
+            Calculate the tip, depending on the bill value. Create a variable
+            called <span class="taskVariable">tip</span> for this. You're not
+            allowed to use an
+            <span class="taskVariable">if...else</span> statement.
+          </p>
+          <p class="border-bottom border-dark pb-3">
+            Print a string to the console containing the
+            <span class="taskVariable">bill</span> value, the
+            <span class="taskVariable">tip</span>, and the final value (<span
+              class="taskVariable"
+              >bill+tip</span
+            >).
+          </p>
+        </div>
+        <div class="solution p-3">
+          <h3 class="text-uppercase fst-italic">solution</h3>
+          <div class="input-group restaurant-bill mb-3">
+            <label>Bill</label>
+            <span class="input-group-text">Bill amount</span>
+            <input
+              type="number"
+              class="form-control"
+              placeholder="275"
+              onkeyup="if(value<0) value=''"
+            />
+          </div>
+          <button class="mb-2 btn btn-primary tip-calc-btn">
+            Calculate tip
+          </button>
+          <p class="error-msg3 text-danger">
+            * One or more required field were left empty. Please input all
+            required info
+          </p>
+          <p class="text-uppercase taskVariable fw-semibold fs-4 full-amount">
             &nbsp;
           </p>
         </div>

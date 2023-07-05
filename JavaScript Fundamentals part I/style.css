@@ -6,7 +6,6 @@ html {
 }
 
 body {
-  height: 200vh;
   background: linear-gradient(to top left, var(--green28), var(--green7d));
 }
 
@@ -80,12 +79,14 @@ body {
 }
 
 .calc-btn,
-.winner-btn {
+.winner-btn,
+.tip-calc-btn {
   font-size: 1.6rem;
 }
 
 .error-msg,
-.error-msg2 {
+.error-msg2,
+.error-msg3 {
   opacity: 0;
 }
 
@@ -93,6 +94,12 @@ body {
 
 .third-challenge .input-group {
   width: 100%;
+}
+
+/* Fourth challenge */
+
+.restaurant-bill {
+  width: 50%;
 }
 
 /* Mobile */
