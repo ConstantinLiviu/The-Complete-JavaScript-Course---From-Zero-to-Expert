@@ -1,0 +1,26 @@
+@import "../variables.css";
+
+/* Common */
+html {
+  font-size: 62.5%;
+}
+
+/* Mobile */
+@media (min-width: 576px) {
+}
+
+@media (min-width: 768px) {
+}
+
+/* ************************************************************* */
+/* Tablet */
+@media (min-width: 992px) {
+}
+
+@media (min-width: 1200px) {
+}
+
+/* ************************************************************* */
+/* Desktop */
+@media (min-width: 1400px) {
+}
