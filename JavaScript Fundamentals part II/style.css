@@ -1,8 +1,116 @@
-@import "../variables.css";
+@import '../variables.css';
 
 /* Common */
 html {
   font-size: 62.5%;
+}
+
+body {
+  background: linear-gradient(to top left, var(--green28), var(--green7d));
+}
+
+/* TASK DIV */
+
+.taskVariable {
+  color: var(--orangeff);
+  font-style: italic;
+}
+
+.main-page-btn {
+  top: 2rem;
+  right: 2rem;
+  margin-left: auto;
+  font-size: 1.6rem;
+  color: var(--purple97);
+}
+
+.main-page-btn:hover {
+  color: var(--white);
+}
+
+.row {
+  border-radius: 1rem;
+}
+
+.task p {
+  font-size: 1.6rem;
+}
+
+/* SOLUTION DIV */
+
+.input-group {
+  width: 70%;
+}
+
+.input-group label {
+  width: 100%;
+  font-size: 1.6rem;
+}
+
+.main-values-array {
+  pointer-events: none;
+}
+
+input[type='text'].main-values-array::placeholder {
+  font-style: normal;
+  font-weight: 900;
+  color: var(--orangeff);
+}
+
+.input-group-text,
+.input-group input {
+  font-size: 1.4rem;
+}
+
+.input-group input::-webkit-outer-spin-button,
+.input-group input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.input-group input[type='number'] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.form-control::placeholder {
+  font-style: italic;
+  opacity: 0.5;
+}
+
+.results p {
+  font-size: 1.5rem;
+}
+
+.mark-BMI-value,
+.john-BMI-value,
+.boolean-value {
+  color: var(--orangeff);
+  font-weight: bold;
+}
+
+.calc-btn,
+.winner-btn,
+.tip-calc-btn {
+  font-size: 1.6rem;
+}
+
+.error-msg,
+.error-msg2,
+.error-msg3 {
+  opacity: 0;
+}
+
+/* Third challenge */
+
+.third-challenge .input-group {
+  width: 100%;
+}
+
+/* Fourth challenge */
+
+.restaurant-bill {
+  width: 50%;
 }
 
 /* Mobile */

@@ -22,7 +22,76 @@
     />
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body>
+  <body class="position-relative d-flex flex-column">
+    <a
+      href="../index.html"
+      class="position-sticky btn btn-warning main-page-btn text-uppercase fw-bold"
+    >
+      main page
+    </a>
+    <section
+      class="challenges d-flex flex-column align-items-center justify-content-center py-5 px-4"
+    >
+      <div class="row bg-light-subtle mb-5 col-12">
+        <div class="task p-3">
+          <h3 class="text-uppercase fst-italic">challenge #1</h3>
+          <p>
+            We work for a company building a smart home thermometer. Our most
+            recent task is this: "Given an array of temperatures of one day,
+            <span class="taskVariable"
+              >calculate the temperature amplitude.</span
+            >
+            Keep in mind that
+            <span class="taskVariable"
+              >sometimes there might be a sensor error.</span
+            >"
+          </p>
+          <p class="second-challenge border-bottom border-dark pb-3">
+            <span class="text-uppercase fw-bold">challenge #2: </span>Function
+            should be able to handle
+            <span class="taskVariable">2 arrays</span> of temperature values
+          </p>
+        </div>
+        <div class="solution p-3">
+          <h3 class="text-uppercase fst-italic">solution</h3>
+          <div class="input-group">
+            <label>Primary Temperature Values Array</label>
+            <span class="input-group-text">Temperature values</span>
+            <input
+              type="text"
+              class="form-control main-values-array"
+              placeholder="3, -2, -6, -1, 'error', 9, 13, 17, 15, 14, 9, 5"
+            />
+          </div>
+          <div class="input-group mb-3">
+            <label>Optional Temperature Values Array</label>
+            <span class="input-group-text">Temperature values</span>
+            <input
+              type="text"
+              class="form-control optional-values-array"
+              placeholder="Insert values here sperated by a comma"
+            />
+          </div>
+          <button class="mb-2 btn btn-primary calc-btn">
+            Calculate Values
+          </button>
+          <div class="results">
+            <p>
+              Lowest temperature is
+              <span class="lowest-temp taskVariable"></span>
+            </p>
+            <p>
+              Highest temperature is
+              <span class="highest-temp taskVariable"></span>
+            </p>
+            <p>
+              Temperature amplitude is
+              <span class="amplitude-value taskVariable"></span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
