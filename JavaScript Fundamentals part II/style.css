@@ -1,5 +1,7 @@
 @import '../variables.css';
 
+/* TASK - 100% width inputuri sub min-width: 576px */
+
 /* Common */
 html {
   font-size: 62.5%;
@@ -17,9 +19,10 @@ body {
 }
 
 .main-page-btn {
-  top: 2rem;
+  top: 0rem;
   right: 2rem;
   margin-left: auto;
+  margin-top: 2rem;
   font-size: 1.6rem;
   color: var(--purple97);
 }

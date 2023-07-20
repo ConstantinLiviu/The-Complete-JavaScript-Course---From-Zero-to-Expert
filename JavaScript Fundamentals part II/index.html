@@ -72,7 +72,7 @@
               placeholder="Insert values here sperated by a comma"
             />
           </div>
-          <button class="mb-2 btn btn-primary calc-btn">
+          <button class="mb-2 btn btn-primary calc-btn amplitude-btn">
             Calculate Values
           </button>
           <div class="results">
@@ -88,6 +88,43 @@
               Temperature amplitude is
               <span class="amplitude-value taskVariable"></span>
             </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row bg-light-subtle mb-5 col-12">
+        <div class="task p-3">
+          <h3 class="text-uppercase fst-italic">challenge #3</h3>
+          <p>
+            Given an array of forecasted maximum temperatures, the thermometer
+            displays a string with these temperatures. Example:
+            <span class="taskVariable"
+              >[17,21,23] will print "... 17℃ in 1 day ... 21℃ in 2 days ... 23℃
+              in 3 days..."</span
+            >
+          </p>
+          <p class="second-challenge border-bottom border-dark pb-3">
+            Create a function
+            <span class="taskVariable">"printForecast"</span> which takes in an
+            array "arr" and logs to the console a string like the one above.
+          </p>
+        </div>
+        <div class="solution p-3">
+          <h3 class="text-uppercase fst-italic">solution</h3>
+          <div class="input-group mb-3">
+            <label>Maximum temperatures array</label>
+            <span class="input-group-text">Temperature values</span>
+            <input
+              type="text"
+              class="form-control forecast-array"
+              placeholder="Insert values here sperated by a comma"
+            />
+          </div>
+          <button class="mb-2 btn btn-primary calc-btn forecast-btn">
+            Print Forecast
+          </button>
+          <div class="results">
+            <p class="taskVariable forecast-statement">&nbsp;</p>
           </div>
         </div>
       </div>
