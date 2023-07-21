@@ -1,0 +1,96 @@
+/* UNIVERSAL SELECTOR - APPLIES STYLING TO EVERY SINGLE ELEMENT */
+* {
+  /* THIS IS HOW ONE COMMENTS CODE IN CSS */
+  /* margin:30px; */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* HTML TAGS CAN BE USED AS SELECTORS IN ORDER TO SYLIZE PAGE ELEMENTS */
+/* THE WAY WE DO THAT IS BY USING CSS DECLARATIONS WHICH INCLUDE A PROPERTY (font-size) AND A VALUE (20px) */
+body {
+  background-color: rgb(255, 247, 201);
+  /* CERTAIN PROPERTIES, SUCH AS THE FONT FAMILY ARE INHERITED BY NESTED ELEMENTS */
+  font-family: Arial;
+  font-size: 20px;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+  font-size: 50px;
+  margin-bottom: 25px;
+}
+h2 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+P {
+  margin-bottom: 20px;
+}
+
+/* MULTIPLE ELEMENTS CAN BE SELECTED IN ORDER TO AVOID DUPLICATING CODE IF MULTIPLE ELEMENTS HAVE THE SAME STYLING */
+input,
+button {
+  padding: 10px;
+  font-size: 16px;
+}
+
+a {
+  background-color: yellowgreen;
+}
+
+small {
+  font-style: italic;
+  color: blueviolet;
+  display: block;
+}
+
+/* TO USE CLASSES AS SELECTORS WE WRITE THE CLASS NAME PRECEDED BY A DOT */
+.first {
+  color: red;
+}
+
+/* TO USE IDs AS SELECTORS WE WRITE THE ID NAME PRECEDED BY A # */
+#your-name {
+  background-color: rgb(255, 220, 105);
+  /* PROPERTIES SUCH AS "BORDER" ALLOW SHORTHAND - MULTIPLE VALUES CAN BE USED IN ORDER TO FULLY DESCRIBE THE CSS CHANGES YOU WANT IMPLEMENTED TO THE ELEMENT */
+  /* PROPERTIES SUCH AS THE "BORDER" PROPERTY ARE NOT INHERITED BY NESTED ELEMENTS */
+  border: 5px solid #444;
+  width: 400px;
+  padding: 25px;
+  margin-top: 30px;
+}
+
+/* SELECTING NESTED ELEMENTS - LEFTMOST SELECTOR REPRESENTS THE PARENT, RIGHTMOST ELEMENT REPRESENTS THE CHILD */
+/* IT'S NOT LIMITED TO JUST 1 LEVEL OF NESTING; THE DEEPER THE NESTING, THE MORE INTERMEDIATE ELEMENT SELECTORS CAN BE ADDED */
+#your-name h2 {
+  color: olivedrab;
+}
+
+#image {
+  width: 400px;
+}
+
+.main-page-btn {
+  position: sticky;
+  top: 0px;
+  right: 20px;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-bottom: 20px;
+  color: var(--purple97);
+  background-color: #ffc107;
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 5px;
+  border-radius: 5px;
+  font-weight: 600;
+}
+
+.main-page-btn:hover {
+  color: white;
+}

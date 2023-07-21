@@ -1,0 +1,54 @@
+<!-- BASIC HTML DOCUMENT/SET-UP -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <!-- THIS IS HOW ONE COMMENTS CODE IN HTML -->
+  <!-- HEAD SECTION THAT MUST BE INCLUDED IN EVERY HTML DOCUMENT. IT IS A CONTAINER FOR METADATA. EVERYTHING INCLUDED IN THE HEAD THAT ISN'T DISPLAYED WHEN ACCESING A PAGE -->
+  <!-- MOST ELEMENTS REQUIRE AN OPENING AND CLOSING TAG WHILE A COUPLE ARE SELF CLOSING TAGS -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learning HTML & CSS</title>
+    <link rel="stylesheet" href="/variables.css" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <!-- THE BODY TAG DEFINES THE DOCUMENT'S ENTIRE BODY. IT CONTAINS ALL ELEMENTS THAT ARE TO BE DISPLAYED WHEN ACCESSING A WEB PAGE -->
+  <body>
+    <a href="../index.html" class="main-page-btn"> main page </a>
+    <small
+      >This section doesn't have a project. As it was only a crash course
+      section of the Javascript course, more on what was discussed during this
+      section can be read using the console->sources->index.html and
+      styles.css</small
+    >
+    <h1>Javascript is fun, but so are HTML & CSS!</h1>
+    <!-- ELEMENTS CAN BE NESTED AND BY DEFAULT ALL ELEMENTS ON A PAGE ARE NESTED INSIDE THE BODY ELEMENT/TAG -->
+    <!-- BELOW WE CAN SEE AN ANCHOR ELEMENT NESTED INSIDE A PARAGRAPH ELEMENT -->
+    <!-- ELEMENTS CAN HAVE A CLASS(WHICH IS ALSO AN ATTRIBUTE). CLASSES ARE USED TO IDENTIFY AND MANIPULATE PAGE ELEMENTS IN A EASIER/CLEANER WAY. THEY CAN ALSO BE ATTRIBUTED TO MULTIPLE ELEMENTS, REGARDLESS OF RANK AND NESTING -->
+    <p class="first">
+      You can learn Javascript without HTML & CSS, but for DOM manipulation it's
+      useful to have some basic ideas of HTML & CSS.
+      <!-- CERTAIN ELEMENTS CAN HAVE ATTRIBUTES, SUCH AS THE ANCHOR ELEMENT BELOW -->
+      <!-- IN THIS CASE, THE LINK THIS TAG REDIRECTS TO IS THE TAG'S ATTRIBUTE -->
+      <!-- ATTRIBUTES ARE INCLUDED IN THE OPENING TAG OF AN ELEMENT -->
+      <a href="https://www.google.com/" target="_blank"
+        >Stuff on the Internet</a
+      >
+    </p>
+    <h6>Another heading</h6>
+    <p class="second">Just another paragraph</p>
+    <!-- THE IMAGE ELEMENT IS A SELF CLOSING TAG -->
+    <!-- IDS, WHICH ARE ALSO ATTRIBUTES WORK IN THE SAME MANNER AS CLASSES WITH THE EXCEPTION THAT THEY ARE UNIQUE; AN ID CAN ONLY BE ATTRIBUTED TO A SINGLE ELEMENT -->
+    <img
+      id="image"
+      src="https://images.pexels.com/photos/853407/pexels-photo-853407.jpeg?auto=compress&cs=tinysrgb&w=800"
+      alt="Ooops! The OP must've taken the photo down."
+    />
+    <form id="your-name">
+      <h2>Your name here</h2>
+      <p class="first">please fill in this form</p>
+      <input type="text" placeholder="Your name" />
+      <button>OK</button>
+    </form>
+  </body>
+</html>
