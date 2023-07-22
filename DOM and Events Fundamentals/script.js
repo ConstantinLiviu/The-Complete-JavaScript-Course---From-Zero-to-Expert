@@ -1,3 +1,5 @@
+"use strict";
+
 // TASK #1 - Guess the number
 
 const challengeGuessEl = document.querySelector(".challenge-guess");
@@ -72,3 +74,5 @@ restartBtn.addEventListener("click", () => {
 });
 
 // *******************************************************************************************************************
+
+// TASK #2 - Modal window
