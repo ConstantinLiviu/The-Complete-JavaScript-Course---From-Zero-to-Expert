@@ -7,6 +7,99 @@ html {
 
 body {
   background: linear-gradient(to top left, var(--green28), var(--green7d));
+  height: 100vh;
+}
+
+.main-page-btn {
+  top: 0;
+  right: 2rem;
+  margin-top: 2rem;
+  margin-left: auto;
+  margin-bottom: 2rem;
+  font-size: 1.6rem;
+  color: var(--purple97);
+}
+
+.main-page-btn:hover {
+  color: var(--white);
+}
+
+.header button,
+.guess button {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.header p {
+  font-size: 2.4rem;
+}
+
+.number-square::after {
+  content: "";
+  height: 0.8rem;
+  width: 100%;
+  background-color: var(--white);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+}
+
+.number h2 {
+  font-size: 5rem;
+}
+
+.number-square p {
+  z-index: 2;
+  width: 30%;
+  margin: 0 auto;
+  color: var(--gray1f);
+  font-size: 5rem;
+  background-color: white;
+  padding: 1rem;
+}
+
+.challenge {
+  border-radius: 1rem;
+  font-family: "Silkscreen", cursive;
+}
+
+@keyframes win {
+  0% {
+    background-color: #212529;
+  }
+  50% {
+    background-color: #55aa3e;
+  }
+  100% {
+    background-color: #212529;
+  }
+}
+
+.header,
+.number h2,
+.stats p {
+  color: var(--white);
+}
+
+.guess input {
+  font-size: 5rem;
+  text-align: center;
+}
+
+.guess input::-webkit-outer-spin-button,
+.guess input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.stats {
+  font-size: 1.8rem;
+}
+
+.stats .win {
+  font-weight: 600;
+  color: gold;
 }
 
 /* Mobile */
