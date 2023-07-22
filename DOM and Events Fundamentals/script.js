@@ -73,6 +73,58 @@ restartBtn.addEventListener("click", () => {
   number = Math.floor(Math.random() * 20) + 1;
 });
 
-// *******************************************************************************************************************
+// *******************************************************************************************************************//
 
-// TASK #2 - Modal window
+// As the bootstrap modal would conflict with the vanilla modal window, the vanilla one will be commented out;
+// // TASK #2 - Modal window
+// const modalWindowEl = document.querySelector(".modal-window-vanilla");
+// const modalCloseBtn = document.querySelector(".close-modal-btn");
+// const overlayEl = document.querySelector(".overlay-el");
+// const modalOpenBtns = document.querySelectorAll(".modal-btn");
+
+// // create an arry to handle all modal closing options
+// const closeEls = document.querySelectorAll(".close-modal-btn, .overlay-el");
+
+// /**
+//  * removes hidden class and adds blur class
+//  * @param {} none
+//  * @returns void
+//  */
+// function openModal() {
+//   modalWindowEl.classList.remove("hidden-modal-window");
+//   overlayEl.classList.remove("hidden-modal-window");
+//   document.querySelector("body>a").classList.add("blur");
+//   document.querySelector("body>section").classList.add("blur");
+// }
+
+// /**
+//  * removes blur class and adds hidden class
+//  * @param {} none
+//  * @returns void
+//  */
+// function closeModal() {
+//   document.querySelector("body>a").classList.remove("blur");
+//   document.querySelector("body>section").classList.remove("blur");
+//   modalWindowEl.classList.add("hidden-modal-window");
+//   overlayEl.classList.add("hidden-modal-window");
+// }
+
+// for (let i = 0; i < modalOpenBtns.length; i++) {
+//   modalOpenBtns[i].addEventListener("click", openModal);
+// }
+
+// closeEls.forEach((elem) => {
+//   elem.addEventListener("click", closeModal);
+// });
+
+// document.addEventListener("keydown", (e) => {
+//   if (
+//     e.key === "Escape" &&
+//     !modalWindowEl.classList.contains("hidden-modal-window")
+//   )
+//     closeModal();
+// });
+
+// *******************************************************************************************************************//
+
+// TASK # 3 - Pig game
