@@ -149,6 +149,51 @@
         <button class="btn btn-outline-dark modal-btn col-3">Modal 3</button> -->
         <!-- ******************************************* -->
       </div>
+      <div class="challenge challenge-pig-game row mb-5 col-12 p-3">
+        <div
+          class="game-container d-flex flex-column flex-md-row p-0 position-relative text-center"
+        >
+          <img src="img/dice-6.png" alt="" class="" />
+          <section class="player player1 current-player col-md-6">
+            <h1 class="text-uppercase">Player 1</h1>
+            <p class="total-score">0</p>
+            <div class="current-score">
+              <p class="text-uppercase">current</p>
+              <p>0</p>
+            </div>
+          </section>
+          <section
+            class="game-functions position-absolute d-flex flex-column justify-content-between justify-content-md-start"
+          >
+            <button
+              type="button"
+              class="btn btn-outline-dark game-btn new-game-btn"
+            >
+              🔄 New Game
+            </button>
+            <button
+              type="button"
+              class="btn btn-outline-dark game-btn roll-dice-btn"
+            >
+              🎲 Roll Dice
+            </button>
+            <button
+              type="button"
+              class="btn btn-outline-dark game-btn save-points-btn"
+            >
+              🕹 Save points
+            </button>
+          </section>
+          <section class="player player2 col-md-6">
+            <h1 class="text-uppercase">Player 2</h1>
+            <p class="total-score">0</p>
+            <div class="current-score">
+              <p class="text-uppercase">current</p>
+              <p>0</p>
+            </div>
+          </section>
+        </div>
+      </div>
     </section>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"

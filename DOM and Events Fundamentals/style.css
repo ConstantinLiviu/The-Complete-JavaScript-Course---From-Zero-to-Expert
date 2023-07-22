@@ -7,7 +7,6 @@ html {
 
 body {
   background: linear-gradient(to top left, var(--green28), var(--green7d));
-  height: 100vh;
 }
 
 .main-page-btn {
@@ -18,6 +17,7 @@ body {
   margin-bottom: 2rem;
   font-size: 1.6rem;
   color: var(--purple97);
+  z-index: 99;
 }
 
 .main-page-btn:hover {
@@ -143,11 +143,114 @@ body {
   filter: blur(0.15rem);
 }
 
+/* PIG GAME */
+.challenge-pig-game {
+  background: linear-gradient(to top left, #753682 0%, #bf2e34 100%);
+}
+
+.game-container {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.current-player {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.player {
+  padding-bottom: 5rem;
+  padding-top: 5rem;
+}
+
+.game-functions {
+  top: 50%;
+  left: 1rem;
+  height: 60%;
+  transform: translateY(-50%);
+}
+
+.game-btn {
+  border: none;
+  background: var(--white);
+  font-size: 1.6rem;
+  color: var(--black);
+}
+
+.game-btn:hover {
+  background-color: var(--white);
+  color: var(--black);
+}
+
+.player h1 {
+  font-size: 3rem;
+}
+.current-player .total-score {
+  color: #ff5484;
+}
+.current-player .current-score {
+  background: #ff5484;
+}
+
+.total-score {
+  font-size: 6rem;
+  color: #c7365f;
+  margin-bottom: 5rem;
+}
+.current-score {
+  font-size: 2rem;
+  color: var(--white);
+  background: #b93d60;
+  width: 30%;
+  margin: 0 auto;
+  border-radius: 1rem;
+  padding: 0.5rem;
+  margin-bottom: 5rem;
+}
+
+.current-score p:last-child {
+  font-size: 3rem;
+}
+
+img {
+  position: absolute;
+  width: 10rem;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+}
+
 /* Mobile */
 @media (min-width: 576px) {
 }
 
 @media (min-width: 768px) {
+  .game-functions {
+    height: 100%;
+    padding: 2rem 0;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .game-btn:first-child {
+    margin-bottom: auto;
+  }
+
+  .game-btn:not(:first-child) {
+    margin: 1rem 0;
+  }
+
+  img {
+    right: 50%;
+    transform: translate(50%, -50%);
+  }
+
+  .total-score {
+    margin-bottom: 20rem;
+  }
+
+  .current-score {
+    width: 50%;
+  }
 }
 
 /* ************************************************************* */
@@ -156,9 +259,31 @@ body {
 }
 
 @media (min-width: 1200px) {
+  .current-score {
+    width: 40%;
+  }
+
+  img {
+    width: 12rem;
+  }
 }
 
 /* ************************************************************* */
 /* Desktop */
 @media (min-width: 1400px) {
+  .game-btn {
+    font-size: 2.4rem;
+  }
+
+  .total-score {
+    margin-bottom: 35rem;
+  }
+
+  .current-score {
+    width: 35%;
+  }
+
+  img {
+    width: 15rem;
+  }
 }
