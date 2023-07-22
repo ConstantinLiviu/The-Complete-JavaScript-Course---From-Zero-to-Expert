@@ -29,6 +29,38 @@
     >
       main page
     </a>
+    <div
+      class="modal fade"
+      id="modalWindow"
+      tabindex="-1"
+      aria-labelledby="modalWindowLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fw-bold" id="modalWindowLabel">
+              I'm a modal window
+            </h1>
+            <button
+              type="button"
+              class="btn-close fs-5"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body fs-3">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum
+            ullam id quas, non sapiente sed ex architecto illo dolore at vel
+            quod, molestias possimus saepe quos excepturi atque laboriosam
+            inventore doloremque dolorem est? Voluptas ipsum error culpa!
+            Adipisci minus necessitatibus sit officia dolorum ducimus magni!
+            Quisquam architecto provident nesciunt dolorem.
+          </div>
+        </div>
+      </div>
+    </div>
+
     <section
       class="d-flex flex-column align-items-center justify-content-center py-5 px-4"
     >
@@ -66,9 +98,30 @@
       >
         <h2 class="text-uppercase mb-2">challenge #2</h2>
         <p class="mb-5 fs-4">Each button triggers a modal window</p>
-        <button class="col-3 btn btn-outline-dark modal-btn">Modal 1</button>
-        <button class="col-3 btn btn-outline-dark modal-btn">Modal 2</button>
-        <button class="col-3 btn btn-outline-dark modal-btn">Modal 3</button>
+        <button
+          type="button"
+          class="col-3 btn btn-outline-dark modal-btn"
+          data-bs-toggle="modal"
+          data-bs-target="#modalWindow"
+        >
+          Modal 1
+        </button>
+        <button
+          type="button"
+          class="col-3 btn btn-outline-dark modal-btn"
+          data-bs-toggle="modal"
+          data-bs-target="#modalWindow"
+        >
+          Modal 2
+        </button>
+        <button
+          type="button"
+          class="col-3 btn btn-outline-dark modal-btn"
+          data-bs-toggle="modal"
+          data-bs-target="#modalWindow"
+        >
+          Modal 3
+        </button>
       </div>
     </section>
     <script
