@@ -148,7 +148,7 @@ const player2CurrentScore = document.querySelector(
 
 // Planned tasks
 // TASK - roll die ✅
-// TASK - change die img
+// TASK - change die img ✅
 // TASK - change current score el
 // TASK - save points
 // TASK - change saved points el
@@ -177,6 +177,7 @@ function updateDieImage(roll) {
   diceImgEl.src = `img/dice-${roll}.png`;
 }
 
+// TASK - change die img
 rollDiceBtn.addEventListener("click", () => {
   let roll = dieRoll();
   updateDieImage(roll);
