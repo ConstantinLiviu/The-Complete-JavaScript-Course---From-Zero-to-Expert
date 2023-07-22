@@ -1,6 +1,6 @@
 "use strict";
 
-// TASK #1 - Guess the number
+// CHALLENGE #1 - Guess the number
 
 const challengeGuessEl = document.querySelector(".challenge-guess");
 const restartBtn = document.querySelector(".header button");
@@ -76,7 +76,7 @@ restartBtn.addEventListener("click", () => {
 // *******************************************************************************************************************//
 
 // As the bootstrap modal would conflict with the vanilla modal window, the vanilla one will be commented out;
-// // TASK #2 - Modal window
+// // CHALLENGE #2 - Modal window
 // const modalWindowEl = document.querySelector(".modal-window-vanilla");
 // const modalCloseBtn = document.querySelector(".close-modal-btn");
 // const overlayEl = document.querySelector(".overlay-el");
@@ -127,4 +127,31 @@ restartBtn.addEventListener("click", () => {
 
 // *******************************************************************************************************************//
 
-// TASK # 3 - Pig game
+// CHALLENGE # 3 - Pig game
+
+// Btns & img
+const newGameBtn = document.querySelector(".new-game-btn");
+const rollDiceBtn = document.querySelector(".roll-dice-btn");
+const savePointsBtn = document.querySelector(".save-points-btn");
+const diceImgEl = document.querySelector("img");
+
+// Scores
+const player1SavedScore = document.querySelector(".player1 .total-score");
+const player2SavedScore = document.querySelector(".player2 .total-score");
+
+const player1CurrentScore = document.querySelector(
+  ".player1 .current-score p:last-child"
+);
+const player2CurrentScore = document.querySelector(
+  ".player2 .current-score p:last-child"
+);
+
+// Planned tasks
+// TASK - roll dice
+// TASK - change dice img
+// TASK - change current score el
+// TASK - save points
+// TASK - change saved points el
+// TASK - change players
+// TASK - award winners
+// TASK - lock buttons until user starts a new game
