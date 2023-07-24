@@ -154,6 +154,7 @@ body {
 
 .current-player {
   background: rgba(255, 255, 255, 0.7);
+  transition: 0.4s ease-in;
 }
 
 .player {

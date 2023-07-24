@@ -146,6 +146,9 @@ const player2CurrentScore = document.querySelector(
   ".player2 .current-score p:last-child"
 );
 
+// Payer related
+const playerAll = document.querySelectorAll(".player");
+
 // Planned tasks
 // TASK - roll die ✅
 // TASK - change die img ✅
@@ -157,7 +160,6 @@ const player2CurrentScore = document.querySelector(
 // TASK - lock buttons until user starts a new game
 
 // TASK - roll die
-
 /**
  * Generates a random number representing a die roll
  * @param none;
@@ -181,4 +183,10 @@ function updateDieImage(roll) {
 rollDiceBtn.addEventListener("click", () => {
   let roll = dieRoll();
   updateDieImage(roll);
+  // TASK - change players
+  if (roll === 1) {
+    playerAll.forEach((player) => {
+      player.classList.toggle("current-player");
+    });
+  }
 });
