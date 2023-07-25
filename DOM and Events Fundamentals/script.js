@@ -149,6 +149,8 @@ const player2CurrentScore = document.querySelector(
 // Payer related
 const playerAll = document.querySelectorAll(".player");
 
+let currentScore = 0;
+
 // Planned tasks
 // TASK - roll die ✅
 // TASK - change die img ✅
@@ -188,5 +190,12 @@ rollDiceBtn.addEventListener("click", () => {
     playerAll.forEach((player) => {
       player.classList.toggle("current-player");
     });
+    // TASK - change current score el
+    player1CurrentScore.textContent = "0";
+    currentScore = 0;
+  } else {
+    currentScore += roll;
+    console.log(currentScore);
+    player1CurrentScore.textContent = `${currentScore}`;
   }
 });
