@@ -139,27 +139,23 @@ const diceImgEl = document.querySelector("img");
 const player1SavedScore = document.querySelector(".player1 .total-score");
 const player2SavedScore = document.querySelector(".player2 .total-score");
 
-const player1CurrentScore = document.querySelector(
-  ".player1 .current-score p:last-child"
-);
-const player2CurrentScore = document.querySelector(
-  ".player2 .current-score p:last-child"
-);
-
 // Payer related
 const playerAll = document.querySelectorAll(".player");
 
 let currentScore = 0;
+let player1Score = 0;
+let player2Score = 0;
 
 // Planned tasks
 // TASK - roll die ✅
 // TASK - change die img ✅
-// TASK - change current score el
-// TASK - save points
-// TASK - change saved points el
-// TASK - change players
+// TASK - change current score el ✅
+// TASK - save points ✅
+// TASK - change saved points el ✅
+// TASK - change players ✅
 // TASK - award winners
-// TASK - lock buttons until user starts a new game
+// TASK - block buttons until user starts a new game ✅
+// TASK - start a new game ✅
 
 // TASK - roll die
 /**
@@ -188,14 +184,48 @@ rollDiceBtn.addEventListener("click", () => {
   // TASK - change players
   if (roll === 1) {
     playerAll.forEach((player) => {
+      player.querySelector(".current-score p:last-child").textContent = "0";
+      currentScore = 0;
       player.classList.toggle("current-player");
     });
-    // TASK - change current score el
-    player1CurrentScore.textContent = "0";
-    currentScore = 0;
   } else {
+    // TASK - change current score el
     currentScore += roll;
-    console.log(currentScore);
-    player1CurrentScore.textContent = `${currentScore}`;
+    document.querySelector(
+      ".current-player .current-score p:last-child"
+    ).textContent = `${currentScore}`;
   }
+});
+
+// TASK - save points
+savePointsBtn.addEventListener("click", () => {
+  // TASK - change saved points el
+  let savedScore = +document.querySelector(
+    ".current-player .current-score p:last-child"
+  ).textContent;
+
+  let newScore = +document.querySelector(".current-player .total-score")
+    .textContent;
+
+  let sum = savedScore + newScore;
+
+  if (sum >= 100) {
+    // TASK - block buttons until user starts a new game
+    rollDiceBtn.style.pointerEvents = "none";
+    savePointsBtn.style.pointerEvents = "none";
+  }
+
+  document.querySelector(".current-player .total-score").textContent = sum;
+
+  playerAll.forEach((player) => {
+    player.querySelector(".current-score p:last-child").textContent = "0";
+    currentScore = 0;
+    player.classList.toggle("current-player");
+  });
+});
+
+// TASK - start a new game
+newGameBtn.addEventListener("click", () => {
+  rollDiceBtn.style.pointerEvents = "auto";
+  savePointsBtn.style.pointerEvents = "auto";
 });
