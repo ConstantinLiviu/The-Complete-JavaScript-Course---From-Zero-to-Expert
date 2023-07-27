@@ -162,6 +162,14 @@ body {
   padding-top: 5rem;
 }
 
+.player h1 {
+  color: #b93d60;
+}
+
+.player.current-player h1 {
+  color: ff5484;
+}
+
 .game-functions {
   top: 50%;
   left: 1rem;
@@ -187,7 +195,7 @@ body {
 .current-player .total-score {
   color: #ff5484;
 }
-.current-player .current-score {
+.current-player .current-score-container {
   background: #ff5484;
 }
 
@@ -196,7 +204,7 @@ body {
   color: #c7365f;
   margin-bottom: 5rem;
 }
-.current-score {
+.current-score-container {
   font-size: 2rem;
   color: var(--white);
   background: #b93d60;
@@ -207,7 +215,7 @@ body {
   margin-bottom: 5rem;
 }
 
-.current-score p:last-child {
+.current-score-container p:last-child {
   font-size: 3rem;
 }
 
@@ -250,7 +258,7 @@ img {
     margin-bottom: 20rem;
   }
 
-  .current-score {
+  .current-score-container {
     width: 50%;
   }
 }
@@ -261,7 +269,7 @@ img {
 }
 
 @media (min-width: 1200px) {
-  .current-score {
+  .current-score-container {
     width: 40%;
   }
 
@@ -281,7 +289,7 @@ img {
     margin-bottom: 35rem;
   }
 
-  .current-score {
+  .current-score-container {
     width: 35%;
   }
 
