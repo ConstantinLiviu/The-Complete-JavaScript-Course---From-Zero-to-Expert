@@ -1,0 +1,1 @@
+This section doesn't have any projects. As a result, since there's nothing to display, it will be skipped on the main hub page and it will only be added to the repository a folder. The folder contains a javascript file that contains all discussed concepts accompanied by several examples for the concepts presented throughout the lectures.
