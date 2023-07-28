@@ -96,6 +96,10 @@ body {
   margin: 0;
 }
 
+.guess-status {
+  min-height: 6rem;
+}
+
 .stats,
 .modal-btn {
   font-size: 1.8rem;
