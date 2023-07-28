@@ -219,6 +219,14 @@ body {
   font-size: 3rem;
 }
 
+.winner {
+  background: var(--gray1f);
+}
+
+.winner h1 {
+  color: var(--white);
+}
+
 img {
   position: absolute;
   width: 10rem;
