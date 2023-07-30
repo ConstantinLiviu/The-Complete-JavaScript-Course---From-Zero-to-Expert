@@ -22,13 +22,104 @@
     />
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body>
+  <body class="position-relative d-flex flex-column">
     <a
       href="../index.html"
       class="position-sticky btn btn-warning main-page-btn text-uppercase fw-bold"
     >
       main page
     </a>
+    <section
+      class="challenges d-flex flex-column align-items-center justify-content-center py-5 px-4"
+    >
+      <!-- <div class="row bg-light-subtle mb-5 col-12">
+        <div class="task p-3">
+          <h3 class="text-uppercase fst-italic">challenge #1</h3>
+          <p>
+            Mark and John are trying to compare their BMI (Body Mass Index),
+            which is calculated using the formula:
+            <span class="taskVariable">BMI = mass / (height * height) </span>
+            (mass in kg and height in meters).
+          </p>
+          <p>
+            Store Mark's and John's mass and height in variables called
+            <span class="taskVariable">massMark</span>,
+            <span class="taskVariable">heightMark</span>,
+            <span class="taskVariable">massJohn</span> and
+            <span class="taskVariable">heightJohn</span>.
+          </p>
+          <p>
+            Calculate both their BMIs using the formula, and store the results
+            in two variables called
+            <span class="taskVariable">BMIMark</span> and
+            <span class="taskVariable">BMIJohn</span>. Log the value of
+            <span class="taskVariable">BMIMark</span> and
+            <span class="taskVariable">BMIJohn</span> to the console.
+          </p>
+          <p>
+            <span class="fw-bold">BONUS:</span> Create a boolean variable
+            <span class="taskVariable">markHigherBMI</span> containing
+            information about whether Mark has a higher BMI than John. Log it to
+            the console too.
+          </p>
+          <p class="second-challenge border-bottom border-dark pb-3">
+            <span class="text-uppercase fw-bold">challenge #2: </span>Print a
+            nice output to the console, telling the user who has the higher BMI.
+            Modify the outputs above to use template literals to include the BMI
+            values in the outputs. Example:
+            <span class="taskVariable"
+              >"Mark's BMI (28.3) is higher than John's (23.9)!"</span
+            >
+          </p>
+        </div>
+        <div class="solution p-3">
+          <h3 class="text-uppercase fst-italic">solution</h3>
+          <div class="input-group">
+            <label>Mark</label>
+            <span class="input-group-text">Mass and height</span>
+            <input
+              type="number"
+              class="form-control weightM"
+              placeholder="78"
+              onkeyup="if(value<0) value=''"
+            />
+            <input
+              type="number"
+              class="form-control heightM"
+              placeholder="1.69"
+              onkeyup="if(value<0) value=''"
+            />
+          </div>
+          <div class="input-group mb-3">
+            <label>John</label>
+            <span class="input-group-text">Mass and height</span>
+            <input
+              type="number"
+              class="form-control weightJ"
+              placeholder="92"
+              onkeyup="if(value<0) value=''"
+            />
+            <input
+              type="number"
+              class="form-control heightJ"
+              placeholder="1.95"
+              onkeyup="if(value<0) value=''"
+            />
+          </div>
+          <button class="mb-2 btn btn-primary calc-btn">Calculate BMI</button>
+          <p class="error-msg text-danger">
+            * One or more required field were left empty. Please input all
+            required info
+          </p>
+          <div class="results">
+            <p>Mark's BMI is <span class="mark-BMI-value"></span></p>
+            <p>John's BMI is <span class="john-BMI-value"></span></p>
+            <p>markHigherBMI is <span class="boolean-value"></span></p>
+            <p class="challenge2addon taskVariable">&nbsp;</p>
+          </div>
+        </div>
+      </div> -->
+    </section>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
