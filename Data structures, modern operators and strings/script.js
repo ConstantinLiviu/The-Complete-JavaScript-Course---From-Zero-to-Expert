@@ -336,3 +336,269 @@ restaurant2.owner &&= "Anonymus";
 
 console.log(restaurant2);
 console.log(restaurant1);
+
+// ****************************************************************************************************************** //
+// CHALLENGE #1
+// 1. Create one player array for each team (variables "players1" and "players2").
+
+// 2. The first player in any player array is the goalkeeper and the other are field players. For Bayern Munich (team 1) create one variable ("gk") with the goalkeeper's name and one array ("fieldPlayers") with all the remaining 10 field players.
+
+// 3. Create an array "allPlayers" containing all players of both teams (22 players).
+
+// 4. During the game, Bayern Munich (team 1) used 3 substitute players. So create a new array ("players1Final") containing all the original team1 players plus "Thiago", "Coutinho" and "Perisic".
+
+// 5. Based on the game.odds Object, create one variable for each odd (called 'team1', "draw" and "team2").
+
+// 6. Write a function ("printGoals") that receives an arbitrary number of player names (Not an array) and prints each of them to the console, along with the number of goals who were scored (number of player names passed in).
+
+// 7. The team with the lower odd is more likely to win. Print to the console which team is more likely to win, WITHOUT using an if/else statement or the ternary operator.
+
+// TEST DATA FOR 6: Use players "Davies", "Muller", "Lewandowski" and "Kimmich". Then, call the function again with players from game.scored.
+
+// const game = {
+//   team1: "Bayern Munich",
+//   team2: "Borrusia Dortmund",
+//   players: [
+//     [
+//       "Neuer",
+//       "Pavard",
+//       "Martinez",
+//       "Alaba",
+//       "Davies",
+//       "Kimmich",
+//       "Goretzka",
+//       "Coman",
+//       "Muller",
+//       "Gnarby",
+//       "Lewandowski",
+//     ],
+//     [
+//       "Burki",
+//       "Schulz",
+//       "Hummels",
+//       "Akanji",
+//       "Hakimi",
+//       "Weigl",
+//       "Witsel",
+//       "Hazard",
+//       "Brandt",
+//       "Sancho",
+//       "Gotze",
+//     ],
+//   ],
+//   score: "4:0",
+//   scored: ["Lewandowski", "Gnarby", "Lewandowski", "Hummels"],
+//   date: "Nov 9th, 2037",
+//   odds: {
+//     team1: 1.33,
+//     X: 3.25,
+//     team2: 6.5,
+//   },
+// };
+
+// // TASK #1
+// const player1 = [...game.players[0]];
+// const player2 = [...game.players[1]];
+// console.log(player1);
+// console.log(player2);
+
+// // TASK #2
+// const [gk, ...fieldPlayers] = player1;
+// console.log(gk);
+// console.log(fieldPlayers);
+
+// // TASK #3
+// const allPlayers = [...game.players[0], ...game.players[1]];
+// console.log(allPlayers);
+
+// // TASK #4
+// const players1Final = [...game.players[0], "Thiago", "Coutinho", "Perisic"];
+// console.log(players1Final);
+
+// // TASK #5
+// const { team1: team1, X: draw, team2: team2 } = game.odds;
+// console.log(team1, draw, team2);
+
+// // TASK #6
+// function printGoals(...players) {
+//   console.log(
+//     `${players.length} ${players.length !== 1 ? "goals" : "goal"} ${
+//       players.length !== 1 ? "were" : "was"
+//     } scored`
+//   );
+
+//   let goalscorers = {};
+
+//   for (let i = 0; i < players.length; i++) {
+//     if (goalscorers[players[i]]) {
+//       goalscorers[players[i]] += 1;
+//     } else {
+//       goalscorers[players[i]] = 1;
+//     }
+//   }
+//   console.log(goalscorers);
+
+//   for (const player in goalscorers) {
+//     console.log(
+//       `${player} scored ${goalscorers[player]}  ${
+//         goalscorers.player !== 1 ? "goals" : "goal"
+//       }`
+//     );
+//   }
+// }
+// printGoals(...game.scored);
+
+// // TASK #7
+// console.log(
+//   `${
+//     (game.odds.team1 < game.odds.team2 && game.team1) || game.team2
+//   } is more likely to win`
+// );
+
+// USER INPUT CASE
+const printChallengeResultsBtn = document.querySelector(
+  ".print-challenge-results-btn"
+);
+
+const teamName1El = document.querySelector(".team1-input-name");
+const teamName2El = document.querySelector(".team2-input-name");
+const teamRoster1El = document.querySelector(".team1-input-roster");
+const teamRoster2El = document.querySelector(".team2-input-roster");
+const teamSubstitutes1El = document.querySelector(".team1-input-substitutes");
+const teamSubstitutes2El = document.querySelector(".team2-input-substitutes");
+const team1GoalscorersEl = document.querySelector(".team1-input-goalscorers");
+const team2GoalscorersEl = document.querySelector(".team2-input-goalscorers");
+const gameOddsWin1El = document.querySelector(".game-odds-win1-input");
+const gameOddsDrawEl = document.querySelector(".game-odds-draw-input");
+const gameOddsWin2El = document.querySelector(".game-odds-win2-input");
+const team1ScoreEl = document.querySelector(".team1-input-score");
+const team2ScoreEl = document.querySelector(".team2-input-score");
+const errorMsgEl = document.querySelector(".error-msg");
+const resultsEl = document.querySelector(".results");
+
+printChallengeResultsBtn.addEventListener("click", () => {
+  if (
+    !teamName1El.value ||
+    !teamName2El.value ||
+    !teamRoster1El.value ||
+    !teamRoster2El.value ||
+    !gameOddsWin1El.value ||
+    !gameOddsDrawEl.value ||
+    !gameOddsWin2El.value
+  ) {
+    const game = {
+      team1: "Bayern Munich",
+      team2: "Borrusia Dortmund",
+      players: [
+        [
+          "Neuer",
+          "Pavard",
+          "Martinez",
+          "Alaba",
+          "Davies",
+          "Kimmich",
+          "Goretzka",
+          "Coman",
+          "Muller",
+          "Gnarby",
+          "Lewandowski",
+        ],
+        [
+          "Burki",
+          "Schulz",
+          "Hummels",
+          "Akanji",
+          "Hakimi",
+          "Weigl",
+          "Witsel",
+          "Hazard",
+          "Brandt",
+          "Sancho",
+          "Gotze",
+        ],
+      ],
+      score: "4:0",
+      scored: ["Lewandowski", "Gnarby", "Lewandowski", "Hummels"],
+      date: "Nov 9th, 2037",
+      odds: {
+        team1: 1.33,
+        X: 3.25,
+        team2: 6.5,
+      },
+    };
+
+    // TASK #1
+    const player1 = [...game.players[0]];
+    const player2 = [...game.players[1]];
+
+    // TASK #2
+    const [gk, ...fieldPlayers] = player1;
+
+    // TASK #3
+    const allPlayers = [...game.players[0], ...game.players[1]];
+
+    // TASK #4
+    const players1Final = [...game.players[0], "Thiago", "Coutinho", "Perisic"];
+
+    // TASK #5
+    const { team1: team1, X: draw, team2: team2 } = game.odds;
+
+    // TASK #6
+    function printGoals(...players) {
+      console.log(
+        `${players.length} ${players.length !== 1 ? "goals" : "goal"} ${
+          players.length !== 1 ? "were" : "was"
+        } scored`
+      );
+
+      let goalscorers = {};
+
+      for (let i = 0; i < players.length; i++) {
+        if (goalscorers[players[i]]) {
+          goalscorers[players[i]] += 1;
+        } else {
+          goalscorers[players[i]] = 1;
+        }
+      }
+
+      for (const player in goalscorers) {
+        console.log(
+          `${player} scored ${goalscorers[player]}  ${
+            goalscorers.player !== 1 ? "goals" : "goal"
+          }`
+        );
+      }
+    }
+    printGoals(...game.scored);
+
+    // TASK #7
+    console.log(
+      `${
+        (game.odds.team1 < game.odds.team2 && game.team1) || game.team2
+      } is more likely to win`
+    );
+  } else if (
+    teamRoster1El.value.split(",").length !== 11 ||
+    teamRoster2El.value.split(",").length !== 11
+  ) {
+    errorMsgEl.style.visibility = "visible";
+    return;
+  } else if (
+    teamSubstitutes1El.value.split(",").length > 3 ||
+    teamSubstitutes2El.value.split(",").length > 3
+  ) {
+    errorMsgEl.style.visibility = "visible";
+    console.log("prea multi");
+    return;
+  } else {
+    const game = {
+      team1: teamName1El.value,
+      team2: teamName2El.value,
+      players: [teamRoster1El.value.split(","), teamRoster2El.value.split(",")],
+      team1Subs: (teamSubstitutes1El ??= "none"),
+      team2Subs: 1,
+      score: `${team1ScoreEl.value}:${team2ScoreEl.value}`,
+    };
+    console.log(game);
+  }
+});

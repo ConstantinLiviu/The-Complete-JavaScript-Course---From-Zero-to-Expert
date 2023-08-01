@@ -20,6 +20,55 @@ html {
   color: var(--white);
 }
 
+.taskVariable {
+  color: var(--orangeff);
+  font-style: italic;
+}
+
+.challenges .row {
+  border-radius: 1rem;
+}
+
+.task p {
+  font-size: 1.6rem;
+}
+
+pre {
+  font-size: 1rem;
+}
+
+.input-group label {
+  font-size: 1.6rem;
+}
+
+.input-group span,
+.input-group input {
+  font-size: 1.4rem;
+}
+
+.input-group input::-webkit-outer-spin-button,
+.input-group input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.input-group input::placeholder {
+  font-style: italic;
+}
+
+.input-group input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.print-challenge-results-btn {
+  font-size: 1.4rem;
+}
+.error-msg {
+  visibility: hidden;
+  font-size: 1.2rem;
+}
+
 body {
   background: linear-gradient(to top left, var(--green28), var(--green7d));
 }

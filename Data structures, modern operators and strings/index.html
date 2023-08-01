@@ -32,37 +32,104 @@
     <section
       class="challenges d-flex flex-column align-items-center justify-content-center py-5 px-4"
     >
-      <!-- <div class="row bg-light-subtle mb-5 col-12">
-        <div class="task p-3">
+      <div class="row bg-light-subtle mb-5 col-12">
+        <div class="task p-3 pb-0">
           <h3 class="text-uppercase fst-italic">challenge #1</h3>
           <p>
-            Mark and John are trying to compare their BMI (Body Mass Index),
-            which is calculated using the formula:
-            <span class="taskVariable">BMI = mass / (height * height) </span>
-            (mass in kg and height in meters).
+            1. Create one player array for each team (variables
+            <span class="taskVariable">players1</span> and
+            <span class="taskVariable">players2</span>).
           </p>
           <p>
-            Store Mark's and John's mass and height in variables called
-            <span class="taskVariable">massMark</span>,
-            <span class="taskVariable">heightMark</span>,
-            <span class="taskVariable">massJohn</span> and
-            <span class="taskVariable">heightJohn</span>.
+            2. The first player in any player array is the goalkeeper and the
+            other are field players. For Bayern Munich
+            <span class="taskVariable">team1</span> create one variable
+            <span class="taskVariable">gk</span> with the goalkeeper's name and
+            one array <span class="taskVariable">fieldPlayers</span> with all
+            the remaining 10 field players.
           </p>
           <p>
-            Calculate both their BMIs using the formula, and store the results
-            in two variables called
-            <span class="taskVariable">BMIMark</span> and
-            <span class="taskVariable">BMIJohn</span>. Log the value of
-            <span class="taskVariable">BMIMark</span> and
-            <span class="taskVariable">BMIJohn</span> to the console.
+            3. Create an array
+            <span class="taskVariable">allPlayers</span> containing all players
+            of both teams (22 players).
           </p>
           <p>
-            <span class="fw-bold">BONUS:</span> Create a boolean variable
-            <span class="taskVariable">markHigherBMI</span> containing
-            information about whether Mark has a higher BMI than John. Log it to
-            the console too.
+            4. During the game, Bayern Munich (<span class="taskVariable"
+              >team1</span
+            >) used 3 substitute players. So create a new array
+            <span class="taskVariable">players1Final</span> containing all the
+            original <span class="taskVariable">team1</span> players plus
+            <span class="taskVariable">"Thiago"</span>,
+            <span class="taskVariable">"Coutinho"</span> and
+            <span class="taskVariable">"Perisic"</span>.
           </p>
-          <p class="second-challenge border-bottom border-dark pb-3">
+          <p>
+            5. Based on the
+            <span class="taskVariable">"game.odds"</span> Object, create one
+            variable for each odd (called
+            <span class="taskVariable">"team1"</span>,
+            <span class="taskVariable">"draw"</span> and
+            <span class="taskVariable">"team2"</span>).
+          </p>
+          <p>
+            6. Write a function
+            <span class="taskVariable">"printGoals"</span> that receives and
+            arbitrary number of player names (Not an array) and prints each of
+            them to the console, along with the number of goals each one scored.
+          </p>
+          <p>
+            7. The team with the lower odd is more likely to win. Print to the
+            console which team is more likely to win, WITHOUT using an if/else
+            statement or the ternary operator.
+          </p>
+          <p class="border-bottom border-dark pb-3 taskVariable">
+            N.B. In the abscence of user input use the test data to complete each task
+          </p>
+          <p>
+            <span class="fw-bold">TEST DATA:</span> 
+            <pre class="border-bottom border-dark mb-0"> const game = {
+              team1: "Bayern Munich",
+              team2: "Borrusia Dortmund",
+              players: [
+                [
+                  "Neuer",
+                  "Pavard",
+                  "Martinez",
+                  "Alaba",
+                  "Davies",
+                  "Kimmich",
+                  "Goretzka",
+                  "Coman",
+                  "Muller",
+                  "Gnarby",
+                  "Lewandowski",
+                ],
+                [
+                  "Burki",
+                  "Schulz",
+                  "Hummels",
+                  "Akanji",
+                  "Hakimi",
+                  "Weigl",
+                  "Witsel",
+                  "Hazard",
+                  "Brandt",
+                  "Sancho",
+                  "Gotze",
+                ],
+              ],
+              score: "4:0",
+              scored: ["Lewandowski", "Gnarby", "Lewandowski", "Hummels"],
+              date: "Nov 9th, 2037",
+              odds: {
+                team1: 1.33,
+                X: 3.25,
+                team2: 6.5,
+              },
+            };
+          </pre>
+          </p>
+          <!-- <p class="second-challenge border-bottom border-dark pb-3">
             <span class="text-uppercase fw-bold">challenge #2: </span>Print a
             nice output to the console, telling the user who has the higher BMI.
             Modify the outputs above to use template literals to include the BMI
@@ -70,55 +137,139 @@
             <span class="taskVariable"
               >"Mark's BMI (28.3) is higher than John's (23.9)!"</span
             >
-          </p>
+          </p> -->
         </div>
-        <div class="solution p-3">
+        <div class="solution p-3 pt-0">
           <h3 class="text-uppercase fst-italic">solution</h3>
-          <div class="input-group">
-            <label>Mark</label>
-            <span class="input-group-text">Mass and height</span>
+          <div class="input-group mb-3">
+            <label class="w-100 mb-2">Team names</label>
+            <span class="input-group-text">Team 1</span>
             <input
-              type="number"
-              class="form-control weightM"
-              placeholder="78"
-              onkeyup="if(value<0) value=''"
-            />
-            <input
-              type="number"
-              class="form-control heightM"
-              placeholder="1.69"
-              onkeyup="if(value<0) value=''"
+              type="text"
+              class="form-control team1-input-name"
+              placeholder="Team name"
             />
           </div>
           <div class="input-group mb-3">
-            <label>John</label>
-            <span class="input-group-text">Mass and height</span>
+            <span class="input-group-text">Team 2</span>
+            <input
+              type="text"
+              class="form-control team2-input-name"
+              placeholder="Team name"
+            />
+          </div>
+          <div class="input-group mb-3">
+            <label class="w-100 mb-2">Team 1 roster</label>
+            <span class="input-group-text">Team roster</span>
+            <input
+              type="text"
+              class="form-control team1-input-roster"
+              placeholder="11 player names separated by a comma"
+            />
+          </div>
+          <div class="input-group mb-3">
+            <label class="w-100 mb-2">Team 2 roster</label>
+            <span class="input-group-text">Team roster</span>
+            <input
+              type="text"
+              class="form-control team2-input-roster"
+              placeholder="11 player names separated by a comma"
+            />
+          </div>
+          <div class="input-group mb-3">
+            <label class="w-100 mb-2">Team 1 substitutes</label>
+            <span class="input-group-text">Team substitutes</span>
+            <input
+              type="text"
+              class="form-control team1-input-substitutes"
+              placeholder="Max 3 player names separated by a comma"
+            />
+          </div>
+          <div class="input-group mb-3">
+            <label class="w-100 mb-2">Team 2 substitutes</label>
+            <span class="input-group-text">Team substitutes</span>
+            <input
+              type="text"
+              class="form-control team2-input-substitutes"
+              placeholder="Max 3 player names separated by a comma"
+            />
+          </div>
+          <div class="input-group mb-3">
+            <label class="w-100 mb-2">Team 1 goalscorers</label>
+            <span class="input-group-text">Goalscorers</span>
+            <input
+              type="text"
+              class="form-control team1-input-goalscorers"
+              placeholder="Names must match number of goals"
+            />
+          </div>
+          <div class="input-group mb-3">
+            <label class="w-100 mb-2">Team 2 goalscorers</label>
+            <span class="input-group-text">Goalscorers</span>
+            <input
+              type="text"
+              class="form-control team2-input-goalscorers"
+              placeholder="Names must match number of goals"
+            />
+          </div>
+          <div class="input-group mb-3">
+            <label class="w-100 mb-2">Game outcome</label>
+            <span class="input-group-text">Team 1 wins</span>
             <input
               type="number"
-              class="form-control weightJ"
-              placeholder="92"
+              class="form-control game-odds-win1-input"
+              placeholder="1.33"
               onkeyup="if(value<0) value=''"
             />
+            <span class="input-group-text">Draw</span>
             <input
               type="number"
-              class="form-control heightJ"
-              placeholder="1.95"
+              class="form-control game-odds-draw-input"
+              placeholder="3.29"
+              onkeyup="if(value<0) value=''"
+            />
+            <span class="input-group-text">Team 2 wins</span>
+            <input
+              type="number"
+              class="form-control game-odds-win2-input"
+              placeholder="6.5"
               onkeyup="if(value<0) value=''"
             />
           </div>
-          <button class="mb-2 btn btn-primary calc-btn">Calculate BMI</button>
+          <div class="input-group mb-4">
+            <label class="w-100 mb-2">Final score</label>
+            <span class="input-group-text">Team 1 goals</span>
+            <input
+              type="number"
+              class="form-control team1-input-score"
+              placeholder="0"
+              onkeyup="if(value<0) value=''"
+            />
+            <span class="input-group-text">Team 2 goals</span>
+            <input
+              type="number"
+              class="form-control team2-input-score"
+              placeholder="0"
+              onkeyup="if(value<0) value=''"
+            />
+          </div>
+          <button class="mb-2 btn btn-primary print-challenge-results-btn">Print Challenge Results</button>
           <p class="error-msg text-danger">
-            * One or more required field were left empty. Please input all
-            required info
+            * One or more required field(s) (team names, team rosters, game outcome and final score) were left empty or incomplete. Please input all required info or leave all fields empty to use the test data set
           </p>
           <div class="results">
-            <p>Mark's BMI is <span class="mark-BMI-value"></span></p>
-            <p>John's BMI is <span class="john-BMI-value"></span></p>
-            <p>markHigherBMI is <span class="boolean-value"></span></p>
-            <p class="challenge2addon taskVariable">&nbsp;</p>
+            <p class="team1-players"><span class="gk">&nbsp;</span>&nbsp;</p>
+            <p class="team2-players"><span class="gk">&nbsp;</span>&nbsp;</p>
+            <p class="all-players">&nbsp;</p>
+            <!-- <p class="substitutions1">&nbsp;</p>
+            <p class="substitutions2">&nbsp;</p>
+            <p class="goals1">&nbsp;</p>
+            <p class="goals2">&nbsp;</p> -->
+            <p class="match-prediction">&nbsp;</p>
+            <p class="">&nbsp;</p>
           </div>
         </div>
-      </div> -->
+      </div>
     </section>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
