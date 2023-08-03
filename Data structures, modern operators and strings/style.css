@@ -65,8 +65,12 @@ pre {
   font-size: 1.4rem;
 }
 .error-msg {
-  visibility: hidden;
+  display: none;
   font-size: 1.2rem;
+}
+
+.results p {
+  font-size: 1.4rem;
 }
 
 body {
