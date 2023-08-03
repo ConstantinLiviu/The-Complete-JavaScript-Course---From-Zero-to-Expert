@@ -476,7 +476,38 @@ const team2ScoreEl = document.querySelector(".team2-input-score");
 const errorMsgEl = document.querySelector(".error-msg");
 const resultsEl = document.querySelector(".results");
 
+function teamRoster(teamRoster, ind) {
+  let [gk, ...players] = [...teamRoster];
+  const newP = document.createElement("p");
+  resultsEl.appendChild(newP);
+  newP.innerHTML = `<span class="taskVariable">${ind}</span>'s goalkeeper is <span class="taskVariable">${gk}</span>. The rest of the team is made up of <span class="taskVariable">${players}</span>`;
+  console.log(
+    `${ind}'s goalkeeper is ${gk}. The rest of the team is made up of ${players}`
+  );
+}
+
+function allPlayers(players) {
+  const newP = document.createElement("p");
+  resultsEl.appendChild(newP);
+  newP.textContent = `Today's players are ${players}`;
+  console.log(`Today's players are ${players}`);
+}
+
+function substitutions(players, subs, teamName) {
+  const newP = document.createElement("p");
+  if (subs === "none") {
+    newP.innerHTML = `<span class="taskVariable">${teamName}</span> didn't use any substitutes during this match. There were no roster changes`;
+  } else {
+    newP.innerHTML = `<span class="taskVariable">${teamName}</span> used substitutes in this match. The following players were on field during this match: <span class="taskVariable">${[
+      players,
+      ...subs,
+    ]}</span>`;
+  }
+  resultsEl.appendChild(newP);
+}
+
 printChallengeResultsBtn.addEventListener("click", () => {
+  errorMsgEl.style.visibility = "none";
   if (
     !teamName1El.value ||
     !teamName2El.value ||
@@ -484,39 +515,45 @@ printChallengeResultsBtn.addEventListener("click", () => {
     !teamRoster2El.value ||
     !gameOddsWin1El.value ||
     !gameOddsDrawEl.value ||
-    !gameOddsWin2El.value
+    !gameOddsWin2El.value ||
+    !team1ScoreEl.value ||
+    !team2ScoreEl.value
   ) {
+    errorMsgEl.style.display = "block";
+    errorMsgEl.textContent =
+      "* One or more required field(s) (team names, team rosters, game outcome, goalscorers or final score) were left empty or incomplete. The test data set will be used.";
     const game = {
       team1: "Bayern Munich",
       team2: "Borrusia Dortmund",
       players: [
         [
-          "Neuer",
-          "Pavard",
-          "Martinez",
-          "Alaba",
-          "Davies",
-          "Kimmich",
-          "Goretzka",
-          "Coman",
-          "Muller",
-          "Gnarby",
-          "Lewandowski",
+          " Neuer",
+          " Pavard",
+          " Martinez",
+          " Alaba",
+          " Davies",
+          " Kimmich",
+          " Goretzka",
+          " Coman",
+          " Muller",
+          " Gnarby",
+          " Lewandowski",
         ],
         [
-          "Burki",
-          "Schulz",
-          "Hummels",
-          "Akanji",
-          "Hakimi",
-          "Weigl",
-          "Witsel",
-          "Hazard",
-          "Brandt",
-          "Sancho",
-          "Gotze",
+          " Burki",
+          " Schulz",
+          " Hummels",
+          " Akanji",
+          " Hakimi",
+          " Weigl",
+          " Witsel",
+          " Hazard",
+          " Brandt",
+          " Sancho",
+          " Gotze",
         ],
       ],
+      team1Subs: [" Thiago", " Coutinho", " Perisic"],
       score: "4:0",
       scored: ["Lewandowski", "Gnarby", "Lewandowski", "Hummels"],
       date: "Nov 9th, 2037",
@@ -527,15 +564,20 @@ printChallengeResultsBtn.addEventListener("click", () => {
       },
     };
 
-    // TASK #1
-    const player1 = [...game.players[0]];
-    const player2 = [...game.players[1]];
+    // // TASK #1
+    // const player1 = [...game.players[0]];
+    // const player2 = [...game.players[1]];
 
-    // TASK #2
-    const [gk, ...fieldPlayers] = player1;
+    // // TASK #2
+    // const [gk, ...fieldPlayers] = player1;
 
     // TASK #3
-    const allPlayers = [...game.players[0], ...game.players[1]];
+    // const allPlayers = [...game.players[0], ...game.players[1]];
+
+    allPlayers(game.players);
+    teamRoster(game.players[0], game.team1);
+    teamRoster(game.players[1], game.team2);
+    substitutions(game.players[0], game.team1Subs, game.team1);
 
     // TASK #4
     const players1Final = [...game.players[0], "Thiago", "Coutinho", "Perisic"];
@@ -577,28 +619,44 @@ printChallengeResultsBtn.addEventListener("click", () => {
         (game.odds.team1 < game.odds.team2 && game.team1) || game.team2
       } is more likely to win`
     );
-  } else if (
-    teamRoster1El.value.split(",").length !== 11 ||
-    teamRoster2El.value.split(",").length !== 11
-  ) {
-    errorMsgEl.style.visibility = "visible";
-    return;
-  } else if (
-    teamSubstitutes1El.value.split(",").length > 3 ||
-    teamSubstitutes2El.value.split(",").length > 3
-  ) {
-    errorMsgEl.style.visibility = "visible";
-    console.log("prea multi");
-    return;
+    console.log(game);
   } else {
+    errorMsgEl.style.display = "none";
     const game = {
       team1: teamName1El.value,
       team2: teamName2El.value,
-      players: [teamRoster1El.value.split(","), teamRoster2El.value.split(",")],
-      team1Subs: (teamSubstitutes1El ??= "none"),
-      team2Subs: 1,
+      players: [
+        teamRoster1El.value.replaceAll(",", ", ").split(",").splice(0, 11),
+        teamRoster2El.value.replaceAll(",", ", ").split(",").splice(0, 11),
+      ],
+      team1Subs:
+        teamSubstitutes1El.value
+          .replaceAll(",", ", ")
+          .split(",")
+          .splice(0, 3) || "none",
+      team2Subs:
+        teamSubstitutes2El.value
+          .replaceAll(",", ", ")
+          .split(",")
+          .splice(0, 3) || "none",
       score: `${team1ScoreEl.value}:${team2ScoreEl.value}`,
+      scored1:
+        team1GoalscorersEl.value.replaceAll(",", ", ").split(",") || "none",
+      scored2:
+        team2GoalscorersEl.value.replaceAll(",", ", ").split(",") || "none",
+      date: "Nov 16th, 2037",
+      odds: {
+        team1: +gameOddsWin1El.value,
+        X: +gameOddsDrawEl.value,
+        team2: +gameOddsWin2El.value,
+      },
     };
-    console.log(game);
+    // console.log(game);
+    // console.log(teamRoster1El.value);
+    allPlayers(game.players);
+    teamRoster(game.players[0], game.team1);
+    teamRoster(game.players[1], game.team2);
+    substitutions(game.players[0], game.team1Subs, game.team1);
+    substitutions(game.players[1], game.team2Subs, game.team2);
   }
 });
