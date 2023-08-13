@@ -418,6 +418,9 @@ console.log(restaurant1);
 // // TASK #5
 // const { team1: team1, X: draw, team2: team2 } = game.odds;
 // console.log(team1, draw, team2);
+// ALT
+// const {odds: {team1, x:draw, team2}} = game
+// console.log(team1, draw, team2)
 
 // // TASK #6
 // function printGoals(...players) {
@@ -689,3 +692,223 @@ printChallengeResultsBtn.addEventListener("click", () => {
 });
 
 // ****************************************************************************************************************** //
+
+// LESSON - For ... of Loop
+
+const restaurant3 = {
+  name: "Classico Ialiano",
+  location: "Via Angelo Travanti 23, Firenze, Italy",
+  categories: ["Italian", "Pizzeria", "Vegetarian", "Organic"],
+  starterMenu: ["Focaccia", "Bruschetta", "Garlic Bread", "Caprese Salad"],
+  mainMenu: ["Pizza", "Pasta", "Risotto"],
+  openingHours: {
+    thu: {
+      open: 12,
+      close: 22,
+    },
+    fri: {
+      open: 11,
+      close: 23,
+    },
+    sat: {
+      open: 0, // open 24 hours
+      close: 24,
+    },
+  },
+  order: function (starterIndex, mainIndex) {
+    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+  },
+  orderDelivery: function ({
+    starterIndex = 1,
+    mainIndex = 0,
+    time = "20:00",
+    address,
+  }) {
+    console.log(
+      `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
+    );
+  },
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log(`Here is you delicious pasta with ${ing1}, ${ing2}, ${ing3}`);
+  },
+  orderPizza: function (mainIng, ...otherIng) {
+    console.log(mainIng, otherIng);
+  },
+};
+
+const menu3 = [...restaurant3.starterMenu, ...restaurant3.mainMenu];
+
+for (const item of menu3) console.log(item);
+
+// getting the iterrated element index
+for (const item of menu3.entries()) console.log(`${item[0] + 1}: ${item[1]}`);
+
+// destructuring of element inside statement
+for (const [i, item] of menu3.entries()) console.log(`${i + 1}: ${item}`);
+
+// ****************************************************************************************************************** //
+
+// LESSON - Enhanced Object Literals
+
+// #4 compute property names
+const weekDays = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
+
+// #1 Object outside object
+const openingHours2 = {
+  [weekDays[3]]: {
+    open: 12,
+    close: 22,
+  },
+  [weekDays[4]]: {
+    open: 11,
+    close: 23,
+  },
+  [`day-${2 + 3}`]: {
+    open: 0, // open 24 hours
+    close: 24,
+  },
+};
+
+const restaurant4 = {
+  name: "Classico Ialiano",
+  location: "Via Angelo Travanti 23, Firenze, Italy",
+  categories: ["Italian", "Pizzeria", "Vegetarian", "Organic"],
+  starterMenu: ["Focaccia", "Bruschetta", "Garlic Bread", "Caprese Salad"],
+  mainMenu: ["Pizza", "Pasta", "Risotto"],
+  // before ES6
+  // openingHours: openingHours2,
+  /**************************** */
+  // #2 ES6 enhanced object literals
+  openingHours2,
+  /**************************** */
+  // #3 no more function expressions
+  // order: function (starterIndex, mainIndex) {
+  //   return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+  // },
+  // orderDelivery: function ({
+  //   starterIndex = 1,
+  //   mainIndex = 0,
+  //   time = "20:00",
+  //   address,
+  // }) {
+  //   console.log(
+  //     `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
+  //   );
+  // },
+  // orderPasta: function (ing1, ing2, ing3) {
+  //   console.log(`Here is you delicious pasta with ${ing1}, ${ing2}, ${ing3}`);
+  // },
+  // orderPizza: function (mainIng, ...otherIng) {
+  //   console.log(mainIng, otherIng);
+  // },
+  order(starterIndex, mainIndex) {
+    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+  },
+  orderDelivery({ starterIndex = 1, mainIndex = 0, time = "20:00", address }) {
+    console.log(
+      `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
+    );
+  },
+  orderPasta(ing1, ing2, ing3) {
+    console.log(`Here is you delicious pasta with ${ing1}, ${ing2}, ${ing3}`);
+  },
+  orderPizza(mainIng, ...otherIng) {
+    console.log(mainIng, otherIng);
+  },
+};
+
+console.log(restaurant4);
+
+// ****************************************************************************************************************** //
+
+// LESSON - Optional Chaining
+
+// console.log(restaurant4.openingHours2.mon.open); - cannot reat property of undefined
+
+// if the property exists log the value
+if (restaurant4.openingHours2.fri)
+  console.log(restaurant4.openingHours2.fri.open);
+
+if (restaurant4.openingHours2 && restaurant4.openingHours2.thu)
+  console.log(restaurant4.openingHours2.thu.open);
+
+// WITH optional chaining
+console.log(restaurant4.openingHours2.thu?.open);
+// will return undefined immediately
+console.log(restaurant4.openingHours2.mon?.open);
+// chains
+console.log(restaurant4.openingHours2?.mon?.open);
+
+const weekDays2 = ["mon", "tue", "wed", "thu", "fri", "day-5", "sun"];
+for (const day of weekDays2) {
+  console.log(day);
+  const open = restaurant4.openingHours2[day]?.open;
+  // nullish coalescing operator in order to avoid an error if opening hour is 0 (open 24/7)
+  console.log(`On ${day} the restaurant ${open ?? "is closed"}`);
+}
+
+// on calling methods
+console.log(restaurant4.order?.(0, 1) ?? "Method doesn't exist");
+console.log(restaurant4.orderRisotto?.(0, 1) ?? "Method doesn't exist");
+
+// on arrays
+const users = [
+  {
+    name: "John",
+    email: "example@email.com",
+  },
+];
+
+console.log(users[0]?.name ?? "User array empty");
+console.log(users[1]?.name ?? "User array empty");
+
+// ****************************************************************************************************************** //
+
+// LESSON - Looping Objects(keys, values and entries)
+
+// Looping through Object keys
+
+for (const day of Object.keys(openingHours2)) console.log(day);
+
+const properties = Object.keys(openingHours2);
+console.log(properties);
+console.log(`We are open ${properties.length} days per week.`);
+
+let openStr = `We are open on ${properties.length} days:`;
+
+for (const day of Object.keys(openingHours2)) {
+  openStr += ` ${day}`;
+}
+
+console.log(openStr);
+
+// Looping through Object values
+
+const values2 = Object.values(openingHours2);
+console.log(values2);
+
+// Looping through entries
+const entries = Object.entries(openingHours2);
+console.log(entries);
+
+for (const [key, { open, close }] of entries) {
+  console.log(x);
+  console.log(`On ${key} we open at ${open} and close at ${close}`);
+}
+
+// ****************************************************************************************************************** //
+// CHALLENGE #2
+// 1. Loop over the game.scored array and print each player name to the console, along with the goal number (Example: "Goal 1: Lewandowski")
+// 2. Use a loop to calculate the average odd and log it to the console (We already studied how to calculate averages, you can go check if you don't remember)
+// 3. Print the 3 odds to the console, but in a nice formatted way, exaclty like this:
+//       Odd of victory Bayern Munich: 1.33
+//       Odd of draw: 3.25
+//       Odd of victory Borrussia Dortmund: 6.5
+// Get the team names directly from the game object, don't hardcode them (except for "draw"). HINT: Note how the odds and the game objects have the same property names 😉
+
+// BONUS: Create an object called 'scorers' which contains the names of the players who scored as properties, and the number of goals as the value. In this game, it will look like this:
+//       {
+//         Gnarby: 1,
+//         Hummels: 1,
+//         Lewandowski: 2
+//       }
