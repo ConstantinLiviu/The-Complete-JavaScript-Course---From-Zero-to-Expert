@@ -496,44 +496,45 @@ function allPlayers(players) {
 function substitutions(players, subs, teamName) {
   const newP = document.createElement("p");
   if (subs === "none") {
-    newP.innerHTML = `<span class="taskVariable">${teamName}</span> didn't use any substitutes during this match. There were no roster changes`;
+    newP.innerHTML = `<span class="taskVariable">${teamName}</span> didn't use any substitutes during this match. There were no roster changes.`;
   } else {
+    let string = " " + subs.replaceAll(",", ", ").split(",").splice(0, 3);
     newP.innerHTML = `<span class="taskVariable">${teamName}</span> used substitutes in this match. The following players were on field during this match: <span class="taskVariable">${[
       players,
-      ...subs,
+      string,
     ]}</span>`;
   }
   resultsEl.appendChild(newP);
 }
 
-function scoredGoalsTotal() {}
-
 function printGoals(players, team) {
   const newP = document.createElement("p");
   if (players === "none") {
-    console.log(`${team} scored no goals.`);
-    newP.textContent = `${team} scored no goals today.`;
+    newP.innerHTML = `<span class="taskVariable">${team}</span> scored no goals today.`;
     resultsEl.appendChild(newP);
     return;
   } else {
+    let scorers = players.replaceAll(" ", "").split(",");
     console.log(
-      `${players.length} ${players.length !== 1 ? "goals" : "goal"} ${
-        players.length !== 1 ? "were" : "was"
+      `${+team1ScoreEl.value + +team2ScoreEl.value} ${
+        +team1ScoreEl.value + +team2ScoreEl.value !== 1 ? "goals" : "goal"
+      } ${
+        +team1ScoreEl.value + +team2ScoreEl.value !== 1 ? "were" : "was"
       } scored`
     );
 
-    newP.innerHTML = `<span class="taskVariable"> ${players.length} </span> ${
-      players.length !== 1 ? "goals" : "goal"
-    } ${players.length !== 1 ? "were" : "was"} scored during this match.`;
+    newP.innerHTML = `<span class="taskVariable"> ${team} </span> scored ${+team1ScoreEl.value} ${
+      +team1ScoreEl.value + +team2ScoreEl.value !== 1 ? "goals" : "goal"
+    } during this match.`;
 
     let goalscorers = {};
     let finalString = "";
 
-    for (let i = 0; i < players.length; i++) {
-      if (goalscorers[players[i]]) {
-        goalscorers[players[i]] += 1;
+    for (let i = 0; i < scorers.length; i++) {
+      if (goalscorers[scorers[i]]) {
+        goalscorers[scorers[i]] += 1;
       } else {
-        goalscorers[players[i]] = 1;
+        goalscorers[scorers[i]] = 1;
       }
     }
 
@@ -551,6 +552,19 @@ function printGoals(players, team) {
     }
     newP.innerHTML += finalString.slice(0, finalString.length - 1).concat(".");
   }
+  resultsEl.appendChild(newP);
+}
+
+function resultPrediction(game) {
+  const newP = document.createElement("p");
+  console.log(
+    `${
+      (game.odds.team1 < game.odds.team2 && game.team1) || game.team2
+    } is more likely to win`
+  );
+  newP.innerHTML = `<span class="taskVariable">${
+    (game.odds.team1 < game.odds.team2 && game.team1) || game.team2
+  }</span> is more likely to win`;
   resultsEl.appendChild(newP);
 }
 
@@ -629,6 +643,7 @@ printChallengeResultsBtn.addEventListener("click", () => {
     teamRoster(game.players[1], game.team2);
     substitutions(game.players[0], game.team1Subs, game.team1);
     printGoals(game.scored, game.team1);
+    resultPrediction(game);
 
     // TASK #4
     const players1Final = [...game.players[0], "Thiago", "Coutinho", "Perisic"];
@@ -701,21 +716,11 @@ printChallengeResultsBtn.addEventListener("click", () => {
         teamRoster1El.value.replaceAll(",", ", ").split(",").splice(0, 11),
         teamRoster2El.value.replaceAll(",", ", ").split(",").splice(0, 11),
       ],
-      team1Subs:
-        teamSubstitutes1El.value
-          .replaceAll(",", ", ")
-          .split(",")
-          .splice(0, 3) || "none",
-      team2Subs:
-        teamSubstitutes2El.value
-          .replaceAll(",", ", ")
-          .split(",")
-          .splice(0, 3) || "none",
+      team1Subs: teamSubstitutes1El.value || "none",
+      team2Subs: teamSubstitutes2El.value || "none",
       score: `${team1ScoreEl.value}:${team2ScoreEl.value}`,
-      scored:
-        team1GoalscorersEl.value.replaceAll(",", ", ").split(",") || "none",
-      scored2:
-        team2GoalscorersEl.value.replaceAll(",", ", ").split(",") || "none",
+      scored: team1GoalscorersEl.value || "none",
+      scored2: team2GoalscorersEl.value || "none",
       date: "Nov 16th, 2037",
       odds: {
         team1: +gameOddsWin1El.value,
@@ -724,12 +729,10 @@ printChallengeResultsBtn.addEventListener("click", () => {
       },
     };
     // console.log(game);
-    // console.log(teamRoster1El.value);
-    console.log("obj e");
-    console.log(game);
-    console.log(game.scored2);
-    console.log("schimbari 2");
-    console.log(game.team2Subs);
+    console.log(`${+team1ScoreEl.value + +team2ScoreEl.value}`);
+    console.log(game.odds.team1);
+    console.log(game.odds.team2);
+    console.log(game.odds.X);
     allPlayers(game.players);
     teamRoster(game.players[0], game.team1);
     teamRoster(game.players[1], game.team2);
@@ -737,5 +740,6 @@ printChallengeResultsBtn.addEventListener("click", () => {
     substitutions(game.players[1], game.team2Subs, game.team2);
     printGoals(game.scored, game.team1);
     printGoals(game.scored2, game.team2);
+    resultPrediction(game);
   }
 });
