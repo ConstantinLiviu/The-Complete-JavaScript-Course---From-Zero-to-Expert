@@ -476,23 +476,37 @@ const team2ScoreEl = document.querySelector(".team2-input-score");
 const errorMsgEl = document.querySelector(".error-msg");
 const resultsEl = document.querySelector(".results");
 
+/**
+ * Displays the team roster
+ * @param {arr} teamRoster - array of player names
+ * @param {string} ind - team name
+ * @returns {void} creates and adds a new element on page displaying the team roster
+ */
 function teamRoster(teamRoster, ind) {
   let [gk, ...players] = [...teamRoster];
   const newP = document.createElement("p");
   resultsEl.appendChild(newP);
   newP.innerHTML = `<span class="taskVariable">${ind}</span>'s goalkeeper is <span class="taskVariable">${gk}</span>. The rest of the team is made up of <span class="taskVariable">${players}</span>`;
-  console.log(
-    `${ind}'s goalkeeper is ${gk}. The rest of the team is made up of ${players}`
-  );
 }
 
+/**
+ * Displays the starting 11 of both teams
+ * @param {arr} players - array of arrays of player names
+ * @returns {void} - creates and adds a new element on page displaying every player
+ */
 function allPlayers(players) {
   const newP = document.createElement("p");
   resultsEl.appendChild(newP);
   newP.textContent = `Today's players are ${players}`;
-  console.log(`Today's players are ${players}`);
 }
 
+/**
+ * Displays team substitute players
+ * @param {arr} players - arr of players' names
+ * @param {string} subs - user input subs names
+ * @param {string} teamName - team name
+ * @returns {void} - creates and adds a new element on page displaying substitutes used during the game
+ */
 function substitutions(players, subs, teamName) {
   const newP = document.createElement("p");
   if (subs === "none") {
@@ -507,6 +521,12 @@ function substitutions(players, subs, teamName) {
   resultsEl.appendChild(newP);
 }
 
+/**
+ * Displays goalscorers and the amount of goals each one scored
+ * @param {arr} players
+ * @param {string} team
+ * @returns {void} - creates and adds a new element on page displaying who and how many goals they scored
+ */
 function printGoals(players, team) {
   const newP = document.createElement("p");
   if (players === "none") {
@@ -515,14 +535,6 @@ function printGoals(players, team) {
     return;
   } else {
     let scorers = players.replaceAll(" ", "").split(",");
-    console.log(
-      `${+team1ScoreEl.value + +team2ScoreEl.value} ${
-        +team1ScoreEl.value + +team2ScoreEl.value !== 1 ? "goals" : "goal"
-      } ${
-        +team1ScoreEl.value + +team2ScoreEl.value !== 1 ? "were" : "was"
-      } scored`
-    );
-
     newP.innerHTML = `<span class="taskVariable"> ${team} </span> scored ${+team1ScoreEl.value} ${
       +team1ScoreEl.value + +team2ScoreEl.value !== 1 ? "goals" : "goal"
     } during this match.`;
@@ -538,14 +550,7 @@ function printGoals(players, team) {
       }
     }
 
-    console.log(goalscorers);
-
     for (const player in goalscorers) {
-      console.log(
-        `${player} scored ${goalscorers[player]}  ${
-          goalscorers[player] !== 1 ? "goals" : "goal"
-        }`
-      );
       finalString += ` <span class="taskVariable">${player}</span> scored <span class="taskVariable">${
         goalscorers[player]
       }</span> ${goalscorers[player] === 1 ? "goal" : "goals"},`;
@@ -555,13 +560,13 @@ function printGoals(players, team) {
   resultsEl.appendChild(newP);
 }
 
+/**
+ * Predicts the winner of the game based on available odds
+ * @param {obj} game - the game object
+ * @returns {void} - creates and adds a new element on page displaying the team most likely to win the match
+ */
 function resultPrediction(game) {
   const newP = document.createElement("p");
-  console.log(
-    `${
-      (game.odds.team1 < game.odds.team2 && game.team1) || game.team2
-    } is more likely to win`
-  );
   newP.innerHTML = `<span class="taskVariable">${
     (game.odds.team1 < game.odds.team2 && game.team1) || game.team2
   }</span> is more likely to win`;
@@ -627,86 +632,30 @@ printChallengeResultsBtn.addEventListener("click", () => {
       },
     };
 
-    // // TASK #1
-    // const player1 = [...game.players[0]];
-    // const player2 = [...game.players[1]];
-
-    // // TASK #2
-    // const [gk, ...fieldPlayers] = player1;
-
-    // TASK #3
-    // const allPlayers = [...game.players[0], ...game.players[1]];
-
-    console.log(game);
     allPlayers(game.players);
     teamRoster(game.players[0], game.team1);
     teamRoster(game.players[1], game.team2);
-    substitutions(game.players[0], game.team1Subs, game.team1);
-    printGoals(game.scored, game.team1);
+    const newP1 = document.createElement("p");
+    newP1.innerHTML = `<span class="taskVariable">${
+      game.team1
+    }</span> used substitutes in this match. The following players were on field during this match: <span class="taskVariable">${[
+      game.team1Subs,
+    ]}</span>`;
+    resultsEl.appendChild(newP1);
+
+    const newP2 = document.createElement("p");
+    newP2.innerHTML = `<span class="taskVariable">${game.team2}</span> didn't use any substitutes during this match. There were no roster changes.`;
+    resultsEl.appendChild(newP2);
+
+    const newP3 = document.createElement("p");
+    newP3.innerHTML = `<span class="taskVariable">${game.team1}</span> scored 4 goals today. Lewandowski scored 2 goals, Gnarby scored 1 goal and Hummels scored 1 goal.`;
+    resultsEl.appendChild(newP3);
+
+    const newP4 = document.createElement("p");
+    newP4.innerHTML = `<span class="taskVariable">${game.team2}</span> scored no goals today.`;
+    resultsEl.appendChild(newP4);
+
     resultPrediction(game);
-
-    // TASK #4
-    const players1Final = [...game.players[0], "Thiago", "Coutinho", "Perisic"];
-
-    // TASK #5
-    const { team1: team1, X: draw, team2: team2 } = game.odds;
-
-    // TASK #6
-    // function printGoals(players, team) {
-    //   const newP = document.createElement("p");
-    //   if (players === "none") {
-    //     console.log(`${team} scored no goals.`);
-    //     newP.textContent = "No goals were scored today.";
-    //   } else {
-    //     console.log(
-    //       `${players.length} ${players.length !== 1 ? "goals" : "goal"} ${
-    //         players.length !== 1 ? "were" : "was"
-    //       } scored`
-    //     );
-
-    //     newP.innerHTML = `<span class="taskVariable"> ${
-    //       players.length
-    //     } </span> ${players.length !== 1 ? "goals" : "goal"} ${
-    //       players.length !== 1 ? "were" : "was"
-    //     } scored during this match.`;
-
-    //     let goalscorers = {};
-    //     let finalString = "";
-
-    //     for (let i = 0; i < players.length; i++) {
-    //       if (goalscorers[players[i]]) {
-    //         goalscorers[players[i]] += 1;
-    //       } else {
-    //         goalscorers[players[i]] = 1;
-    //       }
-    //     }
-
-    //     console.log(goalscorers);
-
-    //     for (const player in goalscorers) {
-    //       console.log(
-    //         `${player} scored ${goalscorers[player]}  ${
-    //           goalscorers[player] !== 1 ? "goals" : "goal"
-    //         }`
-    //       );
-    //       finalString += ` <span class="taskVariable">${player}</span> scored <span class="taskVariable">${
-    //         goalscorers[player]
-    //       }</span> ${goalscorers[player] === 1 ? "goal" : "goals"},`;
-    //     }
-    //     newP.innerHTML += finalString
-    //       .slice(0, finalString.length - 1)
-    //       .concat(".");
-    //   }
-    //   resultsEl.appendChild(newP);
-    // }
-
-    // TASK #7
-    console.log(
-      `${
-        (game.odds.team1 < game.odds.team2 && game.team1) || game.team2
-      } is more likely to win`
-    );
-    console.log(game);
   } else {
     errorMsgEl.style.display = "none";
     const game = {
@@ -728,11 +677,6 @@ printChallengeResultsBtn.addEventListener("click", () => {
         team2: +gameOddsWin2El.value,
       },
     };
-    // console.log(game);
-    console.log(`${+team1ScoreEl.value + +team2ScoreEl.value}`);
-    console.log(game.odds.team1);
-    console.log(game.odds.team2);
-    console.log(game.odds.X);
     allPlayers(game.players);
     teamRoster(game.players[0], game.team1);
     teamRoster(game.players[1], game.team2);
@@ -743,3 +687,5 @@ printChallengeResultsBtn.addEventListener("click", () => {
     resultPrediction(game);
   }
 });
+
+// ****************************************************************************************************************** //
