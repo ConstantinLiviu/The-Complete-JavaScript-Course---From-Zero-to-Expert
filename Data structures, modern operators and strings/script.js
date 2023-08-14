@@ -951,13 +951,19 @@ let oddsAverage = 0;
 for (const odd of Object.values(game3.odds)) {
   oddsAverage += odd;
 }
-console.log(oddAverage / Object.keys(game3.odds).length);
+console.log(oddsAverage / Object.keys(game3.odds).length);
 
-// 3. Print the 3 odds to the console, but in a nice formatted way, exaclty like this:
+// 3. Print the 3 odds to the console, but in a nice formatted way, exactly like this:
 //       Odd of victory Bayern Munich: 1.33
 //       Odd of draw: 3.25
 //       Odd of victory Borrussia Dortmund: 6.5
 // Get the team names directly from the game object, don't hardcode them (except for "draw"). HINT: Note how the odds and the game objects have the same property names 😉
+
+for (const [i, odd] of Object.entries(game3.odds)) {
+  console.log(
+    `Odd of ${i !== "X" ? "victory " : "draw"}${game3[i] || ""}: ${odd}`
+  );
+}
 
 // BONUS: Create an object called 'scorers' which contains the names of the players who scored as properties, and the number of goals as the value. In this game, it will look like this:
 //       {
