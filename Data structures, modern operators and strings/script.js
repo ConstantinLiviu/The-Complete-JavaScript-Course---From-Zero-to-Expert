@@ -946,6 +946,12 @@ for (const [i, player] of game3.scored.entries()) {
   console.log(`Goal ${i + 1}: ${player}`);
 }
 // 2. Use a loop to calculate the average odd and log it to the console (We already studied how to calculate averages, you can go check if you don't remember)
+let oddsAverage = 0;
+
+for (const odd of Object.values(game3.odds)) {
+  oddsAverage += odd;
+}
+console.log(oddAverage / Object.keys(game3.odds).length);
 
 // 3. Print the 3 odds to the console, but in a nice formatted way, exaclty like this:
 //       Odd of victory Bayern Munich: 1.33
