@@ -971,3 +971,7 @@ for (const [i, odd] of Object.entries(game3.odds)) {
 //         Hummels: 1,
 //         Lewandowski: 2
 //       }
+// Already handled in first challenge
+
+// ****************************************************************************************************************** //
+// LESSON - Sets
