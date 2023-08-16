@@ -1188,3 +1188,7 @@ console.log(events);
 // ALT
 const events2 = [...new Set(gameEvents.values())];
 console.log(events2);
+
+// TASK #2
+gameEvents.delete(64);
+console.log(gameEvents);
