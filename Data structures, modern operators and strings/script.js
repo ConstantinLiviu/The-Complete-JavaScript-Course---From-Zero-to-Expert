@@ -975,3 +975,205 @@ for (const [i, odd] of Object.entries(game3.odds)) {
 
 // ****************************************************************************************************************** //
 // LESSON - Sets
+//
+// Sets don't contain duplicates; the order in a set is irrelevant
+const orderSet = new Set([
+  "Pasta",
+  "Pizza",
+  "Pizza",
+  "Risotto",
+  "Pizza",
+  "Pizza",
+]);
+console.log(orderSet);
+
+// To get the length of a set you use .size
+console.log(orderSet.size);
+// console.log(orderSet.length);
+
+// How to check if a certain element is part of a set
+console.log(orderSet.has("Pizza"));
+console.log(orderSet.has("Bread"));
+
+// Add new elements to a set
+orderSet.add("Garlic Bread");
+console.log(orderSet);
+//still no duplicates
+orderSet.add("Garlic Bread");
+console.log(orderSet);
+
+// Remove elements from set
+orderSet.delete("Risotto");
+console.log(orderSet);
+
+// Can't use index to get element from set
+const example = orderSet[1];
+console.log(example);
+
+// Clear all set elements
+// orderSet.clear();
+// console.log(orderSet);
+
+// Sets are iterable
+for (const el of orderSet) console.log(el);
+
+// Set usecase:
+// Remove duplicates in arrays
+const staff = ["Waiter", "Chef", "Waiter", "Manager", "Chef", "Waiter"];
+// const staffUnique = new Set(staff);
+// console.log(staffUnique);
+// Using destructuring you can take a set and turn it into an array
+const staffUnique = [...new Set(staff)];
+console.log(staffUnique, staffUnique[0]);
+// alternative to getting all unique elements
+console.log(
+  new Set(["Waiter", "Chef", "Waiter", "Manager", "Chef", "Waiter"]).size
+);
+console.log(new Set("Antidisestablishmentarianism").size);
+
+// ****************************************************************************************************************** //
+// LESSON - Maps Fundamentals
+
+// Store values in key-value pairs
+// Unlike objects, Keys can be something other than strings (objects, arrays, other maps, etc.)
+
+// Create a map
+const rest = new Map();
+// Add element (key-value pair)
+rest.set("name", "Classico Italiano");
+// the set method doesn't only update the map but it also returns the map
+rest.set(1, "Firenze, Italy");
+console.log(rest.set(2, "Lisbon, Portugal"));
+// this allows us to chain methods:
+rest
+  .set("categories", ["Waiter", "Chef", "Waiter", "Manager", "Chef", "Waiter"])
+  .set("open", 11)
+  .set("close", 23)
+  .set(true, "We are open!")
+  .set(false, "We are closed :(");
+console.log(rest);
+
+// Read data from a map (.get(key))
+console.log(rest.get("name"));
+console.log(rest.get(true));
+console.log(rest.get(1));
+
+// const time = 21;
+const time = 8;
+console.log(rest.get(time > rest.get("open") && time < rest.get("close")));
+
+// How to check if a map has a certain key
+console.log(rest.has("categories"));
+
+// Delete map elements & clear map
+rest.delete(2);
+console.log(rest);
+rest.clear();
+// console.log(rest);
+
+// Check size
+console.log(rest.size);
+
+// Arrays and obj as map keys
+rest.set([1, 2], "Test");
+console.log(rest);
+// Due to how JS works behind the scene (primitives vs objects) this will not work (the arrays are not the same object in the heap)
+console.log(rest.get([1, 2]));
+// As a result we need to turn the array into a variable first
+const someArray = [1, 2];
+rest.set(someArray, "Test");
+console.log(rest.get(someArray));
+
+// DOM type obj
+rest.set(document.querySelector("h3"), "Heading");
+console.log(rest);
+
+// ****************************************************************************************************************** //
+// LESSON - Maps Iterations
+
+const question = new Map([
+  ["question", "What is the best programming language in the world?"],
+  [1, "C"],
+  [2, "Java"],
+  [3, "Javascript"],
+  ["correct", 3],
+  [true, "Correct! 🎉"],
+  [false, "Try again!"],
+]);
+console.log(question);
+
+// Converting Objects to Maps
+const hoursMap = new Map(Object.entries(openingHours));
+console.log(hoursMap);
+
+// Iteration - quizz app prototype
+console.log(question.get("question"));
+for (const [key, value] of question) {
+  if (typeof key === "number") console.log(`Answer ${key}: ${value}`);
+}
+// const answer = +prompt("Your answer");
+const answer = 3;
+console.log(answer);
+
+console.log(question.get(question.get("correct") === answer));
+
+// Convert map to array
+console.log([...question]);
+console.log([...question.entries()]);
+console.log([...question.keys()]);
+console.log([...question.values()]);
+
+// ****************************************************************************************************************** //
+// LESSON - Which Data Structures to use
+
+// Arrays
+// used when you need ordered lists of values
+// used when you need to manipulate data
+
+// Sets
+// used when you need to work with unique values
+// used when high-performance is really important
+// used to remove duplicates from arrays
+
+// Objects
+// traditional key/value storage
+// easier to write and access with . and []
+// used when you need to include functions(methods)
+// used when working with JSON (can convert to map)
+
+// Maps
+// offer better performance
+// key can be any data type (used especially when you need keys to be something other than strings)
+// easy to iterate
+// easy to compute size
+// used when you just need to map values to keys
+
+// ****************************************************************************************************************** //
+// CHALLENGE #3
+// Coding Challenge #3
+
+/* 
+Let's continue with our football betting app! This time, we have a map with a log of the events that happened during the game. The values are the events themselves, and the keys are the minutes in which each event happened (a football game has 90 minutes plus some extra time).
+
+1. Create an array 'events' of the different game events that happened (no duplicates)
+2. After the game has finished, is was found that the yellow card from minute 64 was unfair. So remove this event from the game events log.
+3. Print the following string to the console: "An event happened, on average, every 9 minutes" (keep in mind that a game has 90 minutes)
+4. Loop over the events and log them to the console, marking whether it's in the first half or second half (after 45 min) of the game, like this:
+      [FIRST HALF] 17: ⚽️ GOAL
+
+GOOD LUCK 😀
+*/
+
+const gameEvents = new Map([
+  [17, "⚽️ GOAL"],
+  [36, "🔁 Substitution"],
+  [47, "⚽️ GOAL"],
+  [61, "🔁 Substitution"],
+  [64, "🔶 Yellow card"],
+  [69, "🔴 Red card"],
+  [70, "🔁 Substitution"],
+  [72, "🔁 Substitution"],
+  [76, "⚽️ GOAL"],
+  [80, "⚽️ GOAL"],
+  [92, "🔶 Yellow card"],
+]);
