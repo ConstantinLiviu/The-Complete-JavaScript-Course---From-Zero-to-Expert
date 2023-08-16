@@ -1177,3 +1177,14 @@ const gameEvents = new Map([
   [80, "⚽️ GOAL"],
   [92, "🔶 Yellow card"],
 ]);
+
+// TASK #1
+const eventsSet = new Set();
+for (const [min, event] of gameEvents) {
+  eventsSet.add(event);
+}
+const events = [...eventsSet];
+console.log(events);
+// ALT
+const events2 = [...new Set(gameEvents.values())];
+console.log(events2);
