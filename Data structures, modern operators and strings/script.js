@@ -1192,3 +1192,8 @@ console.log(events2);
 // TASK #2
 gameEvents.delete(64);
 console.log(gameEvents);
+
+// TASK #3
+console.log(
+  `An event happened, on average, every ${90 / gameEvents.size} minutes`
+);
