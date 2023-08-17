@@ -1150,7 +1150,6 @@ console.log([...question.values()]);
 
 // ****************************************************************************************************************** //
 // CHALLENGE #3
-// Coding Challenge #3
 
 /* 
 Let's continue with our football betting app! This time, we have a map with a log of the events that happened during the game. The values are the events themselves, and the keys are the minutes in which each event happened (a football game has 90 minutes plus some extra time).
@@ -1204,3 +1203,47 @@ for (const [min, event] of gameEvents) {
     `${min > 45 ? "[SECOND HALF]" : "[FIRST HALF]"} ${min}: ${event}`
   );
 }
+
+// ****************************************************************************************************************** //
+// CHALLENGE #3 with UI
+const eventsUserInputEl = document.querySelector(".events-user-input");
+
+const addEventBtn = document.querySelector(".add-event-btn");
+const stoppageFirstEl = document.querySelector(".stoppage-first");
+const stoppageSecondEl = document.querySelector(".stoppage-second");
+const printEventsReportBtn = document.querySelector(".print-events-report-btn");
+
+function addEventField() {
+  const newDiv = document.createElement("div");
+  newDiv.classList.add("input-group", "mb-4");
+  newDiv.innerHTML = `<span class="input-group-text">Minute</span>
+  <input
+    type="number"
+    class="form-control minute"
+    placeholder="0"
+    onkeyup="if(value<0 || value>90) value=''"
+  />
+  <select class="custom-select w-50 border select-event" id="inputGroupSelect02">
+                <option selected>Event options</option>
+                <option value="⚽ Goal">⚽ Goal</option>
+                <option value="🔁 Substitution">🔁 Substitution</option>
+                <option value="🟨 Yellow Card">🟨 Yellow Card</option>
+                <option value="🟥 Red Card">🟥 Red Card</option>
+              </select>`;
+  eventsUserInputEl.appendChild(newDiv);
+}
+
+addEventBtn.addEventListener("click", addEventField);
+
+printEventsReportBtn.addEventListener("click", () => {
+  const eventsMap = new Map();
+  const events = eventsUserInputEl.querySelectorAll(".input-group");
+  console.log(events);
+  events.forEach((el) => {
+    eventsMap.set(
+      el.querySelector(".minute").value,
+      el.querySelector(".select-event").value
+    );
+  });
+  console.log(eventsMap);
+});
