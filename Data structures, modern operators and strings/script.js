@@ -1209,10 +1209,15 @@ for (const [min, event] of gameEvents) {
 const eventsMap = new Map();
 const eventsUserInputEl = document.querySelector(".events-user-input");
 const addEventBtn = document.querySelector(".add-event-btn");
+const removeEventBtn = document.querySelector(".remove-event-btn");
 const stoppageSecondEl = document.querySelector(".stoppage-second");
 const printEventsReportBtn = document.querySelector(".print-events-report-btn");
 const eventsReportEl = document.querySelector(".events-report");
 
+/**
+ * Adds a new input fields set for users to log an event
+ * @param {void} none
+ */
 function addEventField() {
   const newDiv = document.createElement("div");
   newDiv.classList.add("input-group", "mb-4");
@@ -1232,7 +1237,10 @@ function addEventField() {
               </select>`;
   eventsUserInputEl.appendChild(newDiv);
 }
-
+/**
+ * Generates the events report. Iterates through use input map and generates and appends elements on page as required
+ * @param {Map} eventsMap
+ */
 function eventsReport(eventsMap) {
   const firstHalf = document.createElement("div");
   firstHalf.classList.add("mb-5");
@@ -1247,6 +1255,7 @@ function eventsReport(eventsMap) {
     const newEntry = document.createElement("p");
     newEntry.innerHTML = `${key}' : ${value}`;
     if (key < 45) {
+      console.log(typeof key);
       firstHalf.appendChild(newEntry);
     } else {
       secondHalf.appendChild(newEntry);
@@ -1268,6 +1277,11 @@ function eventsReport(eventsMap) {
   eventsReportEl.appendChild(meanTimeForEvent(eventsMap));
 }
 
+/**
+ * Function calculates the average time that passes between events
+ * @param {Map} eventsMap - a map containing all user inputs (events)
+ * @returns {Element} - returns the DOM element that's to be appended to the Events Report element
+ */
 function meanTimeForEvent(eventsMap) {
   const gameTime = 90 + Number(stoppageSecondEl.value);
   const meanEvents = document.createElement("p");
@@ -1277,10 +1291,28 @@ function meanTimeForEvent(eventsMap) {
   return meanEvents;
 }
 
+/**
+ * Removes last element in game events list if there are 2 or more elements in the list. Updates user input map entries.
+ * @param {void} none
+ */
+function removeGameEventEl() {
+  if (eventsUserInputEl.childElementCount >= 2) {
+    eventsMap.delete(
+      eventsUserInputEl.lastChild.querySelector(".minute").value
+    );
+    eventsUserInputEl.removeChild(eventsUserInputEl.lastChild);
+    console.log(eventsMap);
+  }
+}
+
 addEventBtn.addEventListener("click", addEventField);
 
+removeEventBtn.addEventListener("click", removeGameEventEl);
+
 printEventsReportBtn.addEventListener("click", () => {
-  eventsReportEl.innerHTML = "\u00A0";
+  console.log(eventsMap);
+
+  eventsReportEl.innerHTML = "";
   const events = eventsUserInputEl.querySelectorAll(".input-group");
   events.forEach((el) => {
     if (
