@@ -1538,3 +1538,38 @@ planesInLine(12);
 // Afterwards, test with your own test data!
 
 // GOOD LUCK 😀
+
+const convertBtn = document.querySelector(".convert-btn");
+const textareaEl = document.querySelector(".string-input");
+const stringConversionEl = document.querySelector(".string-conversion");
+
+convertBtn.addEventListener("click", () => {
+  stringConversionEl.innerHTML = "\u00A0";
+  const convertedStrings = [];
+  const strings = textareaEl.value.split(",");
+  textareaEl.value = "";
+  for (const string of strings) {
+    const [first, second] = string.split("_");
+    console.log(first);
+    console.log(second[0]);
+    convertedStrings.push(
+      first.trim() +
+        second[0].replace(second[0], second[0].toUpperCase()) +
+        second.slice(1).trim()
+    );
+  }
+  console.log(convertedStrings);
+  populateList(convertedStrings);
+});
+
+/**
+ * Takes the user's string inputs, creates elements and populates the results list
+ * @param {Array} arr array made up of the strings input by the user
+ */
+function populateList(arr) {
+  for (const string of arr) {
+    const newP = document.createElement("p");
+    newP.textContent = string;
+    stringConversionEl.appendChild(newP);
+  }
+}
