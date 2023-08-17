@@ -1553,9 +1553,9 @@ convertBtn.addEventListener("click", () => {
     console.log(first);
     console.log(second[0]);
     convertedStrings.push(
-      first.trim() +
+      first.trim().toLowerCase() +
         second[0].replace(second[0], second[0].toUpperCase()) +
-        second.slice(1).trim()
+        second.slice(1).trim().toLowerCase()
     );
   }
   console.log(convertedStrings);
@@ -1569,7 +1569,10 @@ convertBtn.addEventListener("click", () => {
 function populateList(arr) {
   for (const string of arr) {
     const newP = document.createElement("p");
-    newP.textContent = string;
+    newP.textContent = `${string.padEnd(30, "\u00A0")} ${"✅".repeat(
+      arr.indexOf(string) + 1
+    )}`;
+    console.log(newP.value);
     stringConversionEl.appendChild(newP);
   }
 }
