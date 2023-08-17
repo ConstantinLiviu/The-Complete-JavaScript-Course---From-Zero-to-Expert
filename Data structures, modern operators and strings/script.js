@@ -1328,3 +1328,213 @@ printEventsReportBtn.addEventListener("click", () => {
   if (eventsReportEl.innerHTML !== "It was a boring match, nothing happened.")
     eventsReport(eventsMap);
 });
+
+// ****************************************************************************************************************** //
+// LESSON - Working with strings Part I
+
+const airline = "TAP Air Portugal";
+const plane = "A320";
+
+// strings are iterable, as such we can get the position of a character inside the string
+console.log(plane[0]);
+console.log(plane[1]);
+console.log(plane[2]);
+console.log("B737"[0]);
+
+// we can read the length of a string
+console.log(airline.length);
+console.log("B737".length);
+
+// strings have methods
+// strings are immutable in JS, methods return a new string
+// to make changes you need to store the changes inside a new variable
+console.log(airline.indexOf("r"));
+console.log(airline.lastIndexOf("r"));
+console.log(airline.lastIndexOf("Portugal"));
+console.log(airline.slice(4));
+// slice = start position(included), end position(not included)
+console.log(airline.slice(4, 7));
+// extracting first word
+console.log(airline.slice(0, airline.indexOf(" ")));
+// extracting last word
+console.log(airline.slice(airline.lastIndexOf(" ") + 1));
+// extract from the end
+console.log(airline.slice(-2));
+console.log(airline.slice(-airline.length));
+
+console.log(airline.slice(1, -1));
+
+// check if the seat is a middle seat or not
+const checkMiddleSeat = function (seat) {
+  if (seat.slice(-1) === "B" || seat.slice(-1) === "E") {
+    console.log("You got a middle seat.");
+  } else {
+    console.log("You didn't get a middle seat.");
+  }
+};
+
+checkMiddleSeat("11B");
+checkMiddleSeat("21A");
+checkMiddleSeat("44E");
+checkMiddleSeat("44D");
+
+// behind the scenes when applying methods to Strings; they're turned into objects so methods may be applied
+// string methods return primitives(string)
+console.log(new String("jonas"));
+console.log(typeof new String("jonas"));
+console.log(typeof new String("jonas").slice(1));
+
+// ****************************************************************************************************************** //
+// LESSON - Working with strings Part II
+
+// Fix capitalization
+console.log(airline.toLowerCase());
+console.log(airline.toUpperCase());
+
+const passanger = "jOhN";
+const passangerLower = passanger.toLowerCase();
+const passangerCorrect =
+  passangerLower[0].toUpperCase() + passangerLower.slice(1);
+console.log(passangerCorrect);
+
+// Comparing emails
+const email = "hello@joe.com";
+const loginEmail = "  Hello@joe.com \n";
+const lowerEmail = loginEmail.toLowerCase();
+console.log(lowerEmail);
+const trimmedEmail = lowerEmail.trim();
+console.log(trimmedEmail);
+//shorthand
+const normalizedEmail = loginEmail.toLowerCase().trim();
+console.log(normalizedEmail);
+
+// Replacing parts of strings
+const priceGB = "£288,97";
+const priceUS = priceGB.replace("£", "$").replace(",", ".");
+console.log(priceUS);
+
+const announcement =
+  "All passangers come to boarding door 23. Boarding door 23!";
+console.log(announcement.replaceAll("door", "gate"));
+//RegEx
+console.log(announcement.replace(/door/g, "gate"));
+
+// Boolean
+const plane2 = "A320neo";
+console.log(plane2.includes("A320"));
+console.log(plane2.includes("Boeing"));
+console.log(plane2.startsWith("A"));
+console.log(plane2.startsWith("At"));
+
+if (plane2.startsWith("A") && plane2.endsWith("neo")) {
+  console.log("Part of the new Airbus family");
+}
+
+// Practice
+const checkBaggage = function (items) {
+  const baggage = items.toLowerCase();
+  if (baggage.includes("knife") || baggage.includes("gun")) {
+    console.log("You're not allowed on board");
+  } else {
+    console.log("Welcome aboard!");
+  }
+};
+
+checkBaggage("I have a laptop, some Food and a pocket Knife");
+checkBaggage("I have some socks and a camera");
+checkBaggage("I have some snacks and a gun for protection");
+
+// ****************************************************************************************************************** //
+// LESSON - Working with strings Part III
+
+//splitting strings
+console.log("a+very+nice+string".split("+"));
+console.log("John Smith".split(" "));
+
+const [firstName, lastName] = "John Smith".split(" ");
+console.log(firstName);
+console.log(lastName);
+
+// joining strings
+const newName = ["Mr.", firstName, lastName.toUpperCase()].join(" ");
+console.log(newName);
+
+// capitalization
+const passanger2 = "jessica ann smith davis";
+const capitalizeName = function (name) {
+  // let capitalizedName = "";
+  // const stringArr = name.split(" ");
+  // for (const word of stringArr) {
+  //   capitalizedName += word[0].toUpperCase() + word.slice(1) + " ";
+  // }
+  // console.log(capitalizedName.trimEnd());
+
+  // ALT SOLUTION
+  let capitalizedName = [];
+  const stringArr = name.split(" ");
+  for (const word of stringArr) {
+    capitalizedName.push(word.replace(word[0], word[0].toUpperCase()));
+  }
+  console.log(capitalizedName.join(" "));
+};
+
+capitalizeName(passanger2);
+
+// Padding strings
+const psaMessage = "Go to gate 23!";
+console.log(psaMessage.padStart(25, "+"));
+console.log("test".padStart(25, "+"));
+console.log(psaMessage.padStart(25, "+").padEnd(30, "+"));
+
+// example
+const maskCreditCard = function (number) {
+  // trick to turn numbers intro strings;
+  const str = number + "";
+  console.log(str.slice(-4).padStart(16, "*"));
+  // console.log(str.slice(0, 12).replace(/[0-9]/g, "*") + " " + str.slice(-4));
+};
+
+maskCreditCard(4337234132217878);
+maskCreditCard("4734232136212671");
+
+// Repeating strings
+const psa2 = "Bad weather... All departures delayed! ";
+console.log(psa2.repeat(5));
+
+const planesInLine = function (n) {
+  console.log(`There are ${n} planes in line ${"✈".repeat(n)}`);
+};
+
+planesInLine(5);
+planesInLine(3);
+planesInLine(12);
+
+// ****************************************************************************************************************** //
+// CHALLENGE #4
+
+// Write a program that receives a list of variable names written in underscore_case and convert them to camelCase.
+
+// The input will come from a textarea inserted into the DOM (see code below), and conversion will happen when the button is pressed.
+
+// THIS TEST DATA (pasted to textarea)
+// underscore_case
+//  first_name
+// Some_Variable
+//   calculate_AGE
+// delayed_departure
+
+// SHOULD PRODUCE THIS OUTPUT (5 separate console.log outputs)
+// underscoreCase      ✅
+// firstName           ✅✅
+// someVariable        ✅✅✅
+// calculateAge        ✅✅✅✅
+// delayedDeparture    ✅✅✅✅✅
+
+// HINT 1: Remember which character defines a new line in the textarea 😉
+// HINT 2: The solution only needs to work for a variable made out of 2 words, like a_b
+// HINT 3: Start without worrying about the ✅. Tackle that only after you have the variable name conversion working 😉
+// HINT 4: This challenge is difficult on purpose, so start watching the solution in case you're stuck. Then pause and continue!
+
+// Afterwards, test with your own test data!
+
+// GOOD LUCK 😀
