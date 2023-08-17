@@ -64,7 +64,8 @@ pre {
 
 .print-challenge-results-btn,
 .add-event-btn,
-.print-events-report-btn {
+.print-events-report-btn,
+.remove-event-btn {
   font-size: 1.4rem;
 }
 .error-msg {
@@ -74,6 +75,10 @@ pre {
 
 .results p {
   font-size: 1.4rem;
+}
+
+.events-report {
+  font-size: 2rem;
 }
 
 body {

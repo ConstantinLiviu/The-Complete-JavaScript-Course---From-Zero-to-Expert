@@ -257,20 +257,12 @@
         <div class="task p-3 pb-0">
           <h3 class="text-uppercase fst-italic">challenge #2</h3>
           <p>
-            Each football match is full of multiple events: goals, substitutions, red and yellow cards.
+            Each football match is full of multiple events: <span class="taskVariable">goals, substitutions, red and yellow cards</span>.
           </p>
           <p class="border-bottom border-dark pb-3">
-            Below you may <span class="taskVariable">add events (minute and type of events)</span> using the <span class="taskVariable">add event button</span> and get a report of all game events as they unfolded using the <span class="taskVariable">print report button</span>.
+            Below you may <span class="taskVariable">add events (minute and type of events)</span> using the <span class="taskVariable">add event button</span> and get a report of all game events as they unfolded using the <span class="taskVariable">print report button</span>. You may also remove <span class="taskVariable">the last event in the list</span> by using the <span class="taskVariable">remove event</span> button.
           </p>
           <div class="input-group mb-4">
-            <label class="w-100 mb-2">First half stoppage time</label>
-            <span class="input-group-text">Minutes</span>
-            <input
-              type="number"
-              class="form-control stoppage-first"
-              placeholder="No more than 5"
-              onkeyup="if(value<0 || value>5) value=''"
-            />
             <label class="w-100 mb-2">Second half stoppage time</label>
             <span class="input-group-text">Minutes</span>
             <input
@@ -288,7 +280,7 @@
                 type="number"
                 class="form-control minute"
                 placeholder="0"
-                onkeyup="if(value<0 || value>90) value=''"
+                onkeyup="if(value<0 || value>90+Number(document.querySelector('.stoppage-second').value)) value=''"
               />
               <select class="custom-select w-50 border select-event" id="inputGroupSelect02">
                 <option selected>Event options</option>
@@ -301,7 +293,8 @@
           </div>   
           <button class="mb-2 btn btn-outline-primary add-event-btn"><i class="bi bi-plus-lg"></i> Add event</button>
           <button class="mb-2 btn btn-primary print-events-report-btn">Print Events Report</button>
-          <div class="events-report">&nbsp;</div>
+          <button class="mb-2 btn btn-outline-danger remove-event-btn"><i class="bi bi-dash-lg"></i> Remove event</button>
+          <div class="events-report mb-2">&nbsp;</div>
         </div>
       </div>
     </section>
