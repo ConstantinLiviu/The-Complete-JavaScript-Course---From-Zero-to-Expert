@@ -82,6 +82,10 @@ pre {
   font-size: 2rem;
 }
 
+.string-conversion p {
+  font-family: monospace;
+}
+
 body {
   background: linear-gradient(to top left, var(--green28), var(--green7d));
 }
