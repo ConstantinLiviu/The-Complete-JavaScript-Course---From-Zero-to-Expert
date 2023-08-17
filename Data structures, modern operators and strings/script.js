@@ -1206,12 +1206,12 @@ for (const [min, event] of gameEvents) {
 
 // ****************************************************************************************************************** //
 // CHALLENGE #3 with UI
+const eventsMap = new Map();
 const eventsUserInputEl = document.querySelector(".events-user-input");
-
 const addEventBtn = document.querySelector(".add-event-btn");
-const stoppageFirstEl = document.querySelector(".stoppage-first");
 const stoppageSecondEl = document.querySelector(".stoppage-second");
 const printEventsReportBtn = document.querySelector(".print-events-report-btn");
+const eventsReportEl = document.querySelector(".events-report");
 
 function addEventField() {
   const newDiv = document.createElement("div");
@@ -1221,7 +1221,7 @@ function addEventField() {
     type="number"
     class="form-control minute"
     placeholder="0"
-    onkeyup="if(value<0 || value>90) value=''"
+    onkeyup="if(value<0 || value>90+Number(document.querySelector('.stoppage-second').value)) value=''"
   />
   <select class="custom-select w-50 border select-event" id="inputGroupSelect02">
                 <option selected>Event options</option>
@@ -1233,17 +1233,69 @@ function addEventField() {
   eventsUserInputEl.appendChild(newDiv);
 }
 
+function eventsReport(eventsMap) {
+  const firstHalf = document.createElement("div");
+  firstHalf.classList.add("mb-5");
+  firstHalf.innerHTML = `<h3 style="text-decoration: underline; text-transform: uppercase; font-weight: 600">First half:</h3>`;
+  eventsReportEl.appendChild(firstHalf);
+  const secondHalf = document.createElement("div");
+  secondHalf.classList.add("mb-5");
+  secondHalf.innerHTML = `<h3 style="text-decoration: underline; text-transform: uppercase; font-weight: 600">Second half:</h3>`;
+  eventsReportEl.appendChild(secondHalf);
+
+  for (const [key, value] of eventsMap) {
+    const newEntry = document.createElement("p");
+    newEntry.innerHTML = `${key}' : ${value}`;
+    if (key < 45) {
+      firstHalf.appendChild(newEntry);
+    } else {
+      secondHalf.appendChild(newEntry);
+    }
+  }
+  if (firstHalf.childElementCount <= 1) {
+    const noEvents = document.createElement("p");
+    noEvents.textContent =
+      "Nothing worth mentioning happened during the first half.";
+    firstHalf.appendChild(noEvents);
+  }
+  if (secondHalf.childElementCount <= 1) {
+    const noEvents = document.createElement("p");
+    noEvents.textContent =
+      "Nothing worth mentioning happened during the second half.";
+    secondHalf.appendChild(noEvents);
+  }
+
+  eventsReportEl.appendChild(meanTimeForEvent(eventsMap));
+}
+
+function meanTimeForEvent(eventsMap) {
+  const gameTime = 90 + Number(stoppageSecondEl.value);
+  const meanEvents = document.createElement("p");
+  meanEvents.innerHTML = `An event took place, on average, <span class="taskVariable">every ${Math.round(
+    gameTime / eventsMap.size
+  )} minutes</span>`;
+  return meanEvents;
+}
+
 addEventBtn.addEventListener("click", addEventField);
 
 printEventsReportBtn.addEventListener("click", () => {
-  const eventsMap = new Map();
+  eventsReportEl.innerHTML = "\u00A0";
   const events = eventsUserInputEl.querySelectorAll(".input-group");
-  console.log(events);
   events.forEach((el) => {
-    eventsMap.set(
-      el.querySelector(".minute").value,
-      el.querySelector(".select-event").value
-    );
+    if (
+      el.querySelector(".minute").value === "" ||
+      el.querySelector(".select-event").value === "" ||
+      el.querySelector(".select-event").value === "Event options"
+    ) {
+      eventsReportEl.innerHTML = "It was a boring match, nothing happened.";
+    } else {
+      eventsMap.set(
+        el.querySelector(".minute").value,
+        el.querySelector(".select-event").value
+      );
+    }
   });
-  console.log(eventsMap);
+  if (eventsReportEl.innerHTML !== "It was a boring match, nothing happened.")
+    eventsReport(eventsMap);
 });
