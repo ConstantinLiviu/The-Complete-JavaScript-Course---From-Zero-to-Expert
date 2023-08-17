@@ -1301,7 +1301,6 @@ function removeGameEventEl() {
       eventsUserInputEl.lastChild.querySelector(".minute").value
     );
     eventsUserInputEl.removeChild(eventsUserInputEl.lastChild);
-    console.log(eventsMap);
   }
 }
 
@@ -1310,8 +1309,6 @@ addEventBtn.addEventListener("click", addEventField);
 removeEventBtn.addEventListener("click", removeGameEventEl);
 
 printEventsReportBtn.addEventListener("click", () => {
-  console.log(eventsMap);
-
   eventsReportEl.innerHTML = "";
   const events = eventsUserInputEl.querySelectorAll(".input-group");
   events.forEach((el) => {
