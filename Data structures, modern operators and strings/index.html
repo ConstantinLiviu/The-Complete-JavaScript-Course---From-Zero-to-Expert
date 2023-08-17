@@ -129,15 +129,6 @@
             };
           </pre>
           </p>
-          <!-- <p class="second-challenge border-bottom border-dark pb-3">
-            <span class="text-uppercase fw-bold">challenge #2: </span>Print a
-            nice output to the console, telling the user who has the higher BMI.
-            Modify the outputs above to use template literals to include the BMI
-            values in the outputs. Example:
-            <span class="taskVariable"
-              >"Mark's BMI (28.3) is higher than John's (23.9)!"</span
-            >
-          </p> -->
         </div>
         <div class="solution p-3 pt-0">
           <h3 class="text-uppercase fst-italic">solution</h3>
@@ -260,6 +251,57 @@
           <div class="results">
             
           </div>
+        </div>
+      </div>
+      <div class="row bg-light-subtle mb-5 col-12">
+        <div class="task p-3 pb-0">
+          <h3 class="text-uppercase fst-italic">challenge #2</h3>
+          <p>
+            Each football match is full of multiple events: goals, substitutions, red and yellow cards.
+          </p>
+          <p class="border-bottom border-dark pb-3">
+            Below you may <span class="taskVariable">add events (minute and type of events)</span> using the <span class="taskVariable">add event button</span> and get a report of all game events as they unfolded using the <span class="taskVariable">print report button</span>.
+          </p>
+          <div class="input-group mb-4">
+            <label class="w-100 mb-2">First half stoppage time</label>
+            <span class="input-group-text">Minutes</span>
+            <input
+              type="number"
+              class="form-control stoppage-first"
+              placeholder="No more than 5"
+              onkeyup="if(value<0 || value>5) value=''"
+            />
+            <label class="w-100 mb-2">Second half stoppage time</label>
+            <span class="input-group-text">Minutes</span>
+            <input
+              type="number"
+              class="form-control stoppage-second"
+              placeholder="No more than 5"
+              onkeyup="if(value<0 || value>5) value=''"
+            />
+          </div>
+          <div class="events-user-input">
+            <div class="input-group mb-4">
+              <label class="w-100 mb-2">Events</label>
+              <span class="input-group-text">Minute</span>
+              <input
+                type="number"
+                class="form-control minute"
+                placeholder="0"
+                onkeyup="if(value<0 || value>90) value=''"
+              />
+              <select class="custom-select w-50 border select-event" id="inputGroupSelect02">
+                <option selected>Event options</option>
+                <option value="⚽ Goal">⚽ Goal</option>
+                <option value="🔁 Substitution">🔁 Substitution</option>
+                <option value="🟨 Yellow Card">🟨 Yellow Card</option>
+                <option value="🟥 Red Card">🟥 Red Card</option>
+              </select>
+            </div>
+          </div>   
+          <button class="mb-2 btn btn-outline-primary add-event-btn"><i class="bi bi-plus-lg"></i> Add event</button>
+          <button class="mb-2 btn btn-primary print-events-report-btn">Print Events Report</button>
+          <div class="events-report">&nbsp;</div>
         </div>
       </div>
     </section>
