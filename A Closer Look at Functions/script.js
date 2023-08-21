@@ -331,6 +331,21 @@ addVAT2Applied(200);
 // GOOD LUCK 😀
 
 const answerPollBtn = document.querySelector(".answer-poll");
+const javascriptFill = document.querySelector(".javascript .fill");
+const pythonFill = document.querySelector(".python .fill");
+const rustFill = document.querySelector(".rust .fill");
+const cPlusFill = document.querySelector(".cplus .fill");
+const pollResultsContainer = document.querySelector(".poll-results-container");
+
+const optionsDivs = [javascriptFill, pythonFill, rustFill, cPlusFill];
+
+function changeChartBg(element, limit) {
+  element.style.background = `linear-gradient(
+    to right,
+    var(--orangeff) ${(limit / 2) * 10}%,
+    lightgrey ${(limit / 2) * 10}% 100%
+  )`;
+}
 
 const poll = {
   question: "What is your favourite programming language?",
@@ -352,12 +367,22 @@ const poll = {
     // TASK #4
     this.displayResults();
     this.displayResults("string");
+    for (const el of optionsDivs) {
+      changeChartBg(el, this.answers[optionsDivs.indexOf(el)]);
+      el.textContent = this.answers[optionsDivs.indexOf(el)];
+    }
   },
   // TASK #3
   displayResults(type = "array") {
-    type === "array" && console.log(this.answers);
-    type === "string" &&
-      console.log(`Poll results are ${this.answers.join(", ")}`);
+    const newP = document.createElement("p");
+    if (type === "array") {
+      newP.textContent = this.answers;
+      pollResultsContainer.appendChild(newP);
+    }
+    if (type === "string") {
+      newP.textContent = `Poll results are ${this.answers.join(", ")}`;
+      pollResultsContainer.appendChild(newP);
+    }
   },
 };
 
