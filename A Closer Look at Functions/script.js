@@ -153,8 +153,8 @@ const high5 = function () {
   console.log("🖐");
 };
 
-document.body.addEventListener("click", high5);
-["John", "Martha", "Adam"].forEach(high5);
+// document.body.addEventListener("click", high5);
+// ["John", "Martha", "Adam"].forEach(high5);
 
 //
 /* ****************************************************************************************************** */
@@ -273,9 +273,9 @@ lufthansa.buyPlane = function () {
 
 // lufthansa.buyPlane();
 
-document
-  .querySelector("body")
-  .addEventListener("click", lufthansa.buyPlane.bind(lufthansa));
+// document
+//   .querySelector("body")
+//   .addEventListener("click", lufthansa.buyPlane.bind(lufthansa));
 // calls the lufthansa method to which you add the lufthansa this keyword
 
 // Partial application
@@ -329,3 +329,28 @@ addVAT2Applied(200);
 // BONUS TEST DATA 2: [1, 5, 3, 9, 6, 1]
 
 // GOOD LUCK 😀
+
+const answerPollBtn = document.querySelector(".answer-poll");
+
+const poll = {
+  question: "What is your favourite programming language?",
+  options: ["1: Javascript", "2: Python", "3: Rust", "4: C++"],
+  // This generates [0,0,0,0]. More in the next section.
+  answers: new Array(4).fill(0),
+  // TASK #1
+  registerNewAnswer() {
+    const answer = +prompt(
+      `${this.question}\n${this.options.join("\n")}\n(Write option number)`
+    );
+
+    !isNaN(answer) && //check if the answer field was left empty/string was used
+      answer > 0 && //check if answer is greater than 0
+      answer <= poll.options.length && // check if answer is less than the totl number of available options
+      this.answers[answer - 1]++; // increase reponse counter depending on the answer
+
+    console.log(this.answers);
+  },
+};
+
+// TASK #2
+answerPollBtn.addEventListener("click", poll.registerNewAnswer.bind(poll));
