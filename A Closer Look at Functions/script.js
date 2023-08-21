@@ -348,7 +348,16 @@ const poll = {
       answer <= poll.options.length && // check if answer is less than the totl number of available options
       this.answers[answer - 1]++; // increase reponse counter depending on the answer
 
-    console.log(this.answers);
+    // console.log(this.answers);
+    // TASK #3
+    this.displayResults();
+    this.displayResults("string");
+  },
+  // TASK #3
+  displayResults(type = "array") {
+    type === "array" && console.log(this.answers);
+    type === "string" &&
+      console.log(`Poll results are ${this.answers.join(", ")}`);
   },
 };
 
