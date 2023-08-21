@@ -349,7 +349,7 @@ const poll = {
       this.answers[answer - 1]++; // increase reponse counter depending on the answer
 
     // console.log(this.answers);
-    // TASK #3
+    // TASK #4
     this.displayResults();
     this.displayResults("string");
   },
@@ -363,3 +363,7 @@ const poll = {
 
 // TASK #2
 answerPollBtn.addEventListener("click", poll.registerNewAnswer.bind(poll));
+
+// BONUS
+poll.displayResults.call({ answers: [5, 2, 3] });
+poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] });
