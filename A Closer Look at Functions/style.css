@@ -24,6 +24,31 @@ body {
   background: linear-gradient(to top left, var(--green28), var(--green7d));
 }
 
+.task p {
+  font-size: 1.6rem;
+}
+
+pre {
+  font-size: 1rem;
+}
+
+.taskVariable {
+  color: var(--orangeff);
+  font-style: italic;
+}
+
+.answer-poll {
+  font-size: 1.4rem;
+}
+
+.challenges .row {
+  border-radius: 1rem;
+}
+
+.fill {
+  background: lightgrey;
+}
+
 /* Mobile */
 @media (min-width: 576px) {
 }

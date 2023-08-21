@@ -29,6 +29,78 @@
     >
       main page
     </a>
+    <section
+      class="challenges d-flex flex-column align-items-center justify-content-center py-5 px-4"
+    ><div class="row bg-light-subtle mb-5 col-12">
+      <div class="task p-3 pb-0">
+        <h3 class="text-uppercase fst-italic">challenge #1</h3>
+        <p>
+          Let's build a simple poll app!
+        </p>
+        <p>1. Create a method called <span class="taskVariable">'registerNewAnswer'</span> on the <span class="taskVariable">'poll' object</span>. The method does 2 things:
+        </p>
+        <p style="margin-left: 1rem">
+          1.1. Display a prompt window for the user to input the number of the selected option. The prompt should look like this:
+        </p>
+        <pre>
+          <span class="taskVariable">What is your favourite programming language?
+            1: JavaScript
+            2: Python
+            3: Rust
+            4: C++
+            (Write option number)
+          </span>
+        </pre>
+        <p style="margin-left: 1rem">1.2. Based on the input number, update the answers array. For example, if the option is 3, increase the value AT POSITION 3 of the array by making sure to check if the input is a number and if the number makes sense (e.g answer 52 wouldn't make sense, right?)
+        </p>
+        <p>2. Call this method whenever the user clicks the <span class="taskVariable">"Answer poll"</span> button.</p>
+        <p>3. Create a method <span class="taskVariable">'displayResults'</span> which displays the poll results. The method takes a string as an input (called <span class="taskVariable">'type'</span>), which can be either <span class="taskVariable">'string'</span> or <span class="taskVariable">'array'</span>. If type is <span class="taskVariable">'array'</span>, simply display the results array as it is, using console.log(). This should be the default option. If type is <span class="taskVariable">'string'</span>, display a string like <span class="taskVariable">"Poll results are 13, 2, 4, 1"</span>.</p>
+        <p>4. Run the <span class="taskVariable">'displayResults'</span> method at the end of each <span class="taskVariable">'registerNewAnswer'</span> method call.</p>
+        <p>
+          <span class="fw-bold">BONUS:</span> Use the <span class="taskVariable">'displayResults'</span> method to display the 2 arrays in the test data. Use both the <span class="taskVariable">'array'</span> and the <span class="taskVariable">'string'</span> option. Do NOT put the arrays in the poll object! So what shoud the this keyword look like in this situation?
+        </p>
+        <p class="border-bottom border-dark pb-3"><span class="taskVariable">BONUS TEST DATA 1: [5, 2, 3]</span> <br>
+          <span class="taskVariable">BONUS TEST DATA 2: [1, 5, 3, 9, 6, 1]</p>
+        <div class="poll-results-container">
+          <button class="mb-5 btn btn-primary answer-poll">Answer poll</button>
+          <div class="poll-results mb-2">
+            <div class="javascript d-flex mb-4">
+              <p class="w-25 mb-0">Javascript</p>
+              <div class="fill w-75 text-center align-self-center fw-bold fs-2 text-dark">0</div>
+            </div>
+            <div class="python d-flex mb-4">
+              <p class="w-25 mb-0">Python</p>
+              <div class="fill w-75 text-center align-self-center fw-bold fs-2 text-dark">0</div>
+            </div>
+            <div class="rust d-flex mb-4">
+              <p class="w-25 mb-0">Rust</p>
+              <div class="fill w-75 text-center align-self-center fw-bold fs-2 text-dark">0</div>
+            </div>
+            <div class="cplus d-flex mb-4">
+              <p class="w-25 mb-0">C++</p>
+              <div class="fill w-75 text-center align-self-center fw-bold fs-2 text-dark">0</div>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <label class="w-100 mb-2">Bonus data sets</label>
+            <span class="input-group-text">First set</span>
+            <input
+              type="number"
+              class="form-control game-odds-win1-input"
+              placeholder="1.33"
+              onkeyup="if(value<0) value=''"
+            />
+            <span class="input-group-text">Second set</span>
+            <input
+              type="number"
+              class="form-control game-odds-draw-input"
+              placeholder="3.29"
+              onkeyup="if(value<0) value=''"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
