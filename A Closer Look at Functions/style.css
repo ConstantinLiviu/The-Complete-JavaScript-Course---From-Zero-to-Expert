@@ -38,7 +38,8 @@ pre {
 }
 
 .answer-poll,
-.bonus-data-btn {
+.bonus-data-btn,
+.change-color-btn {
   font-size: 1.4rem;
 }
 

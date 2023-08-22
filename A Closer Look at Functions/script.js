@@ -555,8 +555,18 @@ And now explain to YOURSELF (or someone around you) WHY this worked! Take all th
 
 GOOD LUCK 😀
 */
+const changeColorBtn = document.querySelector(".change-color-btn");
+const explanationTextEl = document.querySelector(".explanation-text");
 
 (function () {
   const header = document.querySelector("h1");
   header.style.color = "red";
+
+  changeColorBtn.addEventListener("click", () => {
+    header.style.color = "var(--blue0d)";
+    explanationTextEl.innerHTML = `<p>The IIFE executes as soon as it enters the stack. It assigns the h1 element to the header constant and sets its (h1) text color to red. It then creates an event listener for the button element declared outside the scope of the IIFE and then its execution ends.</p> 
+      <p>The listener callback function waits for a user to click the aforementioned button element. Due to closure, it has access to the header constant (which was declared inside the same scope the callback function is declared) and is able to change its (h1) color property, even if the IIFE execution has already ended.</p> 
+      <p>It also adds this text as text content to the explanationTextEl (green border) that was declared outside of the IIFE scope.</p>`;
+    explanationTextEl.classList.add("border", "border-success", "p-2");
+  });
 })();
