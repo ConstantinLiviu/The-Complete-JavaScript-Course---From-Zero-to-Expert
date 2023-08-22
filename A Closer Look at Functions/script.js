@@ -336,14 +336,19 @@ const dataSet1 = document.querySelector(".bonus-data-set-1");
 const dataSet2 = document.querySelector(".bonus-data-set-2");
 
 const javascriptFill = document.querySelector(".javascript .fill");
-// const clearAllBtn = document.querySelector(".clear-all-btn");
+const resetPoll = document.querySelector(".reset-poll");
 const pythonFill = document.querySelector(".python .fill");
 const rustFill = document.querySelector(".rust .fill");
 const cPlusFill = document.querySelector(".cplus .fill");
-const pollResultsContainer = document.querySelector(".poll-results-container");
+const pollTextContentEl = document.querySelector(".poll-text-entries");
 
 const optionsDivs = [javascriptFill, pythonFill, rustFill, cPlusFill];
 
+/**
+ * Increases chart values based on poll answers array
+ * @param {Element} element - chart element
+ * @param {Number} limit - poll array value
+ */
 function changeChartBg(element, limit) {
   element.style.background = `linear-gradient(
     to right,
@@ -368,7 +373,6 @@ const poll = {
       answer <= poll.options.length && // check if answer is less than the totl number of available options
       this.answers[answer - 1]++; // increase reponse counter depending on the answer
 
-    // console.log(this.answers);
     // TASK #4
     this.displayResults();
     this.displayResults("string");
@@ -382,11 +386,11 @@ const poll = {
     const newP = document.createElement("p");
     if (type === "array") {
       newP.textContent = `[${this.answers}]`;
-      pollResultsContainer.appendChild(newP);
+      pollTextContentEl.appendChild(newP);
     }
     if (type === "string") {
       newP.textContent = `Poll results are ${this.answers.join(", ")}`;
-      pollResultsContainer.appendChild(newP);
+      pollTextContentEl.appendChild(newP);
     }
   },
 };
@@ -421,6 +425,14 @@ bonusDataBtn.addEventListener("click", () => {
       let newEl = el.split(",");
       poll.displayResults.call({ answers: newEl }, "string");
     }
+  }
+});
+
+resetPoll.addEventListener("click", () => {
+  for (const el of optionsDivs) {
+    changeChartBg(el, 0);
+    el.textContent = "0";
+    pollTextContentEl.innerHTML = "";
   }
 });
 
