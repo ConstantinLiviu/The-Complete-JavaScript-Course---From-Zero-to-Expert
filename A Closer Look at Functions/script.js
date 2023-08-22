@@ -423,3 +423,140 @@ bonusDataBtn.addEventListener("click", () => {
     }
   }
 });
+
+//
+/* ****************************************************************************************************** */
+//  LESSON - Imemediately Invoked Function Expressions (IIFE)
+//
+
+// IIFE are functions meant to run only once
+// not quite an IIFE as it can be called again countless times
+const runOnce = function () {
+  console.log("This will never run again");
+};
+runOnce();
+
+// turning a statement into an expression using wrapping it in () and using () at the end to call it
+// This is an IIFE
+// The utility of IIFE is scope management, such as securing variables, by encapsulating them
+(function () {
+  console.log("This will never run again");
+  // const isPrivate = 23; //variable is encapsulated
+})();
+
+// console.log(isPrivate);
+
+(() => console.log("This will also never run again"))();
+
+{
+  const isPrivate = 23; // can't be accessed by outer scope as const establishes the scope of the variable
+  var notPrivate = 46; // global variable, can be accessed from outer/global scope
+}
+
+// console.log(isPrivate);
+console.log(notPrivate);
+
+//
+/* ****************************************************************************************************** */
+//  LESSON - Closures
+//
+
+// A closure is not a feature we implement/set up (i.e. defining an array)
+// A closure happens in certain situations
+const secureBooking = function () {
+  let passengerCount = 0;
+
+  return function () {
+    passengerCount++;
+    console.log(`${passengerCount} passangers`);
+  };
+};
+
+const booker = secureBooking();
+booker();
+booker();
+booker();
+
+// once the secureBooking function executes it is removed from the stack
+// even so, as the returned function still has access to the passengerCount variable it is able to update the value of the variable in question even if the function execution was removed from the stack
+// Closures help a function remember all the variables that existed at the function's birthplace (in our case, secureBooking is the birthplace of the booker function)
+//
+//
+//
+// The global execution environment contains secureBooking and booker
+// a new execution context is created when the booker function is run, the variable content being empty (no variable declared in the context)
+// the booker scope remains a child of the global scope and as such it shouldn't have access to another global scope child scope
+//
+// Closures translate into any function having access to the variable environment of the execution context in which the function was created.
+// Thanks to closures functions don't lose the connection with variables diclared in the execution context of their delaration
+//
+// The booker function was created in the execution context of the secureBooking function (which in our case was popped off the stack previously)
+// As a result the booker function will get access to the variable environment of the secureBooking execution context (in our case passengerCount)
+// This is what allows the booker function to read and manipulate the passengerCount variable
+
+console.dir(booker);
+
+//
+/* ****************************************************************************************************** */
+//  LESSON - Closures Example
+//
+
+// TASK #1
+let f;
+const g = function () {
+  const a = 23;
+  f = function () {
+    console.log(a * 2);
+  };
+};
+
+const h = function () {
+  const b = 777;
+  f = function () {
+    console.log(b * 2);
+  };
+};
+
+g();
+f();
+console.dir(f);
+
+// reassigning function
+h();
+f();
+
+console.dir(f);
+
+// TASK #2
+const boardPassangers = function (n, wait) {
+  const perGroup = n / 3;
+
+  setTimeout(function () {
+    console.log(`We are now boarding all ${n} passangers`);
+    console.log(`There are 3 groups, each with ${perGroup} passangers`);
+  }, wait * 1000);
+
+  console.log(`Will start boarding in ${wait} seconds`);
+};
+
+// const perGroup = 1000; <- proof that closure has priority over scope chain
+boardPassangers(180, 3);
+
+//
+/* ****************************************************************************************************** */
+//  CHALLENGE #2
+//
+/* 
+This is more of a thinking challenge than a coding challenge 🤓
+
+Take the IIFE below and at the end of the function, attach an event listener that changes the color of the selected h1 element ('header') to blue, each time the BODY element is clicked. Do NOT select the h1 element again!
+
+And now explain to YOURSELF (or someone around you) WHY this worked! Take all the time you need. Think about WHEN exactly the callback function is executed, and what that means for the variables involved in this example.
+
+GOOD LUCK 😀
+*/
+
+(function () {
+  const header = document.querySelector("h1");
+  header.style.color = "red";
+})();

@@ -31,7 +31,8 @@
     </a>
     <section
       class="challenges d-flex flex-column align-items-center justify-content-center py-5 px-4"
-    ><div class="row bg-light-subtle mb-5 col-12">
+    >
+    <div class="row bg-light-subtle mb-5 col-12">
       <div class="task p-3 pb-0">
         <h3 class="text-uppercase fst-italic">challenge #1</h3>
         <p>
@@ -99,6 +100,32 @@
           <button class="mb-5 btn btn-primary bonus-data-btn">Log Bonus data sets</button>
         </div>
       </div>
+    </div>
+    <div class="row bg-light-subtle mb-5 col-12">
+      <div class="task p-3 pb-0">
+        <h3 class="text-uppercase fst-italic">challenge #2</h3>
+        <p>
+          Take the IIFE below and at the end of the function, <span class="taskVariable"> attach an event listener that changes the color of the selected h1 element ('header') to blue, each time the change color button is clicked.</span> Do NOT select the h1 element again!
+        </p>
+        <pre>
+          <span class="taskVariable">
+            (function () {
+              const header = document.querySelector("h1");
+              header.style.color = "red";
+          })();
+          </span>
+        </pre>
+        <h1 class="p-3 text-center text-uppercase border-danger border border-5">Color change pending</h1>
+        <p class="border-bottom border-dark pb-3">
+          Explain WHY this worked! Think about WHEN exactly the callback function is executed, and what that means for the variables involved in this example.
+        </p>
+        <div class="explanation">
+          <button class="mb-5 btn btn-primary answer-poll">Change color</button>
+          <div class="explanation-text mb-2">
+          </div>
+        </div>
+      </div>
+    </div>
     </section>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
