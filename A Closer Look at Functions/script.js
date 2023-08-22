@@ -331,7 +331,12 @@ addVAT2Applied(200);
 // GOOD LUCK 😀
 
 const answerPollBtn = document.querySelector(".answer-poll");
+const bonusDataBtn = document.querySelector(".bonus-data-btn");
+const dataSet1 = document.querySelector(".bonus-data-set-1");
+const dataSet2 = document.querySelector(".bonus-data-set-2");
+
 const javascriptFill = document.querySelector(".javascript .fill");
+// const clearAllBtn = document.querySelector(".clear-all-btn");
 const pythonFill = document.querySelector(".python .fill");
 const rustFill = document.querySelector(".rust .fill");
 const cPlusFill = document.querySelector(".cplus .fill");
@@ -376,7 +381,7 @@ const poll = {
   displayResults(type = "array") {
     const newP = document.createElement("p");
     if (type === "array") {
-      newP.textContent = this.answers;
+      newP.textContent = `[${this.answers}]`;
       pollResultsContainer.appendChild(newP);
     }
     if (type === "string") {
@@ -390,5 +395,31 @@ const poll = {
 answerPollBtn.addEventListener("click", poll.registerNewAnswer.bind(poll));
 
 // BONUS
-poll.displayResults.call({ answers: [5, 2, 3] });
-poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] });
+// poll.displayResults.call({ answers: [5, 2, 3] });
+// poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] }, "string");
+
+// BONUS TASK
+bonusDataBtn.addEventListener("click", () => {
+  const bonusData = [
+    dataSet1.value || [5, 2, 3],
+    dataSet2.value || [1, 5, 3, 9, 6, 1],
+  ];
+  if (typeof bonusData[0] === "string") console.log("e string");
+
+  if (dataSet1.value && dataSet1.value.startsWith("[")) {
+    const first = dataSet1.value.replace(/[\[\]]/g, "").split(",");
+    bonusData[0] = first;
+  }
+  if (dataSet2.value && dataSet2.value.startsWith("[")) {
+    const second = dataSet2.value.replace(/[\[\]]/g, "").split(",");
+    bonusData[1] = second;
+  }
+
+  for (const el of bonusData) {
+    if (Array.isArray(el)) poll.displayResults.call({ answers: el });
+    if (typeof el === "string") {
+      let newEl = el.split(",");
+      poll.displayResults.call({ answers: newEl }, "string");
+    }
+  }
+});

@@ -37,7 +37,8 @@ pre {
   font-style: italic;
 }
 
-.answer-poll {
+.answer-poll,
+.bonus-data-btn {
   font-size: 1.4rem;
 }
 
@@ -47,6 +48,30 @@ pre {
 
 .fill {
   background: lightgrey;
+}
+
+.input-group label {
+  font-size: 1.6rem;
+}
+
+.input-group span,
+.input-group input {
+  font-size: 1.4rem;
+}
+
+.input-group input::-webkit-outer-spin-button,
+.input-group input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.input-group input::placeholder {
+  font-style: italic;
+}
+
+.input-group input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
 }
 
 /* Mobile */
