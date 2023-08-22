@@ -20,8 +20,39 @@ html {
   color: var(--white);
 }
 
+.bankist-app-container {
+  padding: 0 2rem;
+}
+
+/* ********************************************************************************************************************** */
+/* NAV */
+
+.welcome-msg {
+  font-size: 2rem;
+  margin: 0;
+}
+
+.logo {
+  height: 5rem;
+}
+
+nav input[type="text"] {
+  font-size: 1.6rem;
+  width: 20rem;
+}
+
+nav input::placeholder {
+  text-align: center;
+}
+
+.login-btn {
+  width: 4rem;
+  font-size: 1.6rem;
+}
+
 body {
-  background: linear-gradient(to top left, var(--green28), var(--green7d));
+  /* background: linear-gradient(to top left, var(--green28), var(--green7d)); */
+  background: var(--grayf3);
 }
 
 /* Mobile */
