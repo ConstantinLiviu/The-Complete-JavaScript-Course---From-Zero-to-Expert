@@ -5,18 +5,23 @@ html {
   font-size: 62.5%;
 }
 
-.main-page-btn {
+.sticky-btns-container {
   top: 0;
-  right: 2rem;
-  margin-top: 2rem;
+  right: 1rem;
+  margin-top: 1rem;
   margin-left: auto;
   margin-bottom: 2rem;
-  font-size: 1.6rem;
-  color: var(--purple97);
   z-index: 99;
 }
 
-.main-page-btn:hover {
+.main-page-btn,
+.challenges-btn {
+  font-size: 1.6rem;
+  color: var(--purple97);
+}
+
+.main-page-btn:hover,
+.challenges-btn:hover {
   color: var(--white);
 }
 
