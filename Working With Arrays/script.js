@@ -1,66 +1,5 @@
 "use strict";
 
-/////////////////////////////////////////////////
-/////////////////////////////////////////////////
-// BANKIST APP
-
-// Data
-const account1 = {
-  owner: "Jonas Schmedtmann",
-  movements: [200, 450, -400, 3000, -650, -130, 70, 1300],
-  interestRate: 1.2, // %
-  pin: 1111,
-};
-
-const account2 = {
-  owner: "Jessica Davis",
-  movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
-  interestRate: 1.5,
-  pin: 2222,
-};
-
-const account3 = {
-  owner: "Steven Thomas Williams",
-  movements: [200, -200, 340, -300, -20, 50, 400, -460],
-  interestRate: 0.7,
-  pin: 3333,
-};
-
-const account4 = {
-  owner: "Sarah Smith",
-  movements: [430, 1000, 700, 50, 90],
-  interestRate: 1,
-  pin: 4444,
-};
-
-const accounts = [account1, account2, account3, account4];
-
-// Elements
-const labelWelcome = document.querySelector(".welcome");
-const labelDate = document.querySelector(".date");
-const labelBalance = document.querySelector(".balance__value");
-const labelSumIn = document.querySelector(".summary__value--in");
-const labelSumOut = document.querySelector(".summary__value--out");
-const labelSumInterest = document.querySelector(".summary__value--interest");
-const labelTimer = document.querySelector(".timer");
-
-const containerApp = document.querySelector(".app");
-const containerMovements = document.querySelector(".movements");
-
-const btnLogin = document.querySelector(".login__btn");
-const btnTransfer = document.querySelector(".form__btn--transfer");
-const btnLoan = document.querySelector(".form__btn--loan");
-const btnClose = document.querySelector(".form__btn--close");
-const btnSort = document.querySelector(".btn--sort");
-
-const inputLoginUsername = document.querySelector(".login__input--user");
-const inputLoginPin = document.querySelector(".login__input--pin");
-const inputTransferTo = document.querySelector(".form__input--to");
-const inputTransferAmount = document.querySelector(".form__input--amount");
-const inputLoanAmount = document.querySelector(".form__input--loan-amount");
-const inputCloseUsername = document.querySelector(".form__input--user");
-const inputClosePin = document.querySelector(".form__input--pin");
-
 //
 /* ****************************************************************************************************** */
 //  LESSON - Simple Array Methods
@@ -188,4 +127,84 @@ currenciesUnique.forEach(function (value, _, set) {
 //
 /* ****************************************************************************************************** */
 //  LESSON - THE BANKIST APP
+//
+
+// Elements
+const transactionsContainerEl = document.querySelector(
+  ".transactions-row-container"
+);
+
+// Data
+const account1 = {
+  owner: "John Gamble",
+  transactions: [200, 450, -400, 3000, -650, -130, 70, 1300],
+  interestRate: 1.2, // %
+  pin: 1111,
+};
+
+const account2 = {
+  owner: "Millie Melvin",
+  transactions: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
+  interestRate: 1.5,
+  pin: 2222,
+};
+
+const account3 = {
+  owner: "Jack Jacob Johanson",
+  transactions: [200, -200, 340, -300, -20, 50, 400, -460],
+  interestRate: 0.7,
+  pin: 3333,
+};
+
+const account4 = {
+  owner: "Serena Davis",
+  transactions: [430, 1000, 700, 50, 90],
+  interestRate: 1,
+  pin: 4444,
+};
+
+const accounts = [account1, account2, account3, account4];
+
+/**
+ * Takes in the user's account transactions and creates/displays an element on the page provinding all available infor about each transaction
+ * @param {Array} transactions - array that represents deposits/withdrawals from users' accounts
+ * @returns {Element} appends an element with transaction info on the page
+ */
+const displayTransactions = function (transactions) {
+  transactions.forEach(function (transaction, index) {
+    const transactionRow = document.createElement("div");
+    transactionRow.classList.add(
+      "transactions-row",
+      "d-flex",
+      "px-3",
+      "py-5",
+      "px-0",
+      "justify-content-between",
+      "align-items-center",
+      "border-bottom",
+      "border-1"
+    );
+    transactionRow.innerHTML = `<div
+      class="transaction-type ${
+        transaction > 0 ? "deposit" : "withdrawal bg-danger"
+      } p-0  rounded-pill text-white"
+    >
+      ${index + 1} ${transaction > 0 ? "deposit" : "withdrawal"}
+    </div>
+    <div class="transaction-date me-auto ms-5">TBD</div>
+    <div class="transaction-value">${transaction} €</div>`;
+    if (index === 0) {
+      transactionRow.classList.remove("border-bottom", "border-1");
+    }
+    transactionsContainerEl.insertBefore(
+      transactionRow,
+      transactionsContainerEl.firstChild
+    );
+  });
+};
+
+displayTransactions(account1.transactions);
+
+//
+/* ****************************************************************************************************** */
 //
