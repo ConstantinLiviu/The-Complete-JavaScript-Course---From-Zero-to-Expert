@@ -23,167 +23,96 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body class="position-relative d-flex flex-column">
-    <div class="position-sticky sticky-btns-container text-end">
     <a
       href="../index.html"
-      class="btn btn-warning main-page-btn text-uppercase fw-bold me-3"
+      class="position-sticky btn btn-warning main-page-btn text-uppercase fw-bold"
     >
       main page
     </a>
-    <a
-      href="challenges.html"
-      class="btn btn-warning challenges-btn text-uppercase fw-bold"
+    <section
+      class="challenges d-flex flex-column align-items-center justify-content-center py-5 px-4"
     >
-      challenges
-    </a>
-  </div>
-    <section class="bankist-app-container">
-      <nav
-        class="login-container d-flex px-4 align-items-center justify-content-between"
-      >
-        <p class="welcome-msg col-4">Log in to get started</p>
-        <img class="logo" src="logo.png" alt="Logo" />
-        <form class="login-input d-flex col-4 justify-content-end">
-          <input
-            type="text"
-            class="form-control py-3 px-5 me-5 rounded-pill text-center"
-            placeholder="user"
-          />
-          <input
-            type="text"
-            class="form-control py-3 px-5 me-5 rounded-pill text-center"
-            placeholder="pin"
-          />
-          <button class="btn btn-outline-dark login-btn">
-            <i class="bi bi-arrow-right"></i>
+      <div class="row bg-light-subtle mb-5 col-12">
+        <div class="task p-3 pb-0">
+          <h3 class="text-uppercase fst-italic">challenge #1</h3>
+          <p>
+            Julia and Kate are doing a study on dogs. So each of them asked 5
+            dog owners about their dog's age, and stored the data into an array
+            (one array for each). For now, they are just interested in knowing
+            whether a dog is an adult or a puppy. A dog is an adult if it is at
+            least 3 years old, and it's a puppy if it's less than 3 years old.
+          </p>
+          <p>
+            Create a function <span class="taskVariable">'checkDogs'</span>,
+            which accepts 2 arrays of dog's ages (<span class="taskVariable"
+              >'dogsJulia'</span
+            >
+            and <span class="taskVariable">'dogsKate'</span>), and does the
+            following things:
+          </p>
+          <p class="ms-3">
+            1. Julia found out that the owners of the
+            <span class="taskVariable">FIRST</span> and the
+            <span class="taskVariable"
+              >LAST TWO dogs actually have cats, not dogs</span
+            >! So
+            <span class="taskVariable"
+              >create a shallow copy of Julia's array</span
+            >, and remove the cat ages from that copied array (because it's a
+            bad practice to mutate function parameters)
+          </p>
+          <p class="ms-3">
+            2. Create an array with both Julia's (corrected) and Kate's data
+          </p>
+          <p class="ms-3">
+            3. For each remaining dog, log to the console whether it's an adult
+            ("Dog number 1 is an adult, and is 5 years old") or a puppy ("Dog
+            number 2 is still a puppy 🐶")
+          </p>
+          <p class="ps-3">4. Run the function for both test datasets</p>
+          <p class="taskVariable">
+            TEST DATA 1: Julia's data [3, 5, 2, 12, 7], Kate's data [4, 1, 15,
+            8, 3]
+          </p>
+          <p class="border-bottom border-dark pb-3 taskVariable">
+            TEST DATA 2: Julia's data [9, 16, 6, 8, 3], Kate's data [10, 5, 6,
+            1, 4]
+          </p>
+        </div>
+        <div class="solution p-3 pt-0">
+          <h3 class="text-uppercase fst-italic">solution</h3>
+          <div class="input-group mb-3">
+            <label class="w-100 mb-2">Study data</label>
+            <span class="input-group-text">Julia's data</span>
+            <input
+              type="text"
+              class="form-control dogs-julia"
+              placeholder="3, 5, 2, 12, 7"
+            />
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text">Kate's data</span>
+            <input
+              type="text"
+              class="form-control dogs-kate"
+              placeholder="4, 1, 15, 8, 3"
+            />
+          </div>
+          <button class="mb-4 btn btn-primary doggy-results-btn">
+            Display Results
           </button>
-        </form>
-      </nav>
-      <section class="main container p-5 bg-white">
-        <div class="row justify-content-between gx-5 mb-3">
-          <div class="balance-info col-6">
-            <h1>Current value</h1>
-            <p class="date">As of <span></span></p>
+          <div class="results d-none">
+            <div class="julia mb-4">
+              <h3 class="text-uppercase">Julia's Dogs:</h3>
+              <div class="julia-results"></div>
+            </div>
+            <div class="kate">
+              <h3 class="text-uppercase">Kate's dogs:</h3>
+              <div class="kate-results"></div>
+            </div>
           </div>
-          <div class="balance-value col-6">
-            <h1 class="text-end">0000 €</h1>
-          </div>
         </div>
-
-        <div class="row justify-content-between gx-5 mb-3">
-          <section class="transactions col-6 pb-4">
-            <div class="transactions-row-container border border-1">
-            </div>
-          </section>
-          <section class="operations col-6">
-            <section class="operation operation-transfer mb-5 p-5 text-light">
-              <h2 class="mb-4 text-uppercase">Transfer money</h2>
-              <form class="form form-transfer">
-                <div class="d-flex align-items-end">
-                  <div class="form-input-field col-5 me-3">
-                    <label for="inputRecipient" class="form-label"
-                      >Transfer to</label
-                    >
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="inputRecipient"
-                      aria-describedby="textHelp"
-                      onkeyup="if(value<1 || value>999999999) value=''"
-                    />
-                  </div>
-                  <div class="form-input-field col-5">
-                    <label for="inputAmount" class="form-label">Amount</label>
-                    <input
-                      type="number"
-                      class="form-control"
-                      id="inputAmount"
-                      onkeyup="if(value<1 || value>999999999) value=''"
-                    />
-                  </div>
-                  <button type="submit" class="btn btn-light ms-auto my-0">
-                    <i class="bi bi-arrow-right"></i>
-                </div>
-                
-                </button>
-              </form>
-            </section>
-            <section class="operation operation-loan mb-5 p-5 text-light">
-              <h2 class="mb-4 text-uppercase">Request loan</h2>
-              <form class="form form-loan">
-                <div class="d-flex align-items-end">
-                  <div class="form-input-field col-5">
-                    <label for="amount" class="form-label">Amount</label>
-                    <input
-                    type="number"
-                    class="form-control"
-                    id="amount"
-                    aria-describedby="textHelp"
-                    onkeyup="if(value<1 || value>999999999) value=''"
-                    />
-                  </div> 
-                  <button type="submit" class="btn btn-light ms-auto my-0">
-                    <i class="bi bi-arrow-right"></i>
-                  </button>
-                </div>
-                
-              </form>
-            </section>
-            <section class="operation operation-close mb-5 p-5 bg-danger text-light">
-              <h2 class="mb-4 text-uppercase">Close account</h2>
-              <form class="form form-transfer">
-                <div class="d-flex align-items-end">
-                  <div class="form-input-field col-5 me-3">
-                    <label for="confirmUser" class="form-label"
-                      >Confirm User</label
-                    >
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="confirmUser"
-                      aria-describedby="textHelp"
-                    />
-                  </div>
-                  <div class="form-input-field col-5 me-3">
-                    <label for="confirmPIN" class="form-label">Confirm PIN</label>
-                    <input type="number" class="form-control" id="confirmPIN" onkeyup="if(value<1 || value>9999) value=''"/>
-                  </div>
-                  <button type="submit" class="btn btn-light ms-auto">
-                    <i class="bi bi-arrow-right"></i>
-                  </button>
-                </div>
-              </form>
-            </section>
-          </section>
-        </div>
-
-        <div class="row gx-5 mb-3">
-          <section class="summary col-6 d-flex justify-content-between">
-            <div class="summary-item d-flex col-3 align-items-center">
-              <p class="summary-label me-3">In</p>
-              <p class="summary-value value-in">$0000</p>
-            </div>
-
-            <div class="summary-item d-flex col-3 align-items-center">
-              <p class="summary-label me-3">Out</p>
-              <p class="summary-value value-out">$0000</p>
-            </div>
-
-            <div class="summary-item d-flex col-3 align-items-center">
-              <p class="summary-label me-3">Interest</p>
-              <p class="summary-value value-interest">$0000</p>
-            </div>
-
-            <button class="btn btn-outline-dark ms-auto sort-transactions-list">
-              <i class="bi bi-sort-numeric-down-alt me-2"></i>SORT
-            </button>
-            <!-- <i class="bi bi-sort-numeric-up me-2"></i> -->
-          </section>
-          <section class="logout-timer col-6 d-flex align-items-center justify-content-end">
-            You will be logged out in <span class="timer"></span>
-          </section>
-        </div>
-      </section>
+      </div>
     </section>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"

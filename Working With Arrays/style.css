@@ -5,193 +5,70 @@ html {
   font-size: 62.5%;
 }
 
-.sticky-btns-container {
+.main-page-btn {
   top: 0;
-  right: 1rem;
-  margin-top: 1rem;
+  right: 2rem;
+  margin-top: 2rem;
   margin-left: auto;
   margin-bottom: 2rem;
+  font-size: 1.6rem;
+  color: var(--purple97);
   z-index: 99;
 }
 
-.main-page-btn,
-.challenges-btn {
-  font-size: 1.6rem;
-  color: var(--purple97);
-}
-
-.main-page-btn:hover,
-.challenges-btn:hover {
+.main-page-btn:hover {
   color: var(--white);
 }
 
-.bankist-app-container {
-  padding: 0 2rem;
+.taskVariable {
+  color: var(--orangeff);
+  font-style: italic;
 }
 
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
+.challenges .row {
+  border-radius: 1rem;
+}
+
+.task p {
+  font-size: 1.6rem;
+}
+
+pre {
+  font-size: 1rem;
+}
+
+.input-group label,
+.results p {
+  font-size: 1.6rem;
+}
+
+.input-group span,
+.input-group input,
+.input-group select {
+  font-size: 1.4rem;
+}
+
+.input-group input::-webkit-outer-spin-button,
+.input-group input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-input::placeholder {
+.input-group input::placeholder {
   font-style: italic;
 }
 
-input[type="number"] {
+.input-group input[type="number"] {
   -moz-appearance: textfield;
   appearance: textfield;
 }
 
-/* ********************************************************************************************************************** */
-/* NAV */
-
-.welcome-msg {
-  font-size: 2rem;
-  margin: 0;
-  font-weight: 600;
-}
-
-.logo {
-  height: 5rem;
-}
-
-nav input[type="text"] {
-  font-size: 1.6rem;
-  width: 20rem;
-}
-
-nav input::placeholder {
-  text-align: center;
-}
-
-.login-btn {
-  width: 4rem;
-  font-size: 1.6rem;
-}
-
-/* ********************************************************************************************************************** */
-/* MAIN */
-
-.main {
-  width: 50%;
-  margin: 5rem auto 0;
-  border-radius: 1rem;
-  /* opacity: 0; */
-}
-
-.date {
+.doggy-results-btn {
   font-size: 1.4rem;
-}
-
-.balance-value h1 {
-  font-size: 5rem;
-}
-
-/* ********************************************************************************************************************** */
-/* transactions */
-
-.transactions {
-  overflow-y: scroll;
-  height: 55rem;
-  box-shadow: inset -1px -2px 2px rgba(0, 0, 0, 0.16);
-}
-
-.transactions::-webkit-scrollbar {
-  width: 0.5rem;
-  background-color: var(--grayf3);
-}
-.transactions::-webkit-scrollbar-thumb {
-  border-radius: 0.5rem;
-}
-
-.transactions::-webkit-scrollbar-thumb:hover {
-  background-color: var(--orangeff);
-}
-
-.transactions-row-container {
-  border-radius: 1rem;
-}
-
-.transaction-type {
-  width: 13rem;
-  text-align: center;
-  font-size: 1.4rem;
-  text-transform: uppercase;
-  font-weight: 600;
-}
-
-.transaction-date,
-.transaction-value {
-  font-size: 1.6rem;
-  font-weight: 600;
-}
-
-.deposit,
-.operation-loan {
-  background-color: var(--green28);
-}
-
-/* ********************************************************************************************************************** */
-/* operation */
-.operation {
-  border-radius: 1rem;
-}
-
-.operation-transfer {
-  background-color: var(--blue00);
-}
-
-.form-input-field input {
-  opacity: 0.65;
-  font-size: 1.6rem;
-}
-
-.operation button {
-  font-size: 1.5rem;
-}
-
-.form-input-field label {
-  font-size: 1.6rem;
-  font-weight: 500;
-}
-
-/* ********************************************************************************************************************** */
-/* summary */
-.summary-item p {
-  margin-bottom: 0;
-  font-size: 1.6rem;
-}
-
-.summary-item .summary-value {
-  font-size: 2.2rem;
-}
-
-.summary-item .summary-value.value-in {
-  color: var(--green28);
-}
-
-.summary-item .summary-value.value-out {
-  color: var(--redff);
-}
-.summary-item .summary-value.value-interest {
-  color: var(--orangeff);
-}
-
-.summary .sort-transactions-list {
-  border: none;
-  font-size: 1.6rem;
-}
-/* ********************************************************************************************************************** */
-/* logout */
-.logout-timer {
-  font-size: 1.6rem;
 }
 
 body {
-  /* background: linear-gradient(to top left, var(--green28), var(--green7d)); */
-  background: var(--grayf3);
+  background: linear-gradient(to top left, var(--green28), var(--green7d));
 }
 
 /* Mobile */
