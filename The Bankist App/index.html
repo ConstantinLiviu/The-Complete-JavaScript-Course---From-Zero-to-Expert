@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Main page</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="position-relative d-flex flex-column">
+    <a
+      href="../index.html"
+      class="position-sticky btn btn-warning main-page-btn text-uppercase fw-bold"
+    >
+      main page
+    </a>
+    <section class="bankist-app-container">
+      <nav
+        class="login-container d-flex px-4 align-items-center justify-content-between"
+      >
+        <p class="welcome-msg col-4">Log in to get started</p>
+        <img class="logo" src="logo.png" alt="Logo" />
+        <form class="login-input d-flex col-4 justify-content-end">
+          <input
+            type="text"
+            class="form-control py-3 px-5 me-5 rounded-pill text-center"
+            placeholder="user"
+          />
+          <input
+            type="text"
+            class="form-control py-3 px-5 me-5 rounded-pill text-center"
+            placeholder="pin"
+          />
+          <button class="btn btn-outline-dark login-btn">
+            <i class="bi bi-arrow-right"></i>
+          </button>
+        </form>
+      </nav>
+      <section class="main container p-5 bg-white">
+        <div class="row justify-content-between gx-5 mb-3">
+          <div class="balance-info col-6">
+            <h1>Current value</h1>
+            <p class="date">As of <span></span></p>
+          </div>
+          <div class="balance-value col-6">
+            <h1 class="text-end">0000 €</h1>
+          </div>
+        </div>
+
+        <div class="row justify-content-between gx-5 mb-3">
+          <section class="transactions col-6 pb-4">
+            <div class="transactions-row-container border border-1">
+            </div>
+          </section>
+          <section class="operations col-6">
+            <section class="operation operation-transfer mb-5 p-5 text-light">
+              <h2 class="mb-4 text-uppercase">Transfer money</h2>
+              <form class="form form-transfer">
+                <div class="d-flex align-items-end">
+                  <div class="form-input-field col-5 me-3">
+                    <label for="inputRecipient" class="form-label"
+                      >Transfer to</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="inputRecipient"
+                      aria-describedby="textHelp"
+                      onkeyup="if(value<1 || value>999999999) value=''"
+                    />
+                  </div>
+                  <div class="form-input-field col-5">
+                    <label for="inputAmount" class="form-label">Amount</label>
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="inputAmount"
+                      onkeyup="if(value<1 || value>999999999) value=''"
+                    />
+                  </div>
+                  <button type="submit" class="btn btn-light ms-auto my-0">
+                    <i class="bi bi-arrow-right"></i>
+                </div>
+                
+                </button>
+              </form>
+            </section>
+            <section class="operation operation-loan mb-5 p-5 text-light">
+              <h2 class="mb-4 text-uppercase">Request loan</h2>
+              <form class="form form-loan">
+                <div class="d-flex align-items-end">
+                  <div class="form-input-field col-5">
+                    <label for="amount" class="form-label">Amount</label>
+                    <input
+                    type="number"
+                    class="form-control"
+                    id="amount"
+                    aria-describedby="textHelp"
+                    onkeyup="if(value<1 || value>999999999) value=''"
+                    />
+                  </div> 
+                  <button type="submit" class="btn btn-light ms-auto my-0">
+                    <i class="bi bi-arrow-right"></i>
+                  </button>
+                </div>
+                
+              </form>
+            </section>
+            <section class="operation operation-close mb-5 p-5 bg-danger text-light">
+              <h2 class="mb-4 text-uppercase">Close account</h2>
+              <form class="form form-transfer">
+                <div class="d-flex align-items-end">
+                  <div class="form-input-field col-5 me-3">
+                    <label for="confirmUser" class="form-label"
+                      >Confirm User</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="confirmUser"
+                      aria-describedby="textHelp"
+                    />
+                  </div>
+                  <div class="form-input-field col-5 me-3">
+                    <label for="confirmPIN" class="form-label">Confirm PIN</label>
+                    <input type="number" class="form-control" id="confirmPIN" onkeyup="if(value<1 || value>9999) value=''"/>
+                  </div>
+                  <button type="submit" class="btn btn-light ms-auto">
+                    <i class="bi bi-arrow-right"></i>
+                  </button>
+                </div>
+              </form>
+            </section>
+          </section>
+        </div>
+
+        <div class="row gx-5 mb-3">
+          <section class="summary col-6 d-flex justify-content-between">
+            <div class="summary-item d-flex col-3 align-items-center">
+              <p class="summary-label me-3">In</p>
+              <p class="summary-value value-in">$0000</p>
+            </div>
+
+            <div class="summary-item d-flex col-3 align-items-center">
+              <p class="summary-label me-3">Out</p>
+              <p class="summary-value value-out">$0000</p>
+            </div>
+
+            <div class="summary-item d-flex col-3 align-items-center">
+              <p class="summary-label me-3">Interest</p>
+              <p class="summary-value value-interest">$0000</p>
+            </div>
+
+            <button class="btn btn-outline-dark ms-auto sort-transactions-list">
+              <i class="bi bi-sort-numeric-down-alt me-2"></i>SORT
+            </button>
+            <!-- <i class="bi bi-sort-numeric-up me-2"></i> -->
+          </section>
+          <section class="logout-timer col-6 d-flex align-items-center justify-content-end">
+            You will be logged out in <span class="timer"></span>
+          </section>
+        </div>
+      </section>
+    </section>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
+    <script src="script.js"></script>
+  </body>
+</html>
