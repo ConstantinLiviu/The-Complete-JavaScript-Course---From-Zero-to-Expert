@@ -48,6 +48,9 @@ const checkDogs = function (dogsArr1, dogsArr2) {
         index + 1
       } is an adult and is ${dog} years old`;
       juliaResultsEl.appendChild(newP);
+    } else if (dog < 0) {
+      newP.textContent = `Dog number ${index + 1} is imaginary`;
+      juliaResultsEl.appendChild(newP);
     } else {
       newP.textContent = `Dog number ${index + 1} is still a puppy 🐶`;
       juliaResultsEl.appendChild(newP);
@@ -59,6 +62,9 @@ const checkDogs = function (dogsArr1, dogsArr2) {
       newP.textContent = `Dog number ${
         index + 1
       } is an adult and is ${dog} years old`;
+      kateResultsEl.appendChild(newP);
+    } else if (dog < 0) {
+      newP.textContent = `Dog number ${index + 1} is imaginary`;
       kateResultsEl.appendChild(newP);
     } else {
       newP.textContent = `Dog number ${index + 1} is still a puppy 🐶`;
