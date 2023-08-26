@@ -157,13 +157,26 @@ console.log(exchangeUSDfor);
 const exchangeUSD2 = movements.map((mov) => Math.trunc(mov * eurTousd));
 console.log(exchangeUSD2);
 
-const exchangesDescriptions = movements.map((element, index, array) => {
-  if (el > 0) {
-    console.log(`Movement ${index + 1}: You deposited ${element}`);
-  } else {
-    console.log(`Movement ${index + 1}: You withdrew ${Math.abs(element)}`);
-  }
-});
+// MAP method gets access to array elements, index and the array itself
+const exchangesDescriptions = movements.map(
+  (element, index, array) =>
+    // if (element > 0) {
+    //   // console.log(`Movement ${index + 1}: You deposited ${element}`);
+    //   return `Movement ${index + 1}: You deposited ${element}`;
+    // } else {
+    //   // console.log(`Movement ${index + 1}: You withdrew ${Math.abs(element)}`);
+    //   return `Movement ${index + 1}: You withdrew ${Math.abs(element)}`;
+    // }
+    `Exchange ${index + 1}: You ${
+      element > 0 ? "deposited" : "withdrew"
+    } $${Math.abs(element)}`
+);
+console.log(exchangesDescriptions);
+
+//
+/* ****************************************************************************************************** */
+//  LESSON - Data Transformation: Map, Filter, Reduce
+//
 
 //
 /* ****************************************************************************************************** */
