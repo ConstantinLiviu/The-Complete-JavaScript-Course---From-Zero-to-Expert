@@ -137,6 +137,34 @@ currenciesUnique.forEach(function (value, _, set) {
 
 // REDUCE - reduces all array elements to a single value (e.g. adding up all array elements)
 
+// MAP
+// converting currencies using the map method
+const eurTousd = 1.1;
+const exchangeUSD = movements.map(function (mov) {
+  return Math.trunc(mov * eurTousd);
+});
+
+console.log(movements);
+console.log(exchangeUSD);
+
+// using for...of
+const exchangeUSDfor = [];
+for (const trans of movements)
+  exchangeUSDfor.push(Math.trunc(trans * eurTousd));
+console.log(exchangeUSDfor);
+
+// MAP method using arrow functions
+const exchangeUSD2 = movements.map((mov) => Math.trunc(mov * eurTousd));
+console.log(exchangeUSD2);
+
+const exchangesDescriptions = movements.map((element, index, array) => {
+  if (el > 0) {
+    console.log(`Movement ${index + 1}: You deposited ${element}`);
+  } else {
+    console.log(`Movement ${index + 1}: You withdrew ${Math.abs(element)}`);
+  }
+});
+
 //
 /* ****************************************************************************************************** */
 //  CHALLENGE #1
