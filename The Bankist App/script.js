@@ -9,6 +9,7 @@
 const transactionsContainerEl = document.querySelector(
   ".transactions-row-container"
 );
+const balanceEl = document.querySelector(".balance-value h1");
 
 // Data
 const account1 = {
@@ -119,4 +120,11 @@ createUsername(accounts);
 
 //
 /* ****************************************************************************************************** */
-//
+// TASK - display account balance
+
+const calcDisplayBalance = function (account) {
+  const balance = account.transactions.reduce((acc, el) => acc + el, 0);
+  balanceEl.textContent = `${balance} €`;
+};
+
+calcDisplayBalance(account1);
