@@ -131,6 +131,7 @@ currenciesUnique.forEach(function (value, _, set) {
 
 // MAP - similar to forEach, but it creates a brand new array
 // It maps the elements of the old array, executes the callback function and adds them new values to a new array
+// Most useful when trying to create new arrays
 
 // FILTER - filter elements from an array that satisfy a certain condition
 // Returns a brand new array containing the elements that passed the test condition
@@ -175,8 +176,71 @@ console.log(exchangesDescriptions);
 
 //
 /* ****************************************************************************************************** */
-//  LESSON - Data Transformation: Map, Filter, Reduce
+//  LESSON - The FILTER method
 //
+
+// The FILTER method gets access to element, index and the array itself
+// movements.filter(function(element, index, array) {
+
+// })
+
+// create an array that only contains deposits(positive values)
+const deposit = movements.filter(function (movements) {
+  return movements > 0;
+});
+console.log(movements);
+console.log(deposit);
+
+// for...of variant
+const depositsFor = [];
+for (const movement of movements) {
+  if (movement > 0) depositsFor.push(movement);
+}
+console.log(depositsFor);
+
+// filter withdrawals (negative values)
+const withdrawalsFiltered = movements.filter((withdrawal) => withdrawal < 0);
+console.log(withdrawalsFiltered);
+
+//
+/* ****************************************************************************************************** */
+//  LESSON - The REDUCE method
+//
+
+// reduce method callback function has the following parameters
+// accumulator behaves like a snowball
+// movements.reduce(function(accumulator, current element, index, array))
+
+// the 0 at the end is the initial value of the accumulator
+const balance = movements.reduce(function (accumulator, element, index, array) {
+  console.log(`Iteration ${index}: ${accumulator}`);
+  return accumulator + element;
+}, 0);
+console.log(balance);
+
+// for...of variant
+let balanceOf = 0;
+for (const movement of movements) {
+  balanceOf += movement;
+}
+console.log(balanceOf);
+
+// arrow function
+const balanceArrow = movements.reduce(
+  (accumulator, element) => accumulator + element
+);
+console.log(balanceArrow);
+
+// getting the maximum value
+// const maxValue = movements.reduce((acc, el) => {
+//   if (acc < el) acc = el;
+//   return acc;
+// }, movements[0]);
+const maxValue = movements.reduce(
+  (acc, el) => (acc = acc < el ? el : acc),
+  movements[0]
+);
+console.log(maxValue);
 
 //
 /* ****************************************************************************************************** */
@@ -272,6 +336,27 @@ printResultsBtn.addEventListener("click", () => {
 
   checkDogs(dogsJulia, dogsKate);
 });
+
+//
+/* ****************************************************************************************************** */
+//  CHALLENGE #2
+
+/*
+Let's go back to Julia and Kate's study about dogs. This time, they want to convert dog ages to human ages and calculate the average age of the dogs in their study.
+
+Create a function 'calcAverageHumanAge', which accepts an arrays of dog's ages ('ages'), and does the following things in order:
+
+1. Calculate the dog age in human years using the following formula: if the dog is <= 2 years old, humanAge = 2 * dogAge. If the dog is > 2 years old, humanAge = 16 + dogAge * 4.
+2. Exclude all dogs that are less than 18 human years old (which is the same as keeping dogs that are at least 18 years old)
+3. Calculate the average human age of all adult dogs (you should already know from other challenges how we calculate averages 😉)
+4. Run the function for both test datasets
+
+TEST DATA 1: [5, 2, 4, 1, 15, 8, 3]
+TEST DATA 2: [16, 6, 10, 5, 6, 1, 4]
+
+GOOD LUCK 😀
+*/
+
 //
 /* ****************************************************************************************************** */
 //
