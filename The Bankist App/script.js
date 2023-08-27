@@ -2,7 +2,7 @@
 
 //
 /* ****************************************************************************************************** */
-//  LESSON - THE BANKIST APP
+//  PROJECT - THE BANKIST APP
 //
 
 // Elements
@@ -38,6 +38,11 @@ const account4 = {
   interestRate: 1,
   pin: 4444,
 };
+
+//
+/* ****************************************************************************************************** */
+//
+// TASK - update transactions
 
 const accounts = [account1, account2, account3, account4];
 
@@ -80,6 +85,37 @@ const displayTransactions = function (transactions) {
 };
 
 displayTransactions(account1.transactions);
+
+//
+/* ****************************************************************************************************** */
+//
+
+// TASK - compute usernames
+
+/**
+ * Loops through all user objects and creates a username key and assigns it a value
+ * @param {Array} accounts - an array consisting all user objects
+ */
+const createUsername = function (accounts) {
+  accounts.forEach((account) => {
+    account.username = account.owner
+      .toLowerCase()
+      .split(" ")
+      .map((el) => el[0])
+      .join("");
+  });
+};
+
+createUsername(accounts);
+
+// const user = "Steven Thomas Williams";
+// const username = user
+//   .toLowerCase()
+//   .split(" ")
+//   .map((el) => el[0])
+//   .join("");
+
+// createUsername("Ana Nicoleta Augusta Lovisneanu");
 
 //
 /* ****************************************************************************************************** */
