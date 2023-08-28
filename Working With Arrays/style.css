@@ -38,7 +38,8 @@ pre {
 }
 
 .input-group label,
-.results p {
+.results p,
+.dog-ages-results p {
   font-size: 1.6rem;
 }
 
@@ -63,7 +64,8 @@ pre {
   appearance: textfield;
 }
 
-.doggy-results-btn {
+.doggy-results-btn,
+.challenge2-results-btn {
   font-size: 1.4rem;
 }
 

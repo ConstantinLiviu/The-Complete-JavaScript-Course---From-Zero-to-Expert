@@ -357,6 +357,74 @@ TEST DATA 2: [16, 6, 10, 5, 6, 1, 4]
 GOOD LUCK 😀
 */
 
+const dogAgesEl = document.querySelector(".dog-ages");
+const displayResultsBtn = document.querySelector(".challenge2-results-btn");
+const dogAgesResultsEl = document.querySelector(".dog-ages-results");
+
+displayResultsBtn.addEventListener("click", () => {
+  dogAgesResultsEl.innerHTML = "";
+  const ages = dogAgesEl.value
+    ? dogAgesEl.value.split(",").map((el) => (el = +el))
+    : [5, 2, 4, 1, 15, 8, 3];
+  calcAverageHumanAge(ages);
+});
+
+/**
+ * Takes in an array represent dog ages, converts values to human ages, filters "underage" dogs and calculates the average age of adult dogs. Also, creates elements and displays the information for the user.
+ * @param {Array} ages user generated array representing dog ages
+ * @returns {void}
+ */
+const calcAverageHumanAge = function (ages) {
+  const humanAges = ages.map((age) =>
+    age <= 2 ? (age = 2 * age) : (age = 16 + 4 * age)
+  );
+  for (const el of humanAges) {
+    const humanAgesEl = document.createElement("p");
+    humanAgesEl.innerHTML = `Dog ${
+      humanAges.indexOf(el) + 1
+    }: In human years, this dog is <span class="taskVariable">${el} years old</span>.`;
+    dogAgesResultsEl.appendChild(humanAgesEl);
+  }
+
+  const adultDogs = humanAges.filter((age) => age > 18);
+  const adultDogsEl = document.createElement("p");
+  if (adultDogs.length !== 0) {
+    adultDogsEl.innerHTML = `There ${
+      adultDogs.length < 2 ? "is" : "are"
+    } <span class="taskVariable"> ${adultDogs.length}</span> adult ${
+      adultDogs.length < 2 ? "dog" : "dogs"
+    }, aged <span class="taskVariable">${adultDogs.join(", ")}</span>.`;
+    dogAgesResultsEl.appendChild(adultDogsEl);
+  } else {
+    adultDogsEl.innerHTML = "There are no adult dogs.";
+    dogAgesResultsEl.appendChild(adultDogsEl);
+  }
+
+  const averageDogAge = Math.trunc(
+    adultDogs.reduce((acc, age) => acc + age, 0) / adultDogs.length
+  );
+  const averageDogAgeEl = document.createElement("p");
+  averageDogAgeEl.innerHTML = `The average age of the adult dogs is <span class="taskVariable">${averageDogAge} years old</span>.`;
+  dogAgesResultsEl.appendChild(averageDogAgeEl);
+};
+
+// no UI solution
+// function calcAverageHumanAge(ages) {
+//   const computedAges = ages
+//     .map((age) => (age <= 2 ? (age = 2 * age) : (age = 16 + 4 * age)))
+//     .filter((age) => age > 18);
+
+//   return Math.trunc(
+//     computedAges.reduce((acc, age) => acc + age, 0) / computedAges.length
+//   );
+//
+//  alt for calculating averages
+// const average = array.reduce((acc,age,i,arr)=>acc+age/arr.length,0)
+// }
+
+// console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
+// console.log(calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]));
+
 //
 /* ****************************************************************************************************** */
 //

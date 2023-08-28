@@ -113,6 +113,67 @@
           </div>
         </div>
       </div>
+      <div class="row bg-light-subtle mb-5 col-12">
+        <div class="task p-3 pb-0">
+          <h3 class="text-uppercase fst-italic">challenge #2</h3>
+          <p>
+            Let's go back to Julia and Kate's study about dogs. This time, they
+            want to convert dog ages to human ages and calculate the average age
+            of the dogs in their study.
+          </p>
+          <p>
+            Create a function
+            <span class="taskVariable">'calcAverageHumanAge'</span>, which
+            accepts an arrays of dog's ages (<span class="taskVariable"
+              >'ages'</span
+            >), and does the following things in order:
+          </p>
+          <p class="ms-3">
+            1. Calculate the dog age in human years using the following formula:
+            if the dog is
+            <span class="taskVariable"
+              ><= 2 years old, humanAge = 2 * dogAge</span
+            >. If the dog is
+            <span class="taskVariable"
+              >> 2 years old, humanAge = 16 + dogAge * 4</span
+            >.
+          </p>
+          <p class="ms-3">
+            2. Exclude all dogs that are
+            <span class="taskVariable">less than 18 human years old</span>
+            (which is the same as keeping dogs that are at least 18 years old)
+          </p>
+          <p class="ms-3">
+            3. Calculate the
+            <span class="taskVariable"
+              >average human age of all adult dogs</span
+            >
+            (you should already know from other challenges how we calculate
+            averages 😉)
+          </p>
+          <p class="ms-3">4. Run the function for both test datasets</p>
+          <p class="taskVariable">TEST DATA 1: [5, 2, 4, 1, 15, 8, 3]</p>
+          <p class="border-bottom border-dark pb-3 taskVariable">
+            TEST DATA 2: [16, 6, 10, 5, 6, 1, 4]
+          </p>
+        </div>
+        <div class="solution p-3 pt-0">
+          <h3 class="text-uppercase fst-italic">solution</h3>
+          <div class="input-group mb-3">
+            <span class="input-group-text">Dog ages</span>
+            <input
+              type="text"
+              class="form-control dog-ages"
+              placeholder="5, 2, 4, 1, 15, 8, 3"
+            />
+          </div>
+
+          <button class="mb-5 btn btn-primary challenge2-results-btn">
+            Display Results
+          </button>
+          <div class="dog-ages-results"></div>
+        </div>
+      </div>
     </section>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
