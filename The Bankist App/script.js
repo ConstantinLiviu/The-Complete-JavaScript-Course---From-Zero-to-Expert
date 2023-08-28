@@ -11,6 +11,11 @@ const transactionsContainerEl = document.querySelector(
 );
 const balanceEl = document.querySelector(".balance-value h1");
 
+// Summary elements
+const valueInEl = document.querySelector(".value-in");
+const valueOutEl = document.querySelector(".value-out");
+const valueInterestEl = document.querySelector(".value-interest");
+
 // Data
 const account1 = {
   owner: "John Gamble",
@@ -128,3 +133,60 @@ const calcDisplayBalance = function (account) {
 };
 
 calcDisplayBalance(account1);
+
+//
+/* ****************************************************************************************************** */
+// TASK - currency convertor // chaining methods // display summary
+
+// CHAINING METHODS EXAMPLE
+// const eurToUSD = 1.1;
+// const transactions = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+// // PIPELINE
+// const totalDepositsUSD = transactions
+//   .filter((transaction) => transaction > 0)
+//   .map((transaction) => transaction * eurToUSD)
+//   .reduce((acc, transaction) => acc + transaction);
+
+// console.log(totalDepositsUSD);
+
+// // DEB*GGING CHAINED METHODS
+// const totalDepositsUSD2 = transactions
+//   .filter((transaction) => transaction < 0)
+//   .map((transaction, index, array) => {
+//     console.log(array);
+//     return transaction * eurToUSD;
+//   })
+//   .reduce((acc, transaction) => acc + transaction);
+
+/**
+ * Takes in all available account transactions and displays the total amount for deposits, withrawals and the interest owed by the bank
+ * @param {Array} transactions Transaction values stored for each account
+ * @returns {void} void
+ */
+const calcDisplaySummary = function (transactions) {
+  const income = transactions
+    .filter((transaction) => transaction > 0)
+    .reduce((acc, transaction) => acc + transaction);
+  valueInEl.textContent = `${income} €`;
+
+  const outgoing = transactions
+    .filter((transaction) => transaction < 0)
+    .reduce((acc, transaction) => acc + transaction);
+  valueOutEl.textContent = `${Math.abs(outgoing)} €`;
+
+  const interest = transactions
+    .filter((transaction) => transaction > 0)
+    .map((deposit) => (deposit * 1.2) / 100)
+    .filter((interest, index, array) => {
+      // console.log(array);
+      return interest >= 1;
+    })
+    .reduce((acc, interest) => acc + interest);
+  valueInterestEl.textContent = `${interest} €`;
+};
+
+calcDisplaySummary(account1.transactions);
+//
+/* ****************************************************************************************************** */
+// TASK -
