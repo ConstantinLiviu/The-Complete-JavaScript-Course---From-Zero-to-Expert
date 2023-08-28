@@ -427,4 +427,21 @@ const calcAverageHumanAge = function (ages) {
 
 //
 /* ****************************************************************************************************** */
+// CHALLENGE #3
+//
+// Rewrite the 'calcAverageHumanAge' function from the previous challenge, but this time as an arrow function, and using chaining!
+// No changes for app functionality so no UI update/inclusion in app
+
+const ages = [5, 2, 4, 1, 15, 8, 3];
+const calcAverageHumanAgeArrow = (ages) =>
+  ages
+    .map((age) => (age <= 2 ? (age = 2 * age) : (age = 16 + 4 * age)))
+    .filter((age) => age > 18)
+    .reduce((acc, age, i, arr) => acc + age / arr.length, 0);
+
+console.log(calcAverageHumanAgeArrow(ages));
+
+//
+/* ****************************************************************************************************** */
+// CHALLENGE #4
 //
