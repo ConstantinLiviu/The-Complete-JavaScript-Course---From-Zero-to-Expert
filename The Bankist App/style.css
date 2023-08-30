@@ -70,10 +70,9 @@ nav input::placeholder {
 /* MAIN */
 
 .main {
-  width: 50%;
   margin: 5rem auto 0;
   border-radius: 1rem;
-  /* opacity: 0; */
+  opacity: 0;
 }
 
 .date {
@@ -191,6 +190,10 @@ body {
 
 /* Mobile */
 @media (min-width: 576px) {
+  .main {
+    margin: 5rem auto 0;
+    border-radius: 1rem;
+  }
 }
 
 @media (min-width: 768px) {
@@ -202,6 +205,9 @@ body {
 }
 
 @media (min-width: 1200px) {
+  .main {
+    width: 50%;
+  }
 }
 
 /* ************************************************************* */
