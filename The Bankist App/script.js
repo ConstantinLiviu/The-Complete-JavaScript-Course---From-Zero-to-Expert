@@ -6,10 +6,24 @@
 //
 
 // Elements
+const welcomeMsgEl = document.querySelector(".welcome-msg");
+// Header elements
+
+// Login
+const loginBtn = document.querySelector(".login-btn");
+const userLoginEl = document.querySelector(".username-login");
+const loginPinEl = document.querySelector(".pin-login");
+
+// Balance elements
+const balanceEl = document.querySelector(".balance-value h1");
+
+// Main
+const appContainerEl = document.querySelector(".main");
+
+// Transactions elements
 const transactionsContainerEl = document.querySelector(
   ".transactions-row-container"
 );
-const balanceEl = document.querySelector(".balance-value h1");
 
 // Summary elements
 const valueInEl = document.querySelector(".value-in");
@@ -58,6 +72,7 @@ const accounts = [account1, account2, account3, account4];
  * @returns {Element} appends an element with transaction info on the page
  */
 const displayTransactions = function (transactions) {
+  transactionsContainerEl.innerHTML = "";
   transactions.forEach(function (transaction, index) {
     const transactionRow = document.createElement("div");
     transactionRow.classList.add(
@@ -89,8 +104,6 @@ const displayTransactions = function (transactions) {
     );
   });
 };
-
-displayTransactions(account1.transactions);
 
 //
 /* ****************************************************************************************************** */
@@ -131,8 +144,6 @@ const calcDisplayBalance = function (account) {
   const balance = account.transactions.reduce((acc, el) => acc + el, 0);
   balanceEl.textContent = `${balance} €`;
 };
-
-calcDisplayBalance(account1);
 
 //
 /* ****************************************************************************************************** */
@@ -186,7 +197,42 @@ const calcDisplaySummary = function (transactions) {
   valueInterestEl.textContent = `${interest} €`;
 };
 
-calcDisplaySummary(account1.transactions);
 //
 /* ****************************************************************************************************** */
-// TASK -
+// TASK - Login
+
+let currentAccount;
+
+loginBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  // check login credentials
+  if (!userLoginEl.value || !loginPinEl.value) {
+    console.log("invalid login credentials");
+    return;
+  } else {
+    currentAccount = accounts.find((acc) => acc.username === userLoginEl.value);
+
+    if (currentAccount.pin === +loginPinEl.value) {
+      // Display UI & Welcome msg
+      welcomeMsgEl.textContent = `Welcome back, ${
+        currentAccount.owner.split(" ")[0]
+      }!`;
+      // Clear input fields
+      userLoginEl.value = "";
+      userLoginEl.blur();
+      loginPinEl.value = "";
+      loginPinEl.blur();
+      // Display Balance
+      calcDisplayBalance(currentAccount);
+      // Display Transactions
+      displayTransactions(currentAccount.transactions);
+      // Display summary
+      calcDisplaySummary(currentAccount.transactions);
+
+      appContainerEl.style.opacity = 1;
+    } else {
+      console.log("wrong pin");
+    }
+    console.log(currentAccount);
+  }
+});
