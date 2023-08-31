@@ -175,22 +175,21 @@ const calcDisplayBalance = function (account) {
  * @param {Array} transactions Transaction values stored for each account
  * @returns {void} void
  */
-const calcDisplaySummary = function (transactions) {
-  const income = transactions
+const calcDisplaySummary = function (account) {
+  const income = account.transactions
     .filter((transaction) => transaction > 0)
     .reduce((acc, transaction) => acc + transaction);
   valueInEl.textContent = `${income} €`;
 
-  const outgoing = transactions
+  const outgoing = account.transactions
     .filter((transaction) => transaction < 0)
     .reduce((acc, transaction) => acc + transaction);
   valueOutEl.textContent = `${Math.abs(outgoing)} €`;
 
-  const interest = transactions
+  const interest = account.transactions
     .filter((transaction) => transaction > 0)
-    .map((deposit) => (deposit * 1.2) / 100)
+    .map((deposit) => (deposit * account.interestRate) / 100)
     .filter((interest, index, array) => {
-      // console.log(array);
       return interest >= 1;
     })
     .reduce((acc, interest) => acc + interest);
@@ -227,7 +226,7 @@ loginBtn.addEventListener("click", (e) => {
       // Display Transactions
       displayTransactions(currentAccount.transactions);
       // Display summary
-      calcDisplaySummary(currentAccount.transactions);
+      calcDisplaySummary(currentAccount);
 
       appContainerEl.style.opacity = 1;
     } else {
