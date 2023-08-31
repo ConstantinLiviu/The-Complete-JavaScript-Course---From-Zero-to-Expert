@@ -30,6 +30,11 @@ const valueInEl = document.querySelector(".value-in");
 const valueOutEl = document.querySelector(".value-out");
 const valueInterestEl = document.querySelector(".value-interest");
 
+// Transfer money elements
+const approveTransferBtn = document.querySelector(".form-transfer button");
+const transferAmount = document.getElementById("inputAmount");
+const transferRecipient = document.getElementById("inputRecipient");
+
 // Data
 const account1 = {
   owner: "John Gamble",
@@ -142,6 +147,7 @@ createUsername(accounts);
 
 const calcDisplayBalance = function (account) {
   const balance = account.transactions.reduce((acc, el) => acc + el, 0);
+  account.balance = balance;
   balanceEl.textContent = `${balance} €`;
 };
 
@@ -196,6 +202,20 @@ const calcDisplaySummary = function (account) {
   valueInterestEl.textContent = `${interest} €`;
 };
 
+/**
+ * Takes in the account that's been accessed and updates the balance/transactions/summary sections based on stored values
+ * @param {Object} account one of the predefined objects
+ * @returns {void} displays any UI element text content based on changes made on the account
+ */
+const updateUI = function (account) {
+  // Display Balance
+  calcDisplayBalance(account);
+  // Display Transactions
+  displayTransactions(account.transactions);
+  // Display summary
+  calcDisplaySummary(account);
+};
+
 //
 /* ****************************************************************************************************** */
 // TASK - Login
@@ -221,12 +241,7 @@ loginBtn.addEventListener("click", (e) => {
       userLoginEl.blur();
       loginPinEl.value = "";
       loginPinEl.blur();
-      // Display Balance
-      calcDisplayBalance(currentAccount);
-      // Display Transactions
-      displayTransactions(currentAccount.transactions);
-      // Display summary
-      calcDisplaySummary(currentAccount);
+      updateUI(currentAccount);
 
       appContainerEl.style.opacity = 1;
     } else {
@@ -235,3 +250,33 @@ loginBtn.addEventListener("click", (e) => {
     console.log(currentAccount);
   }
 });
+
+//
+/* ****************************************************************************************************** */
+// TASK - Account Transfers
+
+approveTransferBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  const amount = +transferAmount.value;
+  const beneficiary = accounts.find(
+    (account) => account.username === transferRecipient.value
+  );
+  // reset input fields after confirming transfer
+  transferAmount.value = transferRecipient.value = "";
+  if (
+    // amount > 0 && - input is set to accept amounts greater than 1 only
+    currentAccount.balance >= amount &&
+    beneficiary &&
+    beneficiary?.username !== currentAccount.username
+  ) {
+    currentAccount.transactions.push(-amount);
+    beneficiary.transactions.push(amount);
+    updateUI(currentAccount);
+  } else {
+    console.log("invalid transfer");
+  }
+});
+
+//
+/* ****************************************************************************************************** */
+// TASK -
