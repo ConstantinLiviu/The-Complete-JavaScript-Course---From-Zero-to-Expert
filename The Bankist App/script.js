@@ -376,3 +376,43 @@ sortBtn.addEventListener("click", (e) => {
     sorted = false;
   }
 });
+
+//
+/* ****************************************************************************************************** */
+// LESSON - Create and fill arrays programatically // THE FILL METHOD
+//
+
+// turning a DOM node to an array
+balanceEl.addEventListener("click", () => {
+  // select DOM elements
+  const transactionsLog = document.querySelectorAll(".transaction-value");
+  console.log(transactionsLog);
+
+  // This will not work as NodeList objects are not arrays
+  // console.log(
+  //   transactionsLog.map((transaction) =>
+  //     transaction.textContent.replace("€", "")
+  //   )
+  // );
+
+  // We can you this as the callback function for the array.from method
+  // console.log(
+  //   transactionsLogArray.map((transaction) =>
+  //     Number(transaction.textContent.replace("€", ""))
+  //   )
+  // );
+
+  // As the nodelist is turned into an array using the Array.from() method, we can call array methods on it
+  const transactionsLogArray = Array.from(transactionsLog, (transaction) =>
+    Number(transaction.textContent.replace("€", ""))
+  );
+  console.log(transactionsLogArray);
+
+  //
+  // Spread operator method
+  // the same result can be achieved by using map function, but without chaining it
+  const transactionsLogArraySpread = [
+    ...document.querySelectorAll(".transaction-value"),
+  ];
+  console.log(transactionsLogArraySpread);
+});

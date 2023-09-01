@@ -382,6 +382,125 @@ console.log(movements);
 movements.sort((a, b) => b - a);
 console.log(movements);
 
+//
+/* ****************************************************************************************************** */
+//  LESSON - Create and fill arrays programatically // THE FILL METHOD
+//
+
+// thus far we've created arrays like this
+const testFillArr = [1, 2, 3, 4, 5, 6, 7];
+console.log([1, 2, 3, 4, 5, 6, 7]);
+console.log(new Array(1, 2, 3, 4, 5, 6, 7));
+
+// constructor method that creates an empty array whose length is determined by the arg
+const x = new Array(7);
+console.log(x);
+
+// FILL fills the entire array with a specific value (arg);
+// it's similar to the .slice() method
+// it mutates the original array
+
+// x.fill(1);
+// console.log(x);
+
+// element used for filling, starting place/parameter/end parameter(not included)
+x.fill(1, 3, 5);
+console.log(x);
+
+testFillArr.fill(23, 4, 6);
+console.log(testFillArr);
+
+// ARRAY.FROM function
+// takes two param: obj representing the length of the array and .map() callback function that determines the elements which will fill the array
+const y = Array.from({ length: 7 }, () => 1);
+console.log(y);
+
+const z = Array.from({ length: 7 }, (currentEl, index) => index + 1);
+console.log(z);
+
+// creating an array of 100 dice rolls
+const diceRoll = Array.from(
+  { length: 100 },
+  () => Math.floor(Math.random() * 6) + 1
+);
+console.log(diceRoll);
+
+// turning a DOM node to an array
+/*** example provided in the Bankist JS file, starting at line 382
+
+//
+/* ****************************************************************************************************** */
+//  LESSON - Array methods usage
+//
+
+// In order to determine which array method to use, first you need to understand what you want to do:
+
+// 1. MUTATE THE ORIGINAL ARRAY:
+//    ADD TO ORIGINAL:
+//        - .push() (end);
+//        - .unshift() (start);
+//
+//    REMOVE FROM ORIGINAL:
+//        - .pop() (end);
+//        - .shift() (start);
+//        - .splice() (any);
+//
+//    OTHERS:
+//        - .reverse();
+//        - .sort();
+//        - .fill();
+//
+//
+// 2. CREATE A NEW ARRAY
+//    COMPUTED FROM ORIGINAL:
+//        - .map() (loop);
+//
+//    FILTERED USING CONDITION:
+//        - .filter();
+//
+//    PART OF ORIGINAL:
+//        - .slice();
+//
+//    ADDING ORIGINAL TO OTHER:
+//        - .concat();
+//
+//    FLATTENING THE ORIGINAL:
+//        - .flat();
+//        - .flatMaps();
+//
+//
+// 3. GET AN ARRAY INDEX:
+//    BASED ON VALUE:
+//        - .indexOf();
+//    BASED ON TEST CONDITION:
+//        - .findIndex();
+//
+//
+// 4. GET AN ARRAY ELEMENT:
+//    BASED ON TEST CONDITION:
+//        - .find();
+//
+//
+// 5. KNOW IF AN ARRAY INCLUDES A CERTAIN ELEMENT:
+//    BASED ON VALUE:
+//        - .includes();
+//    BASED ON TEST CONDITION:
+//        - .some() (at least one);
+//        - .every() (every single one);
+// 6. REDUCE TO A STRING:
+//    BASED ON SEPARATOR STRING:
+//        - .join();
+//
+//
+// 7. REDUCE TO A CERTAIN VALUE:
+//    BASED ON ACCUMULATOR:
+//        - .reduce();
+//
+//
+// 8. LOOP OVER ARRAY:
+//    BASED ON CALLBACK:
+//        - .forEach() (doesn't produce any value, used just to loop over the array);
+
 /* ****************************************************************************************************** */
 //  CHALLENGE #1
 //
