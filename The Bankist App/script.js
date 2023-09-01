@@ -35,6 +35,11 @@ const approveTransferBtn = document.querySelector(".form-transfer button");
 const transferAmount = document.getElementById("inputAmount");
 const transferRecipient = document.getElementById("inputRecipient");
 
+// Close account elements
+const confirmUserEl = document.getElementById("confirmUser");
+const confirmPinEl = document.getElementById("confirmPIN");
+const confirmCloseAccountBtn = document.querySelector(".form-close button");
+
 // Data
 const account1 = {
   owner: "John Gamble",
@@ -231,7 +236,7 @@ loginBtn.addEventListener("click", (e) => {
   } else {
     currentAccount = accounts.find((acc) => acc.username === userLoginEl.value);
 
-    if (currentAccount.pin === +loginPinEl.value) {
+    if (currentAccount?.pin === +loginPinEl.value) {
       // Display UI & Welcome msg
       welcomeMsgEl.textContent = `Welcome back, ${
         currentAccount.owner.split(" ")[0]
@@ -279,4 +284,30 @@ approveTransferBtn.addEventListener("click", (e) => {
 
 //
 /* ****************************************************************************************************** */
+// TASK - close accounts // THE FINDINDEX METHOD
+//
+
+// The .findIndex() method returns the index of the first element of an array that satisfies the condition of the callback function
+
+confirmCloseAccountBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  if (
+    confirmUserEl.value === currentAccount.username &&
+    +confirmPinEl.value === currentAccount.pin
+  ) {
+    confirmPinEl.value = confirmUserEl.value = "";
+    const index = accounts.findIndex(
+      (account) => account.username === currentAccount.username
+    );
+    appContainerEl.style.opacity = 0;
+    // welcomeMsgEl.textContent = "Account successfully deleted!";
+    accounts.splice(index, 1);
+  } else {
+    console.log("Account credentials are invalid");
+  }
+});
+
+//
+/* ****************************************************************************************************** */
 // TASK -
+//
