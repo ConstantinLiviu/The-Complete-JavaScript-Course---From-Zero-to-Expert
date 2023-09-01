@@ -335,6 +335,53 @@ console.log(arrDeeper.flat(3));
 // it uses the map callback function
 // Example provided in the bankist app JS file, task - Calculate balance of all transactions on all accounts, line 352
 
+//
+/* ****************************************************************************************************** */
+//  LESSON - SORTING ARRAYS
+//
+
+// SORT sorts elements in alphabetical order
+// it mutates the original array
+
+// Strings
+const owners = ["John", "Mavies", "Erik", "Fiona"];
+console.log(owners.sort());
+console.log(owners);
+// owners.sort((a, b) => (a > b ? -1 : 1));
+// console.log(owners);
+
+// Numbers
+// it doesn't go from smallest to greatest as the sort method does its sorting based on strings
+// it converts numbers to strings, does the sorting and converts strings back to numbers
+// minus symbol goes first, than in alphabetical order (0-9) until negative numbers are all sorted than alphabetical order based on the starting digit of the number (1-9)
+console.log(movements.sort());
+
+// To fix sorting for numbers you need to pass a callback function as a param
+// a and b are params representing the first and next number;
+// if we return < 0 , we elements sorted starting with a then b etc.; for return>0 we sort starting with b then a etc.
+
+// i.e. Ascending order
+movements.sort((a, b) => {
+  if (a > b) return 1;
+  if (b > a) return -1;
+});
+console.log(movements);
+
+// i.e. Descending order
+// return <0 A, B (keep order)
+// return >0 B, A (switch order)
+movements.sort((a, b) => {
+  if (a > b) return -1;
+  if (b > a) return 1;
+});
+console.log(movements);
+
+// shorthand version
+movements.sort((a, b) => a - b);
+console.log(movements);
+movements.sort((a, b) => b - a);
+console.log(movements);
+
 /* ****************************************************************************************************** */
 //  CHALLENGE #1
 //

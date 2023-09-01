@@ -5,9 +5,11 @@
 //  PROJECT - THE BANKIST APP
 //
 
-// Elements
-const welcomeMsgEl = document.querySelector(".welcome-msg");
+// Misc Elements
+const sortBtn = document.querySelector(".sort-transactions-list");
+
 // Header elements
+const welcomeMsgEl = document.querySelector(".welcome-msg");
 
 // Login
 const loginBtn = document.querySelector(".login-btn");
@@ -354,3 +356,23 @@ const allAccountsTransactionsBalance = accounts
   .reduce((acc, el) => acc + el);
 
 console.log(allAccountsTransactionsBalance);
+
+//
+/* ****************************************************************************************************** */
+// TASK - Sorting transactions
+//
+let sorted = false;
+
+sortBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  if (sorted === false) {
+    const sortedTransactions = currentAccount.transactions
+      .slice()
+      .sort((a, b) => a - b);
+    displayTransactions(sortedTransactions);
+    sorted = true;
+  } else {
+    displayTransactions(currentAccount.transactions);
+    sorted = false;
+  }
+});
