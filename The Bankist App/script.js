@@ -35,6 +35,10 @@ const approveTransferBtn = document.querySelector(".form-transfer button");
 const transferAmount = document.getElementById("inputAmount");
 const transferRecipient = document.getElementById("inputRecipient");
 
+// Loan money elements
+const loanBtn = document.querySelector(".form-loan button");
+const loanAmountEl = document.getElementById("amount");
+
 // Close account elements
 const confirmUserEl = document.getElementById("confirmUser");
 const confirmPinEl = document.getElementById("confirmPIN");
@@ -309,5 +313,24 @@ confirmCloseAccountBtn.addEventListener("click", (e) => {
 
 //
 /* ****************************************************************************************************** */
-// TASK -
+// TASK - Request loans functionality
 //
+// The bank grants a loan if there is at least one deposit worth at least 10% of the requested loan amount
+
+loanBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+
+  const loanAmount = +loanAmountEl.value;
+
+  if (
+    loanAmount > 0 &&
+    currentAccount.transactions.some(
+      (transaction) => transaction >= loanAmount / 10
+    )
+  ) {
+    loanAmountEl.value = "";
+    // add deposit
+    currentAccount.transactions.push(loanAmount);
+    updateUI(currentAccount);
+  }
+});
