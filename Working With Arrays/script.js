@@ -290,6 +290,52 @@ console.log(account);
 
 //
 /* ****************************************************************************************************** */
+//  LESSON - SOME and EVERY METHODS
+//
+
+// includes tests for equality - it returns true if the arg equals one of the array elements
+console.log(movements);
+console.log(movements.includes(-130));
+
+// SOME checks for elements that fulfill a condition
+// returns booleans
+const anyDeposits = movements.some((transaction) => transaction > 0);
+console.log(anyDeposits);
+
+// EVERY checks if all elements pass the condition of the callback function
+console.log(movements.every((transaction) => transaction > 0));
+console.log(account4.transactions.every((transaction) => transaction > 0));
+
+// Separate callback
+const deposits = (transaction) => transaction > 0;
+console.log(movements.some(deposits));
+console.log(movements.every(deposits));
+console.log(movements.filter(deposits));
+
+//
+/* ****************************************************************************************************** */
+//  LESSON - FLAT and FLATMAP METHODS
+//
+
+// FLAT turns nested arrays into one array
+// flat doesn't use a callback function
+// without a specified depth(parameter) it only covers one level of nesting
+const arr4 = [[1, 2, 3], [4, 5, 6], 7, 8];
+console.log(arr4.flat());
+
+// flat using 2 as arg, covering 2 levels of nestig
+const arrDeep = [[[1, 2], 3], [4, [5, 6]], 7, 8];
+console.log(arrDeep.flat(2));
+
+const arrDeeper = [[[[1], 2], 3], [4, [5, 6]], 7, 8];
+console.log(arrDeeper.flat(3));
+
+// FLATMAP combines the flat and map methods
+// it only covers one level of nesting
+// it uses the map callback function
+// Example provided in the bankist app JS file, task - Calculate balance of all transactions on all accounts, line 352
+
+/* ****************************************************************************************************** */
 //  CHALLENGE #1
 //
 

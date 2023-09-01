@@ -334,3 +334,23 @@ loanBtn.addEventListener("click", (e) => {
     updateUI(currentAccount);
   }
 });
+
+//
+/* ****************************************************************************************************** */
+// TASK - Calculate balance of all transactions on all accounts
+//
+
+// The bank wants to calculate the overall balance of all transactions on all accounts combined
+
+// FLAT
+// const allAccountsTransactionsBalance = accounts
+//   .map((account) => account.transactions)
+//   .flat()
+//   .reduce((acc, el) => acc + el);
+
+// FLATMAP
+const allAccountsTransactionsBalance = accounts
+  .flatMap((account) => account.transactions)
+  .reduce((acc, el) => acc + el);
+
+console.log(allAccountsTransactionsBalance);
