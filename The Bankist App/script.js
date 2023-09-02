@@ -416,3 +416,102 @@ balanceEl.addEventListener("click", () => {
   ];
   console.log(transactionsLogArraySpread);
 });
+
+//
+/* ****************************************************************************************************** */
+// PRACTICE - Create and fill arrays programatically // THE FILL METHOD
+//
+
+// 1. How much was deposited, in total in the bank?
+
+const bankDepositSum = accounts
+  .map((account) => account.transactions)
+  .flat()
+  .filter((transaction) => transaction > 0)
+  .reduce((acc, el) => acc + el);
+
+// alt solution
+// const bankDepositSum = accounts
+//   .flatMap((account) => account.transactions)
+//   .filter((transaction) => transaction > 0)
+//   .reduce((acc, el) => acc + el);
+
+console.log(bankDepositSum);
+
+// alt solution using reduce
+const bankDepositSum2 = accounts
+  .flatMap((account) => account.transactions)
+  .reduce((acc, el) => (el > 0 ? acc + el : acc), 0);
+
+console.log(`reduce result ${bankDepositSum2}`);
+
+/**********************/
+
+// 2. How many deposits over $1000 have there been?
+const depositsOver1k = accounts
+  .flatMap((account) => account.transactions)
+  .filter((transaction) => transaction > 1000).length;
+
+// alt solution using reduce
+const depositsOver1k2 = accounts
+  .flatMap((account) => account.transactions)
+  .reduce(
+    (count, el) =>
+      el > 1000
+        ? ++count /* unable to use count++, explanation below; we used the prefixed variant ++count */
+        : count,
+    0
+  );
+
+console.log(depositsOver1k, depositsOver1k2);
+
+// The increment operator works, but the result of the expression (variable&increment operator) is still the initial value of the variable
+// To fix this, we use the prefixed variant
+// let a = 10;
+// console.log(a++);
+// console.log(a);
+// console.log(++a);
+// console.log(a);
+
+/**********************/
+
+// 3. Create an object that contains the sum of the deposits and the sum of the withdrawals
+
+const transactionsSums = accounts
+  .flatMap((account) => account.transactions)
+  .reduce(
+    (acc, el) => {
+      // el > 0 ? (acc.depositsSum += el) : (acc.withdrawalsSum += Math.abs(el));
+      // refactoring
+      acc[el > 0 ? "depositsSum" : "withdrawalsSum"] += Math.abs(el);
+      return acc; // arrow function with {} body requires a "return" keyword
+    },
+    { depositsSum: 0, withdrawalsSum: 0 }
+  );
+
+console.log(transactionsSums);
+
+/**********************/
+
+// 4. Create a simple function to change a string's case to title case
+// this is a nice title -> This Is a Nice Title
+
+const changeTitleCase = function (title) {
+  const exceptions = ["a", "an", "and", "the", "but", "or", "on", "in", "with"];
+
+  const titleCase = title
+    .toLowerCase()
+    .split(" ")
+    .map((word) =>
+      exceptions.includes(word)
+        ? word
+        : word.replace(word[0], word[0].toUpperCase())
+    )
+    .join(" ");
+
+  console.log(titleCase.replace(titleCase[0], titleCase[0].toUpperCase()));
+};
+
+changeTitleCase("a little example");
+changeTitleCase("this is a LONG title but not too long");
+changeTitleCase("and here is another title with an EXAMPLE");
