@@ -34,7 +34,7 @@ html {
 }
 
 pre {
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 
 .input-group label,
@@ -64,8 +64,17 @@ pre {
   appearance: textfield;
 }
 
+.input-group .dog-weight,
+.input-group .dog-food {
+  flex-grow: 0;
+  flex-basis: 10%;
+}
+
 .doggy-results-btn,
-.challenge2-results-btn {
+.challenge2-results-btn,
+.challenge3-results-btn,
+.challenge3-add-dog-btn,
+.challenge3-remove-dog-btn {
   font-size: 1.4rem;
 }
 

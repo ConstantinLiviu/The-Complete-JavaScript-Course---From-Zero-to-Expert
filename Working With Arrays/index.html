@@ -174,6 +174,138 @@
           <div class="dog-ages-results"></div>
         </div>
       </div>
+      <div class="row bg-light-subtle mb-5 col-12">
+        <div class="task p-3 pb-0">
+          <h3 class="text-uppercase fst-italic">challenge #3</h3>
+          <p>
+            Julia and Kate are still studying dogs, and this time they are
+            studying if dogs are eating too much or too little.
+          </p>
+          <p>
+            Eating too much means the dog's current food portion is larger than
+            the recommended portion, and eating too little is the opposite.
+          </p>
+          <p>
+            Eating an okay amount means the dog's current food portion is within
+            a range 10% above and 10% below the recommended portion (see hint).
+          </p>
+          <p class="ms-3">
+            1. Loop over the array containing dog objects, and for each dog,
+            <span class="taskVariable"
+              >calculate the recommended food portion</span
+            >
+            and add it to the object as a new property. Do NOT create a new
+            array, simply loop over the array.
+            <span class="taskVariable"
+              >Formula: recommendedFood = weight ** 0.75 * 28.</span
+            >
+            (The result is in grams of food, and the weight needs to be in kg).
+          </p>
+          <p class="ms-3">
+            2. Find Sarah's dog and
+            <span class="taskVariable"
+              >log to the console whether it's eating too much or too
+              little</span
+            >. HINT:
+            <span class="taskVariable">Some dogs have multiple owners</span>, so
+            you first need to find Sarah in the owners array.
+          </p>
+          <p class="ms-3">
+            3. Create an array containing all owners of dogs who eat too much
+            (<span class="taskVariable">'ownersEatTooMuch'</span>) and an array
+            with all owners of dogs who eat too little (<span
+              class="taskVariable"
+              >'ownersEatTooLittle'</span
+            >).
+          </p>
+          <p class="ms-3">
+            4. Log a string to the console for each array created in task nr. 3,
+            like this:
+            <span class="taskVariable"
+              >"Matilda and Alice and Bob's dogs eat too much!"</span
+            >
+            and
+            <span class="taskVariable"
+              >"Sarah and John and Michael's dogs eat too little!"</span
+            >.
+          </p>
+          <p class="ms-3">
+            5. Log to the console whether there is
+            <span class="taskVariable"
+              >any dog eating EXACTLY the amount of food that is
+              recommended</span
+            >
+            (true or false).
+          </p>
+          <p class="ms-3">
+            6. Log to the console whether there is
+            <span class="taskVariable"
+              >any dog eating an OKAY amount of food</span
+            >
+            ( true or false).
+          </p>
+          <p class="ms-3">
+            7. Create an array containing the dogs that are eating an OKAY
+            amount of food (try to reuse the condition used in task nr. 6).
+          </p>
+          <p class="ms-3">
+            8. Create a
+            <span class="taskVariable">shallow copy of the dogs array</span> and
+            <span class="taskVariable"
+              >sort it by recommended food portion in an ascending order</span
+            >
+            (keep in mind that the portions are inside the array's objects).
+          </p>
+          <p class="mb-0">TEST DATA:</p>
+          <pre class="taskVariable border-bottom border-dark">
+    const dogs = [
+        { weight: 22, curFood: 250, owners: ['Alice', 'Bob'] },
+        { weight: 8, curFood: 200, owners: ['Matilda'] },
+        { weight: 13, curFood: 275, owners: ['Sarah', 'John'] },
+        { weight: 32, curFood: 340, owners: ['Michael'] }
+    ];
+          </pre>
+        </div>
+        <div class="solution p-3 pt-0">
+          <h3 class="text-uppercase fst-italic">solution</h3>
+          <div class="input-group mb-4">
+            <label class="form-label w-100">Dog</label>
+            <span class="input-group-text">Kg</span>
+            <input
+              type="number"
+              class="form-control dog-weight"
+              placeholder="22"
+              onkeyup="if(value<0 || value>99) value=''"
+            />
+            <span class="input-group-text">g</span>
+            <input
+              type="number"
+              class="form-control dog-food"
+              placeholder="250"
+              onkeyup="if(value<0 || value>999) value=''"
+            />
+            <span class="input-group-text">Names</span>
+            <input
+              type="text"
+              class="form-control dog-owners"
+              placeholder="Alice, Bob"
+            />
+          </div>
+
+          <button class="mb-4 me-3 btn btn-primary challenge3-results-btn">
+            Run study
+          </button>
+          <button
+            class="mb-4 me-3 btn btn-outline-success challenge3-add-dog-btn"
+          >
+            <i class="bi bi-plus-lg"></i>Add dog
+          </button>
+          <button class="mb-4 btn btn-outline-danger challenge3-remove-dog-btn">
+            <i class="bi bi-dash"></i>Remove dog
+          </button>
+          <div class="dog-study-results"></div>
+        </div>
+      </div>
     </section>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
