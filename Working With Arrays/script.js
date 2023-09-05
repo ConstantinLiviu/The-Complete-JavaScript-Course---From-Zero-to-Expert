@@ -740,17 +740,35 @@ const dogs = [
   { weight: 32, curFood: 340, owners: ["Michael"] },
 ];
 
-// TASK #1 & TASK #2
+const ownersEatTooMuch = [];
+const ownersEatTooLittle = [];
+
 dogs.forEach((dog, i) => {
+  //TASK #1
   dog.recommendedFood = dog.weight ** 0.75 * 28;
+  //TASK #2
   if (dog.owners.includes("Sarah"))
     console.log(
       `Sarah's dog eats too ${
         dog.recommendedFood > dog.curFood ? "little" : "much"
       }`
     );
+  //TASK #3
+  if (dog.recommendedFood < dog.curFood) {
+    ownersEatTooMuch.push(dog.owners);
+  } else {
+    ownersEatTooLittle.push(dog.owners);
+  }
 });
 
 console.log(dogs);
 
-// TASK #3
+// TASK #4
+console.log(`${ownersEatTooLittle.flat().join(" and ")}'s dogs eat too little`);
+console.log(`${ownersEatTooMuch.flat().join(" and ")}'s dogs eat too much`);
+
+// TASK #5
+console.log(dogs.some((dog) => dog.recommendedFood === dog.curFood));
+
+// TASK #6
+console.log(dogs.some((dog) => dog.recommendedFood > dog.curFood));
