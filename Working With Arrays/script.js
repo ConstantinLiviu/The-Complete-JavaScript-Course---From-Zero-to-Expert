@@ -772,3 +772,17 @@ console.log(dogs.some((dog) => dog.recommendedFood === dog.curFood));
 
 // TASK #6
 console.log(dogs.some((dog) => dog.recommendedFood > dog.curFood));
+
+// TASK #7
+const okAmountFood = dogs.filter((dog) => {
+  if (dog.recommendedFood > dog.curFood) {
+    return dog;
+  }
+});
+console.log(okAmountFood);
+
+// TASK #8
+const sortedDogs = [];
+dogs.forEach((dog) => sortedDogs.push(dog.recommendedFood));
+
+console.log(sortedDogs.sort());
