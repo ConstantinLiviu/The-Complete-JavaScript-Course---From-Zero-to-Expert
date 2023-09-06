@@ -740,62 +740,109 @@ const dogs = [
   { weight: 32, curFood: 340, owners: ["Michael"] },
 ];
 
-const ownersEatTooMuch = [];
-const ownersEatTooLittle = [];
+// const ownersEatTooMuch = [];
+// const ownersEatTooLittle = [];
 
-dogs.forEach((dog, i) => {
-  //TASK #1
-  dog.recommendedFood = dog.weight ** 0.75 * 28;
-  //TASK #2
-  if (dog.owners.includes("Sarah"))
-    console.log(
-      `Sarah's dog eats too ${
-        dog.recommendedFood > dog.curFood ? "little" : "much"
-      }`
-    );
-  //TASK #3
-  if (dog.recommendedFood < dog.curFood) {
-    ownersEatTooMuch.push(dog.owners);
-  } else {
-    ownersEatTooLittle.push(dog.owners);
-  }
-});
+// dogs.forEach((dog, i) => {
+//   //TASK #1
+//   dog.recommendedFood = dog.weight ** 0.75 * 28;
+//   //TASK #2
+//   if (dog.owners.includes("Sarah"))
+//     console.log(
+//       `Sarah's dog eats too ${
+//         dog.recommendedFood > dog.curFood ? "little" : "much"
+//       }`
+//     );
+//   //TASK #3
+//   if (dog.recommendedFood < dog.curFood) {
+//     ownersEatTooMuch.push(dog.owners);
+//   } else {
+//     ownersEatTooLittle.push(dog.owners);
+//   }
+// });
 
-console.log(dogs);
+// console.log(dogs);
 
-// TASK #4
-console.log(`${ownersEatTooLittle.flat().join(" and ")}'s dogs eat too little`);
-console.log(`${ownersEatTooMuch.flat().join(" and ")}'s dogs eat too much`);
+// // TASK #4
+// console.log(`${ownersEatTooLittle.flat().join(" and ")}'s dogs eat too little`);
+// console.log(`${ownersEatTooMuch.flat().join(" and ")}'s dogs eat too much`);
 
-// TASK #5
-console.log(dogs.some((dog) => dog.recommendedFood === dog.curFood));
+// // TASK #5
+// console.log(dogs.some((dog) => dog.recommendedFood === dog.curFood));
 
-// TASK #6
-console.log("6");
-console.log(
-  dogs.some(
-    (dog) =>
-      dog.curFood > dog.recommendedFood * 0.9 &&
-      dog.curFood < dog.recommendedFood * 1.1
-  )
-);
+// // TASK #6
+// console.log(
+//   dogs.some(
+//     (dog) =>
+//       dog.curFood > dog.recommendedFood * 0.9 &&
+//       dog.curFood < dog.recommendedFood * 1.1
+//   )
+// );
 
-// TASK #7
-const okAmountFood = dogs.filter((dog) => {
-  if (
-    dog.curFood > dog.recommendedFood * 0.9 &&
-    dog.curFood < dog.recommendedFood * 1.1
-  ) {
-    return dog;
-  }
-});
-console.log(okAmountFood);
+// // TASK #7
+// const okAmountFood = dogs.filter((dog) => {
+//   if (
+//     dog.curFood > dog.recommendedFood * 0.9 &&
+//     dog.curFood < dog.recommendedFood * 1.1
+//   ) {
+//     return dog;
+//   }
+// });
+// console.log(okAmountFood);
 
-// TASK #8
-const sortedDogs = [];
-dogs.forEach((dog) => sortedDogs.push(dog.recommendedFood));
+// // TASK #8
+// const sortedDogs = [];
+// dogs.forEach((dog) => sortedDogs.push(dog.recommendedFood));
 
-console.log(sortedDogs.sort());
+// console.log(sortedDogs.sort());
 
 // Alt solutions
 // TASK #1
+dogs.forEach(
+  (dog) => (dog.recommendedFood = Math.trunc(dog.weight ** 0.75 * 28))
+);
+
+console.log("Aici nou");
+console.log(dogs);
+
+// TASK #2
+const dogSarah = dogs.find((dog) => dog.owners.includes("Sarah"));
+console.log(
+  `Sarah's dog eats too ${
+    dogSarah.curFood > dogSarah.recommendedFood ? "much" : "little"
+  }`
+);
+
+// TASK #3
+const ownersEatTooMuch = dogs
+  .filter((dog) => dog.curFood > dog.recommendedFood)
+  .flatMap((dog) => dog.owners);
+console.log(ownersEatTooMuch);
+const ownersEatTooLittle = dogs
+  .filter((dog) => dog.curFood < dog.recommendedFood)
+  .flatMap((dog) => dog.owners);
+console.log(ownersEatTooLittle);
+
+// TASK #4
+console.log(`${ownersEatTooMuch.join(" and ")}'s dogs eat too much!`);
+console.log(`${ownersEatTooLittle.join(" and ")}'s dogs eat too little!`);
+
+// TASK #5
+console.log(dogs.some((dog) => dog.curFood === dog.recommendedFood));
+
+// TASK #6
+const checkEatingOk = (dog) =>
+  dog.curFood > dog.recommendedFood * 0.9 &&
+  dog.curFood < dog.recommendedFood * 1.1;
+
+console.log(dogs.some(checkEatingOk));
+
+// TASK #7
+console.log(dogs.filter(checkEatingOk));
+
+// TASK #8
+const dogsCopy = dogs
+  .slice()
+  .sort((a, b) => a.recommendedFood - b.recommendedFood);
+
+console.log(dogsCopy);
