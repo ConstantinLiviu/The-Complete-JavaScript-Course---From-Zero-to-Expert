@@ -771,11 +771,21 @@ console.log(`${ownersEatTooMuch.flat().join(" and ")}'s dogs eat too much`);
 console.log(dogs.some((dog) => dog.recommendedFood === dog.curFood));
 
 // TASK #6
-console.log(dogs.some((dog) => dog.recommendedFood > dog.curFood));
+console.log("6");
+console.log(
+  dogs.some(
+    (dog) =>
+      dog.curFood > dog.recommendedFood * 0.9 &&
+      dog.curFood < dog.recommendedFood * 1.1
+  )
+);
 
 // TASK #7
 const okAmountFood = dogs.filter((dog) => {
-  if (dog.recommendedFood > dog.curFood) {
+  if (
+    dog.curFood > dog.recommendedFood * 0.9 &&
+    dog.curFood < dog.recommendedFood * 1.1
+  ) {
     return dog;
   }
 });
@@ -786,3 +796,6 @@ const sortedDogs = [];
 dogs.forEach((dog) => sortedDogs.push(dog.recommendedFood));
 
 console.log(sortedDogs.sort());
+
+// Alt solutions
+// TASK #1
