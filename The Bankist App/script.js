@@ -110,7 +110,7 @@ const displayTransactions = function (transactions) {
         ${index + 1} ${transaction > 0 ? "deposit" : "withdrawal"}
       </div>
       <div class="transaction-date me-auto ms-5">TBD</div>
-      <div class="transaction-value">${transaction} €</div>`;
+      <div class="transaction-value">${transaction.toFixed(2)} €</div>`;
     if (index === 0) {
       transactionRow.classList.remove("border-bottom", "border-1");
     }
@@ -159,7 +159,7 @@ createUsername(accounts);
 const calcDisplayBalance = function (account) {
   const balance = account.transactions.reduce((acc, el) => acc + el, 0);
   account.balance = balance;
-  balanceEl.textContent = `${balance} €`;
+  balanceEl.textContent = `${balance.toFixed(2)} €`;
 };
 
 //
@@ -196,12 +196,12 @@ const calcDisplaySummary = function (account) {
   const income = account.transactions
     .filter((transaction) => transaction > 0)
     .reduce((acc, transaction) => acc + transaction);
-  valueInEl.textContent = `${income} €`;
+  valueInEl.textContent = `${income.toFixed(2)} €`;
 
   const outgoing = account.transactions
     .filter((transaction) => transaction < 0)
     .reduce((acc, transaction) => acc + transaction);
-  valueOutEl.textContent = `${Math.abs(outgoing)} €`;
+  valueOutEl.textContent = `${Math.abs(outgoing).toFixed(2)} €`;
 
   const interest = account.transactions
     .filter((transaction) => transaction > 0)
@@ -210,7 +210,7 @@ const calcDisplaySummary = function (account) {
       return interest >= 1;
     })
     .reduce((acc, interest) => acc + interest);
-  valueInterestEl.textContent = `${interest} €`;
+  valueInterestEl.textContent = `${interest.toFixed(2)} €`;
 };
 
 /**
@@ -322,7 +322,9 @@ confirmCloseAccountBtn.addEventListener("click", (e) => {
 loanBtn.addEventListener("click", (e) => {
   e.preventDefault();
 
-  const loanAmount = +loanAmountEl.value;
+  // const loanAmount = +loanAmountEl.value;
+  // updated following the Numbers section of the course
+  const loanAmount = Math.floor(loanAmountEl.value);
 
   if (
     loanAmount > 0 &&
