@@ -29,17 +29,15 @@ html {
   border-radius: 1rem;
 }
 
-.task p {
-  font-size: 1.6rem;
-}
-
 pre {
   font-size: 1.2rem;
 }
 
 .input-group label,
 .results p,
-.dog-ages-results p {
+.dog-ages-results p,
+.dog-study-results p,
+.task p {
   font-size: 1.6rem;
 }
 

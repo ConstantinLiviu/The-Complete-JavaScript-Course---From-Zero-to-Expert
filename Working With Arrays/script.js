@@ -733,12 +733,12 @@ GOOD LUCK 😀
 */
 
 // NO UI solution
-const dogs = [
-  { weight: 22, curFood: 250, owners: ["Alice", "Bob"] },
-  { weight: 8, curFood: 200, owners: ["Matilda"] },
-  { weight: 13, curFood: 275, owners: ["Sarah", "John"] },
-  { weight: 32, curFood: 340, owners: ["Michael"] },
-];
+// const dogs = [
+//   { weight: 22, curFood: 250, owners: ["Alice", "Bob"] },
+//   { weight: 8, curFood: 200, owners: ["Matilda"] },
+//   { weight: 13, curFood: 275, owners: ["Sarah", "John"] },
+//   { weight: 32, curFood: 340, owners: ["Michael"] },
+// ];
 
 // const ownersEatTooMuch = [];
 // const ownersEatTooLittle = [];
@@ -798,11 +798,26 @@ const dogs = [
 
 // Alt solutions
 // TASK #1
+
+const runStudyBtn = document.querySelector(".challenge3-results-btn");
+const challenge3ResultsEl = document.querySelector(".dog-study-results");
+
+function createElement(innerhtml) {
+  const newP = document.createElement("p");
+  newP.innerHTML = innerhtml;
+  challenge3ResultsEl.append(newP);
+}
+
+const dogs = [
+  { weight: 22, curFood: 250, owners: ["Alice", "Bob"] },
+  { weight: 8, curFood: 200, owners: ["Matilda"] },
+  { weight: 13, curFood: 275, owners: ["Sarah", "John"] },
+  { weight: 32, curFood: 340, owners: ["Michael"] },
+];
+
 dogs.forEach(
   (dog) => (dog.recommendedFood = Math.trunc(dog.weight ** 0.75 * 28))
 );
-
-console.log("Aici nou");
 console.log(dogs);
 
 // TASK #2
@@ -818,9 +833,11 @@ const ownersEatTooMuch = dogs
   .filter((dog) => dog.curFood > dog.recommendedFood)
   .flatMap((dog) => dog.owners);
 console.log(ownersEatTooMuch);
+
 const ownersEatTooLittle = dogs
   .filter((dog) => dog.curFood < dog.recommendedFood)
   .flatMap((dog) => dog.owners);
+
 console.log(ownersEatTooLittle);
 
 // TASK #4
@@ -834,7 +851,6 @@ console.log(dogs.some((dog) => dog.curFood === dog.recommendedFood));
 const checkEatingOk = (dog) =>
   dog.curFood > dog.recommendedFood * 0.9 &&
   dog.curFood < dog.recommendedFood * 1.1;
-
 console.log(dogs.some(checkEatingOk));
 
 // TASK #7
@@ -844,5 +860,19 @@ console.log(dogs.filter(checkEatingOk));
 const dogsCopy = dogs
   .slice()
   .sort((a, b) => a.recommendedFood - b.recommendedFood);
-
 console.log(dogsCopy);
+
+runStudyBtn.addEventListener("click", () => {
+  createElement(JSON.stringify(dogs));
+  createElement(
+    `Sarah's dog eats too ${
+      dogSarah.curFood > dogSarah.recommendedFood ? "much" : "little"
+    }`
+  );
+  createElement(`${ownersEatTooMuch.join(" and ")}'s dogs eat too much!`);
+  createElement(`${ownersEatTooLittle.join(" and ")}'s dogs eat too little!`);
+  createElement(`${dogs.some((dog) => dog.curFood === dog.recommendedFood)}`);
+  createElement(JSON.stringify(dogs.some(checkEatingOk)));
+  createElement(JSON.stringify(dogs.filter(checkEatingOk)));
+  createElement(JSON.stringify(dogsCopy));
+});
