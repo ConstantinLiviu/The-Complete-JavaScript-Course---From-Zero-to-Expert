@@ -18,6 +18,7 @@ const loginPinEl = document.querySelector(".pin-login");
 
 // Balance elements
 const balanceEl = document.querySelector(".balance-value h1");
+const balanceDateEl = document.querySelector(".date span");
 
 // Main
 const appContainerEl = document.querySelector(".main");
@@ -49,7 +50,16 @@ const confirmCloseAccountBtn = document.querySelector(".form-close button");
 // Data
 const account1 = {
   owner: "John Gamble",
-  transactions: [200, 450, -400, 3000, -650, -130, 70, 1300],
+  transactions: [
+    [200, "2019-11-18T21:31:17.178Z"],
+    [450, "2019-12-23T07:42:02.383Z"],
+    [-400, "2020-01-28T09:15:04.904Z"],
+    [3000, "2020-04-01T10:17:24.185Z"],
+    [-650, "2020-05-08T14:11:59.604Z"],
+    [-130, "2020-07-26T17:01:17.194Z"],
+    [70, "2020-07-28T23:36:17.929Z"],
+    [1300, "2020-08-01T10:51:36.790Z"],
+  ],
   interestRate: 1.2, // %
   pin: 1111,
 };
@@ -87,38 +97,43 @@ const accounts = [account1, account2, account3, account4];
  * @param {Array} transactions - array that represents deposits/withdrawals from users' accounts
  * @returns {Element} appends an element with transaction info on the page
  */
-const displayTransactions = function (transactions) {
+const displayTransactions = function (account) {
   transactionsContainerEl.innerHTML = "";
-  transactions.forEach(function (transaction, index) {
-    const transactionRow = document.createElement("div");
-    transactionRow.classList.add(
-      "transactions-row",
-      "d-flex",
-      "px-3",
-      "py-5",
-      "px-0",
-      "justify-content-between",
-      "align-items-center",
-      "border-bottom",
-      "border-1"
-    );
-    transactionRow.innerHTML = `<div
+  console.log(account.transactions);
+  account.transactions
+    .map((transaction) => transaction[0])
+    .forEach(function (transaction, index) {
+      const transactionRow = document.createElement("div");
+      transactionRow.classList.add(
+        "transactions-row",
+        "d-flex",
+        "px-3",
+        "py-5",
+        "px-0",
+        "justify-content-between",
+        "align-items-center",
+        "border-bottom",
+        "border-1"
+      );
+      transactionRow.innerHTML = `<div
         class="transaction-type ${
           transaction > 0 ? "deposit" : "withdrawal bg-danger"
         } p-0  rounded-pill text-white"
       >
         ${index + 1} ${transaction > 0 ? "deposit" : "withdrawal"}
       </div>
-      <div class="transaction-date me-auto ms-5">TBD</div>
+      <div class="transaction-date me-auto ms-5">${
+        account.transactions[index][1]
+      }</div>
       <div class="transaction-value">${transaction.toFixed(2)} €</div>`;
-    if (index === 0) {
-      transactionRow.classList.remove("border-bottom", "border-1");
-    }
-    transactionsContainerEl.insertBefore(
-      transactionRow,
-      transactionsContainerEl.firstChild
-    );
-  });
+      if (index === 0) {
+        transactionRow.classList.remove("border-bottom", "border-1");
+      }
+      transactionsContainerEl.insertBefore(
+        transactionRow,
+        transactionsContainerEl.firstChild
+      );
+    });
 };
 
 //
@@ -157,7 +172,9 @@ createUsername(accounts);
 // TASK - display account balance
 
 const calcDisplayBalance = function (account) {
-  const balance = account.transactions.reduce((acc, el) => acc + el, 0);
+  const balance = account.transactions
+    .map((transaction) => transaction[0])
+    .reduce((acc, el) => acc + el, 0);
   account.balance = balance;
   balanceEl.textContent = `${balance.toFixed(2)} €`;
 };
@@ -194,22 +211,39 @@ const calcDisplayBalance = function (account) {
  */
 const calcDisplaySummary = function (account) {
   const income = account.transactions
+    .map((transaction) => transaction[0])
     .filter((transaction) => transaction > 0)
     .reduce((acc, transaction) => acc + transaction);
+  // const income = account.transactions.filter(
+  //   (transaction) => transaction[0] > 0
+  // );
+  // .reduce((acc, transaction) => acc + transaction[0]);
   valueInEl.textContent = `${income.toFixed(2)} €`;
 
   const outgoing = account.transactions
+    .map((transaction) => transaction[0])
     .filter((transaction) => transaction < 0)
     .reduce((acc, transaction) => acc + transaction);
+  // const outgoing = account.transactions
+  //   .filter((transaction) => transaction < 0)
+  //   .reduce((acc, transaction) => acc + transaction);
   valueOutEl.textContent = `${Math.abs(outgoing).toFixed(2)} €`;
 
   const interest = account.transactions
+    .map((transaction) => transaction[0])
     .filter((transaction) => transaction > 0)
     .map((deposit) => (deposit * account.interestRate) / 100)
     .filter((interest, index, array) => {
       return interest >= 1;
     })
     .reduce((acc, interest) => acc + interest);
+  // const interest = account.transactions
+  //   .filter((transaction) => transaction > 0)
+  //   .map((deposit) => (deposit * account.interestRate) / 100)
+  //   .filter((interest, index, array) => {
+  //     return interest >= 1;
+  //   })
+  //   .reduce((acc, interest) => acc + interest);
   valueInterestEl.textContent = `${interest.toFixed(2)} €`;
 };
 
@@ -222,16 +256,33 @@ const updateUI = function (account) {
   // Display Balance
   calcDisplayBalance(account);
   // Display Transactions
-  displayTransactions(account.transactions);
+  displayTransactions(account);
   // Display summary
   calcDisplaySummary(account);
 };
 
 //
 /* ****************************************************************************************************** */
+// TASK - Add Dates
+
+//day/month/year format
+const loginTime = new Date();
+const month = `${loginTime.getMonth() + 1}`.padStart(2, 0);
+console.log(month);
+const hours = `${loginTime.getHours()}`.padStart(2, 0);
+const minutes = `${loginTime.getMinutes()}`.padStart(2, 0);
+
+balanceDateEl.textContent = `${loginTime.getDate()}/${month}/${loginTime.getFullYear()}, ${hours}:${minutes}`;
+
+/* ****************************************************************************************************** */
 // TASK - Login
 
 let currentAccount;
+
+// Login bypass
+currentAccount = account1;
+updateUI(currentAccount);
+appContainerEl.style.opacity = 1;
 
 loginBtn.addEventListener("click", (e) => {
   e.preventDefault();
@@ -361,22 +412,24 @@ console.log(allAccountsTransactionsBalance);
 
 //
 /* ****************************************************************************************************** */
+// BUG - sorting function no longer works since introducing dates for transactions;
+// TODO - restructure data and fix sorting function;
 // TASK - Sorting transactions
 //
 let sorted = false;
 
 sortBtn.addEventListener("click", (e) => {
   e.preventDefault();
-  if (sorted === false) {
-    const sortedTransactions = currentAccount.transactions
-      .slice()
-      .sort((a, b) => a - b);
-    displayTransactions(sortedTransactions);
-    sorted = true;
-  } else {
-    displayTransactions(currentAccount.transactions);
-    sorted = false;
-  }
+  // if (sorted === false) {
+  //   const sortedTransactions = currentAccount.transactions
+  //     .slice()
+  //     .sort((a, b) => a - b);
+  //   // displayTransactions(sortedTransactions);
+  //   sorted = true;
+  // } else {
+  //   // displayTransactions(currentAccount.transactions);
+  //   sorted = false;
+  // }
 });
 
 //
