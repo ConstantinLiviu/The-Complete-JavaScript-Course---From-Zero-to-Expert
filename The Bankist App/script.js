@@ -89,16 +89,35 @@ const account2 = {
 
 const account3 = {
   owner: "Jack Jacob Johanson",
-  transactions: [200, -200, 340, -300, -20, 50, 400, -460],
+  transactions: [
+    [200, "2019-06-18T21:31:17.178Z"],
+    [-200, "2019-01-01T00:00:02.012Z"],
+    [340, "2019-02-07T12:15:11.904Z"],
+    [-300, "2020-04-01T10:17:24.185Z"],
+    [-20, "2020-05-08T14:11:59.604Z"],
+    [50, "2021-07-26T17:01:17.194Z"],
+    [400, "2021-07-28T23:36:17.929Z"],
+    [-460, "2022-08-01T10:51:36.790Z"],
+  ],
   interestRate: 0.7,
   pin: 3333,
+  locale: "pt-PT",
+  currency: "EUR",
 };
 
 const account4 = {
   owner: "Serena Davis",
-  transactions: [430, 1000, 700, 50, 90],
+  transactions: [
+    [430, "2018-03-12T21:31:17.178Z"],
+    [1000, "2019-08-07T00:00:02.012Z"],
+    [-700, "2020-05-16T12:15:11.904Z"],
+    [50, "2021-01-26T10:17:24.185Z"],
+    [90, "2022-11-01T14:11:59.604Z"],
+  ],
   interestRate: 1,
   pin: 4444,
+  locale: "ja-JP",
+  currency: "JPY",
 };
 
 //
@@ -117,10 +136,6 @@ const displayTransactions = function (account) {
   transactionsContainerEl.innerHTML = "";
 
   account.transactions.forEach(function (transaction, index) {
-    // const date = new Date(account.transactions[index][1]);
-    // const day = `${date.getDate()}`.padStart(2, 0);
-    // const month = `${date.getMonth() + 1}`.padStart(2, 0);
-    // const year = `${date.getFullYear()}`;
     const transactionRow = document.createElement("div");
     transactionRow.classList.add(
       "transactions-row",
@@ -181,15 +196,6 @@ const createUsername = function (accounts) {
 
 createUsername(accounts);
 
-// const user = "Steven Thomas Williams";
-// const username = user
-//   .toLowerCase()
-//   .split(" ")
-//   .map((el) => el[0])
-//   .join("");
-
-// createUsername("Ana Nicoleta Augusta Lovisneanu");
-
 //
 /* ****************************************************************************************************** */
 // TASK - display account balance
@@ -241,10 +247,6 @@ const calcDisplaySummary = function (account) {
     .map((transaction) => transaction[0])
     .filter((transaction) => transaction > 0)
     .reduce((acc, transaction) => acc + transaction);
-  // const income = account.transactions.filter(
-  //   (transaction) => transaction[0] > 0
-  // );
-  // .reduce((acc, transaction) => acc + transaction[0]);
   valueInEl.textContent = formattedTransactions(
     currentAccount,
     currentAccount.currency,
@@ -255,9 +257,6 @@ const calcDisplaySummary = function (account) {
     .map((transaction) => transaction[0])
     .filter((transaction) => transaction < 0)
     .reduce((acc, transaction) => acc + transaction);
-  // const outgoing = account.transactions
-  //   .filter((transaction) => transaction < 0)
-  //   .reduce((acc, transaction) => acc + transaction);
   valueOutEl.textContent = formattedTransactions(
     currentAccount,
     currentAccount.currency,
@@ -272,13 +271,6 @@ const calcDisplaySummary = function (account) {
       return interest >= 1;
     })
     .reduce((acc, interest) => acc + interest);
-  // const interest = account.transactions
-  //   .filter((transaction) => transaction > 0)
-  //   .map((deposit) => (deposit * account.interestRate) / 100)
-  //   .filter((interest, index, array) => {
-  //     return interest >= 1;
-  //   })
-  //   .reduce((acc, interest) => acc + interest);
   valueInterestEl.textContent = formattedTransactions(
     currentAccount,
     currentAccount.currency,
@@ -292,11 +284,8 @@ const calcDisplaySummary = function (account) {
  * @returns {void} displays any UI element text content based on changes made on the account
  */
 const updateUI = function (account) {
-  // Display Balance
   calcDisplayBalance(account);
-  // Display Transactions
   displayTransactions(account);
-  // Display summary
   calcDisplaySummary(account);
 };
 
@@ -319,27 +308,13 @@ function formatDate(date, acc) {
     year: "numeric",
     // weekday: "short",
   };
-  // const month = `${date.getMonth() + 1}`.padStart(2, 0);
-  // const hours = `${date.getHours()}`.padStart(2, 0);
-  // const minutes = `${date.getMinutes()}`.padStart(2, 0);
 
-  // return `${loginTime.getDate()}/${month}/${loginTime.getFullYear()}, ${hours}:${minutes}`;
   return new Intl.DateTimeFormat(acc.locale, options).format(date);
 }
 
-// //day/month/year format
-// const loginTime = new Date();
-
-// balanceDateEl.textContent = formatDate(new Date(), currentAccount);
-
-// balanceDateEl.textContent = `${loginTime.getDate()}/${month}/${loginTime.getFullYear()}, ${hours}:${minutes}`;
-
+//
 /* ****************************************************************************************************** */
 // TASK - Internationalize Numbers
-// const optionsNum = {
-//   style: "currency",
-//   currency: "USD",
-// };
 
 function formattedTransactions(acc, accCurrency, number) {
   return new Intl.NumberFormat(acc.locale, {
@@ -348,6 +323,7 @@ function formattedTransactions(acc, accCurrency, number) {
   }).format(number);
 }
 
+//
 /* ****************************************************************************************************** */
 // TASK - Log out timer
 const startLogOutTimer = function () {
@@ -383,11 +359,6 @@ function resetTimer() {
 // TASK - Login
 
 let currentAccount, timer;
-
-// Login bypass
-// currentAccount = account1;
-// updateUI(currentAccount);
-// appContainerEl.style.opacity = 1;
 
 loginBtn.addEventListener("click", (e) => {
   e.preventDefault();
@@ -439,8 +410,9 @@ approveTransferBtn.addEventListener("click", (e) => {
   const beneficiary = accounts.find(
     (account) => account.username === transferRecipient.value
   );
-  // reset input fields after confirming transfer
+
   transferAmount.value = transferRecipient.value = "";
+
   if (
     amount &&
     currentAccount.balance >= amount &&
@@ -484,10 +456,10 @@ confirmCloseAccountBtn.addEventListener("click", (e) => {
       (account) => account.username === currentAccount.username
     );
     appContainerEl.style.opacity = 0;
-    // welcomeMsgEl.textContent = "Account successfully deleted!";
     accounts.splice(index, 1);
+    alert("Account deleted successfully!");
   } else {
-    console.log("Account credentials are invalid");
+    alert("Account credentials are invalid");
   }
 });
 
@@ -500,8 +472,6 @@ confirmCloseAccountBtn.addEventListener("click", (e) => {
 loanBtn.addEventListener("click", (e) => {
   e.preventDefault();
 
-  // const loanAmount = +loanAmountEl.value;
-  // updated following the Numbers section of the course
   const loanAmount = Math.floor(loanAmountEl.value);
   alert("Your loan request is being processed");
   if (
@@ -511,7 +481,7 @@ loanBtn.addEventListener("click", (e) => {
       .some((transaction) => transaction >= loanAmount / 10)
   ) {
     loanAmountEl.value = "";
-    // add deposit
+
     setTimeout(function () {
       currentAccount.transactions.push([loanAmount, new Date().toISOString()]);
       console.log(currentAccount.transactions);
@@ -604,7 +574,6 @@ balanceEl.addEventListener("click", () => {
   );
   console.log(transactionsLogArray);
 
-  //
   // Spread operator method
   // the same result can be achieved by using map function, but without chaining it
   const transactionsLogArraySpread = [
