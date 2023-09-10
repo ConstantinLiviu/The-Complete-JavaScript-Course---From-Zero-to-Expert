@@ -177,6 +177,7 @@ nav input::placeholder {
 .summary .sort-transactions-list {
   border: none;
   font-size: 1.6rem;
+  width: 11rem;
 }
 /* ********************************************************************************************************************** */
 /* logout */

@@ -116,31 +116,29 @@ const accounts = [account1, account2, account3, account4];
 const displayTransactions = function (account) {
   transactionsContainerEl.innerHTML = "";
 
-  account.transactions
-    .map((transaction) => transaction[0])
-    .forEach(function (transaction, index) {
-      // const date = new Date(account.transactions[index][1]);
-      // const day = `${date.getDate()}`.padStart(2, 0);
-      // const month = `${date.getMonth() + 1}`.padStart(2, 0);
-      // const year = `${date.getFullYear()}`;
-      const transactionRow = document.createElement("div");
-      transactionRow.classList.add(
-        "transactions-row",
-        "d-flex",
-        "px-3",
-        "py-5",
-        "px-0",
-        "justify-content-between",
-        "align-items-center",
-        "border-bottom",
-        "border-1"
-      );
-      transactionRow.innerHTML = `<div
+  account.transactions.forEach(function (transaction, index) {
+    // const date = new Date(account.transactions[index][1]);
+    // const day = `${date.getDate()}`.padStart(2, 0);
+    // const month = `${date.getMonth() + 1}`.padStart(2, 0);
+    // const year = `${date.getFullYear()}`;
+    const transactionRow = document.createElement("div");
+    transactionRow.classList.add(
+      "transactions-row",
+      "d-flex",
+      "px-3",
+      "py-5",
+      "px-0",
+      "justify-content-between",
+      "align-items-center",
+      "border-bottom",
+      "border-1"
+    );
+    transactionRow.innerHTML = `<div
         class="transaction-type ${
-          transaction > 0 ? "deposit" : "withdrawal bg-danger"
+          transaction[0] > 0 ? "deposit" : "withdrawal bg-danger"
         } p-0  rounded-pill text-white"
       >
-        ${index + 1} ${transaction > 0 ? "deposit" : "withdrawal"}
+        ${index + 1} ${transaction[0] > 0 ? "deposit" : "withdrawal"}
       </div>
       <div class="transaction-date me-auto ms-5">${formatDate(
         new Date(account.transactions[index][1]),
@@ -149,16 +147,16 @@ const displayTransactions = function (account) {
       <div class="transaction-value">${formattedTransactions(
         currentAccount,
         currentAccount.currency,
-        transaction
+        transaction[0]
       )}</div>`;
-      if (index === 0) {
-        transactionRow.classList.remove("border-bottom", "border-1");
-      }
-      transactionsContainerEl.insertBefore(
-        transactionRow,
-        transactionsContainerEl.firstChild
-      );
-    });
+    if (index === 0) {
+      transactionRow.classList.remove("border-bottom", "border-1");
+    }
+    transactionsContainerEl.insertBefore(
+      transactionRow,
+      transactionsContainerEl.firstChild
+    );
+  });
 };
 
 //
@@ -393,8 +391,14 @@ let currentAccount, timer;
 
 loginBtn.addEventListener("click", (e) => {
   e.preventDefault();
+  // reset timer upon loggin in
   if (timer) clearInterval(timer);
   timer = startLogOutTimer();
+
+  // reset sort to default upon logging in
+  sortBtn.innerHTML = `<i class="bi bi-sort-numeric-down-alt me-2"></i>AMOUNT`;
+  sorted = false;
+
   // check login credentials
   if (!userLoginEl.value || !loginPinEl.value) {
     console.log("invalid login credentials");
@@ -422,7 +426,6 @@ loginBtn.addEventListener("click", (e) => {
     } else {
       console.log("wrong pin");
     }
-    console.log(currentAccount);
   }
 });
 
@@ -548,24 +551,26 @@ console.log(allAccountsTransactionsBalance);
 
 //
 /* ****************************************************************************************************** */
-// BUG - sorting function no longer works since introducing dates for transactions;
-// TODO - restructure data and fix sorting function;
 // TASK - Sorting transactions
 //
 let sorted = false;
 
 sortBtn.addEventListener("click", (e) => {
   e.preventDefault();
-  // if (sorted === false) {
-  //   const sortedTransactions = currentAccount.transactions
-  //     .slice()
-  //     .sort((a, b) => a[0] - b[0]);
-  //   displayTransactions(sortedTransactions);
-  //   sorted = true;
-  // } else {
-  //   displayTransactions(currentAccount);
-  //   sorted = false;
-  // }
+  if (sorted === false) {
+    const sortedTransactions = {
+      transactions: currentAccount.transactions
+        .slice()
+        .sort((a, b) => a[0] - b[0]),
+    };
+    displayTransactions(sortedTransactions);
+    sorted = true;
+    sortBtn.innerHTML = `<i class="bi bi-sort-numeric-down-alt me-2"></i>DATE`;
+  } else {
+    displayTransactions(currentAccount);
+    sorted = false;
+    sortBtn.innerHTML = `<i class="bi bi-sort-numeric-down-alt me-2"></i>AMOUNT`;
+  }
 });
 
 //
