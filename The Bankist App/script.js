@@ -62,13 +62,24 @@ const account1 = {
   ],
   interestRate: 1.2, // %
   pin: 1111,
+  locale: "en-US",
 };
 
 const account2 = {
-  owner: "Millie Melvin",
-  transactions: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
+  owner: "Maria Melinescu",
+  transactions: [
+    [5000, "2019-11-01T13:15:33.035Z"],
+    [3400, "2019-11-30T09:48:16.867Z"],
+    [-150, "2019-12-25T06:04:23.907Z"],
+    [-790, "2020-01-25T14:18:46.235Z"],
+    [-3210, "2020-02-05T16:33:06.386Z"],
+    [-1000, "2020-04-10T14:43:26.374Z"],
+    [8500, "2020-06-25T18:49:59.371Z"],
+    [-30, "2020-07-26T12:01:20.894Z"],
+  ],
   interestRate: 1.5,
   pin: 2222,
+  locale: "ro-RO",
 };
 
 const account3 = {
@@ -103,10 +114,10 @@ const displayTransactions = function (account) {
   account.transactions
     .map((transaction) => transaction[0])
     .forEach(function (transaction, index) {
-      const date = new Date(account.transactions[index][1]);
-      const day = `${date.getDate()}`.padStart(2, 0);
-      const month = `${date.getMonth() + 1}`.padStart(2, 0);
-      const year = `${date.getFullYear()}`;
+      // const date = new Date(account.transactions[index][1]);
+      // const day = `${date.getDate()}`.padStart(2, 0);
+      // const month = `${date.getMonth() + 1}`.padStart(2, 0);
+      // const year = `${date.getFullYear()}`;
       const transactionRow = document.createElement("div");
       transactionRow.classList.add(
         "transactions-row",
@@ -126,7 +137,10 @@ const displayTransactions = function (account) {
       >
         ${index + 1} ${transaction > 0 ? "deposit" : "withdrawal"}
       </div>
-      <div class="transaction-date me-auto ms-5">${day}/${month}/${year}</div>
+      <div class="transaction-date me-auto ms-5">${formatDate(
+        new Date(account.transactions[index][1]),
+        currentAccount
+      )}</div>
       <div class="transaction-value">€ ${transaction.toFixed(2)}</div>`;
       if (index === 0) {
         transactionRow.classList.remove("border-bottom", "border-1");
@@ -267,13 +281,35 @@ const updateUI = function (account) {
 /* ****************************************************************************************************** */
 // TASK - Add Dates
 
-//day/month/year format
-const loginTime = new Date();
-const month = `${loginTime.getMonth() + 1}`.padStart(2, 0);
-const hours = `${loginTime.getHours()}`.padStart(2, 0);
-const minutes = `${loginTime.getMinutes()}`.padStart(2, 0);
+/**
+ * Takes in a date and formats it based on the user's localazation
+ * @param {Date} date account or system generated date
+ * @param {Object} acc predefined account object
+ * @returns A formated date string based on user's account localization
+ */
+function formatDate(date, acc) {
+  const options = {
+    // hour: "numeric",
+    // minute: "numeric",
+    day: "numeric",
+    month: "numeric",
+    year: "numeric",
+    // weekday: "short",
+  };
+  // const month = `${date.getMonth() + 1}`.padStart(2, 0);
+  // const hours = `${date.getHours()}`.padStart(2, 0);
+  // const minutes = `${date.getMinutes()}`.padStart(2, 0);
 
-balanceDateEl.textContent = `${loginTime.getDate()}/${month}/${loginTime.getFullYear()}, ${hours}:${minutes}`;
+  // return `${loginTime.getDate()}/${month}/${loginTime.getFullYear()}, ${hours}:${minutes}`;
+  return new Intl.DateTimeFormat(acc.locale, options).format(date);
+}
+
+// //day/month/year format
+// const loginTime = new Date();
+
+// balanceDateEl.textContent = formatDate(new Date(), currentAccount);
+
+// balanceDateEl.textContent = `${loginTime.getDate()}/${month}/${loginTime.getFullYear()}, ${hours}:${minutes}`;
 
 /* ****************************************************************************************************** */
 // TASK - Login
@@ -304,7 +340,11 @@ loginBtn.addEventListener("click", (e) => {
       userLoginEl.blur();
       loginPinEl.value = "";
       loginPinEl.blur();
+
+      // populate UI
       updateUI(currentAccount);
+      // format and display date
+      balanceDateEl.textContent = formatDate(new Date(), currentAccount);
 
       appContainerEl.style.opacity = 1;
     } else {

@@ -224,3 +224,88 @@ console.log(Date.now());
 
 console.log(future.setFullYear(2040));
 console.log(future);
+
+//
+/****************************************************************************************************************************/
+// LESSON - Operations with dates
+//
+
+// turning dates to numbers
+// dates are converted to unix timestamps
+console.log(+future);
+
+// calculate the amount of days passed between two dates
+const calcDaysPassed = (date1, date2) =>
+  // end date minus start day over 1000ms times 60s in a min times 60m in an hour times 24h in a day to get the result in days
+  Math.round(Math.abs((date2 - date1) / (1000 * 60 * 60 * 24)));
+
+const days1 = calcDaysPassed(new Date(2037, 3, 14), new Date(2037, 3, 24, 10));
+
+console.log(days1);
+
+// Formatting dates to common usage style
+const formatDates = function (date) {
+  const daysPassed = (date1, date2) =>
+    Math.round(Math.abs((date2 - date1) / (1000 * 60 * 60 * 24)));
+
+  const daysDiff = daysPassed(new Date(), date);
+  console.log(daysDiff);
+  if (daysDiff === 0) return "Today";
+  if (daysDiff === 1) return "Yesterday";
+  if (daysDiff <= 7) return `${daysDiff} days ago`;
+  return new Date(date);
+};
+
+// results will vary depending on the date this code is executed
+console.log(formatDates(new Date(2023, 8, 9)));
+
+//
+/****************************************************************************************************************************/
+// LESSON - Internationalizing Dates(Intl)
+//
+
+const someDate = new Date();
+// basic ISO language date formatting
+const roDate = new Intl.DateTimeFormat("ro-RO").format(someDate);
+const enDate = new Intl.DateTimeFormat("en-US").format(someDate);
+const syDate = new Intl.DateTimeFormat("ar-SY").format(someDate);
+console.log(roDate);
+console.log(enDate);
+console.log(syDate);
+
+// formatting with options
+const options = {
+  hour: "numeric",
+  minute: "numeric",
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+  weekday: "short",
+};
+const roOptionsDate = new Intl.DateTimeFormat("ro-RO", options).format(
+  someDate
+);
+const enOptionsDate = new Intl.DateTimeFormat("en-US", options).format(
+  someDate
+);
+const syOptionsDate = new Intl.DateTimeFormat("ar-SY", options).format(
+  someDate
+);
+console.log(roOptionsDate);
+console.log(enOptionsDate);
+console.log(syOptionsDate);
+
+// adjusting date localization using user's browser
+const locale = navigator.language;
+console.log(locale);
+const localDate = new Intl.DateTimeFormat(locale, options).format(someDate);
+console.log(localDate);
+
+console.log(
+  new Intl.DateTimeFormat("ro-RO").format(new Date("2019-11-01T13:15:33.035Z"))
+);
+
+//
+/****************************************************************************************************************************/
+// LESSON - Internationalizing Numbers(Intl)
+//
