@@ -47,6 +47,9 @@ const confirmUserEl = document.getElementById("confirmUser");
 const confirmPinEl = document.getElementById("confirmPIN");
 const confirmCloseAccountBtn = document.querySelector(".form-close button");
 
+// Timer
+const timerEl = document.querySelector(".timer");
+
 // Data
 const account1 = {
   owner: "John Gamble",
@@ -348,17 +351,50 @@ function formattedTransactions(acc, accCurrency, number) {
 }
 
 /* ****************************************************************************************************** */
+// TASK - Log out timer
+const startLogOutTimer = function () {
+  let time = 600;
+
+  timerEl.textContent = `${String(Math.trunc(time / 60)).padStart(
+    2,
+    0
+  )}:${String(time % 60).padStart(2, 0)}`;
+
+  const interval = setInterval(function () {
+    time--;
+    timerEl.textContent = `${String(Math.trunc(time / 60)).padStart(
+      2,
+      0
+    )}:${String(time % 60).padStart(2, 0)}`;
+
+    if (time === 0) {
+      clearInterval(interval);
+      appContainerEl.style.opacity = 0;
+      welcomeMsgEl.textContent = "Log in to get started";
+    }
+  }, 1000);
+  return interval;
+};
+
+function resetTimer() {
+  clearInterval(timer);
+  timer = startLogOutTimer();
+}
+
+/* ****************************************************************************************************** */
 // TASK - Login
 
-let currentAccount;
+let currentAccount, timer;
 
 // Login bypass
-currentAccount = account1;
-updateUI(currentAccount);
-appContainerEl.style.opacity = 1;
+// currentAccount = account1;
+// updateUI(currentAccount);
+// appContainerEl.style.opacity = 1;
 
 loginBtn.addEventListener("click", (e) => {
   e.preventDefault();
+  if (timer) clearInterval(timer);
+  timer = startLogOutTimer();
   // check login credentials
   if (!userLoginEl.value || !loginPinEl.value) {
     console.log("invalid login credentials");
@@ -403,7 +439,7 @@ approveTransferBtn.addEventListener("click", (e) => {
   // reset input fields after confirming transfer
   transferAmount.value = transferRecipient.value = "";
   if (
-    // amount > 0 && - input is set to accept amounts greater than 1 only
+    amount &&
     currentAccount.balance >= amount &&
     beneficiary &&
     beneficiary?.username !== currentAccount.username
@@ -411,8 +447,19 @@ approveTransferBtn.addEventListener("click", (e) => {
     currentAccount.transactions.push([-amount, new Date().toISOString()]);
     beneficiary.transactions.push([amount, new Date().toISOString()]);
     updateUI(currentAccount);
-  } else {
-    console.log("invalid transfer");
+    resetTimer();
+  }
+  if (currentAccount.balance < amount) {
+    alert("Insuficient funds");
+    resetTimer();
+  }
+  if (!beneficiary || !beneficiary?.username) {
+    alert("Invalid user");
+    resetTimer();
+  }
+  if (!amount) {
+    alert("Invalid transfer");
+    resetTimer();
   }
 });
 
@@ -453,7 +500,7 @@ loanBtn.addEventListener("click", (e) => {
   // const loanAmount = +loanAmountEl.value;
   // updated following the Numbers section of the course
   const loanAmount = Math.floor(loanAmountEl.value);
-
+  alert("Your loan request is being processed");
   if (
     loanAmount > 0 &&
     currentAccount.transactions
@@ -462,9 +509,20 @@ loanBtn.addEventListener("click", (e) => {
   ) {
     loanAmountEl.value = "";
     // add deposit
-    currentAccount.transactions.push([loanAmount, new Date().toISOString()]);
-    console.log(currentAccount.transactions);
-    updateUI(currentAccount);
+    setTimeout(function () {
+      currentAccount.transactions.push([loanAmount, new Date().toISOString()]);
+      console.log(currentAccount.transactions);
+      updateUI(currentAccount);
+      alert(
+        "Your loan was approved and will be debited to your account once you close this message"
+      );
+    }, 2500);
+    resetTimer();
+  } else {
+    resetTimer();
+    setTimeout(function () {
+      alert("Your loan request has been rejected.");
+    }, 2500);
   }
 });
 
@@ -501,11 +559,11 @@ sortBtn.addEventListener("click", (e) => {
   // if (sorted === false) {
   //   const sortedTransactions = currentAccount.transactions
   //     .slice()
-  //     .sort((a, b) => a - b);
-  //   // displayTransactions(sortedTransactions);
+  //     .sort((a, b) => a[0] - b[0]);
+  //   displayTransactions(sortedTransactions);
   //   sorted = true;
   // } else {
-  //   // displayTransactions(currentAccount.transactions);
+  //   displayTransactions(currentAccount);
   //   sorted = false;
   // }
 });
