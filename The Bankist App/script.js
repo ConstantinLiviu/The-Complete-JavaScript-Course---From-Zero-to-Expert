@@ -99,10 +99,14 @@ const accounts = [account1, account2, account3, account4];
  */
 const displayTransactions = function (account) {
   transactionsContainerEl.innerHTML = "";
-  console.log(account.transactions);
+
   account.transactions
     .map((transaction) => transaction[0])
     .forEach(function (transaction, index) {
+      const date = new Date(account.transactions[index][1]);
+      const day = `${date.getDate()}`.padStart(2, 0);
+      const month = `${date.getMonth() + 1}`.padStart(2, 0);
+      const year = `${date.getFullYear()}`;
       const transactionRow = document.createElement("div");
       transactionRow.classList.add(
         "transactions-row",
@@ -122,10 +126,8 @@ const displayTransactions = function (account) {
       >
         ${index + 1} ${transaction > 0 ? "deposit" : "withdrawal"}
       </div>
-      <div class="transaction-date me-auto ms-5">${
-        account.transactions[index][1]
-      }</div>
-      <div class="transaction-value">${transaction.toFixed(2)} €</div>`;
+      <div class="transaction-date me-auto ms-5">${day}/${month}/${year}</div>
+      <div class="transaction-value">€ ${transaction.toFixed(2)}</div>`;
       if (index === 0) {
         transactionRow.classList.remove("border-bottom", "border-1");
       }
@@ -268,7 +270,6 @@ const updateUI = function (account) {
 //day/month/year format
 const loginTime = new Date();
 const month = `${loginTime.getMonth() + 1}`.padStart(2, 0);
-console.log(month);
 const hours = `${loginTime.getHours()}`.padStart(2, 0);
 const minutes = `${loginTime.getMinutes()}`.padStart(2, 0);
 
@@ -331,8 +332,8 @@ approveTransferBtn.addEventListener("click", (e) => {
     beneficiary &&
     beneficiary?.username !== currentAccount.username
   ) {
-    currentAccount.transactions.push(-amount);
-    beneficiary.transactions.push(amount);
+    currentAccount.transactions.push([-amount, new Date().toISOString()]);
+    beneficiary.transactions.push([amount, new Date().toISOString()]);
     updateUI(currentAccount);
   } else {
     console.log("invalid transfer");
@@ -379,13 +380,14 @@ loanBtn.addEventListener("click", (e) => {
 
   if (
     loanAmount > 0 &&
-    currentAccount.transactions.some(
-      (transaction) => transaction >= loanAmount / 10
-    )
+    currentAccount.transactions
+      .map((transaction) => transaction[0])
+      .some((transaction) => transaction >= loanAmount / 10)
   ) {
     loanAmountEl.value = "";
     // add deposit
-    currentAccount.transactions.push(loanAmount);
+    currentAccount.transactions.push([loanAmount, new Date().toISOString()]);
+    console.log(currentAccount.transactions);
     updateUI(currentAccount);
   }
 });
