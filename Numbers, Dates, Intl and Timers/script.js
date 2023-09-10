@@ -309,3 +309,79 @@ console.log(
 /****************************************************************************************************************************/
 // LESSON - Internationalizing Numbers(Intl)
 //
+
+const numTest = 3884764.23;
+
+// basic formatting
+console.log("US: ", new Intl.NumberFormat("en-US").format(numTest));
+console.log("RO: ", new Intl.NumberFormat("ro-RO").format(numTest));
+console.log("SY: ", new Intl.NumberFormat("ar-SY").format(numTest));
+console.log(
+  "Browser: ",
+  new Intl.NumberFormat(navigator.language).format(numTest)
+);
+
+// formatting with custom options
+const optionsNum = {
+  // style: "unit",
+  // unit: "mile-per-hour",
+
+  // style: "percent", // unit is ignored
+  // unit: "celsius",
+
+  style: "currency", // unit is ignored, currency is mandatory
+  unit: "celsius",
+  currency: "EUR",
+
+  // useGrouping: false,
+};
+
+console.log("US: ", new Intl.NumberFormat("en-US", optionsNum).format(numTest));
+console.log("RO: ", new Intl.NumberFormat("ro-RO", optionsNum).format(numTest));
+console.log("SY: ", new Intl.NumberFormat("ar-SY", optionsNum).format(numTest));
+
+//
+/****************************************************************************************************************************/
+// LESSON - Timers: setTimeout and setInterval
+//
+
+// setTimeout runs only once, after a certain (set) amount of time has passed
+// setInterval runs until stopped
+
+// setTimeout - usees a callback function and a set time in ms
+console.log("Pizza order received");
+setTimeout(() => console.log("Here is your pizza!🍕"), 3000);
+console.log("Waiting for pizza...");
+
+// setTimeout can also receive arguments for the callback function
+setTimeout(
+  (ingredient1, ingredient2) =>
+    console.log(`Here is your pizza with ${ingredient1} and ${ingredient2}!`),
+  4000,
+  "bacon",
+  "chilli"
+);
+
+// how to stop the timeout
+const ingredients = ["olives", "onion"];
+const timeToPizza = setTimeout(
+  (ingredient1, ingredient2) =>
+    console.log(`Here is your pizza with ${ingredient1} and ${ingredient2}!`),
+  4000,
+  ...ingredients
+);
+
+if (ingredients.includes("onion")) clearTimeout(timeToPizza);
+
+// setInterval - used for repeating the execution of the callback depending on the time amount provided (in ms)
+let stopInterval = 0;
+const ceas = setInterval(function () {
+  const time = new Date();
+  console.log(
+    new Intl.DateTimeFormat("ro-RO", {
+      timeStyle: "full",
+    }).format(time)
+  );
+  stopInterval++;
+  if (stopInterval === 10) clearInterval(ceas);
+}, 1000);
