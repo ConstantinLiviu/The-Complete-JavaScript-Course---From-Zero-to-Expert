@@ -63,6 +63,7 @@ const account1 = {
   interestRate: 1.2, // %
   pin: 1111,
   locale: "en-US",
+  currency: "USD",
 };
 
 const account2 = {
@@ -80,6 +81,7 @@ const account2 = {
   interestRate: 1.5,
   pin: 2222,
   locale: "ro-RO",
+  currency: "LEI",
 };
 
 const account3 = {
@@ -141,7 +143,11 @@ const displayTransactions = function (account) {
         new Date(account.transactions[index][1]),
         currentAccount
       )}</div>
-      <div class="transaction-value">€ ${transaction.toFixed(2)}</div>`;
+      <div class="transaction-value">${formattedTransactions(
+        currentAccount,
+        currentAccount.currency,
+        transaction
+      )}</div>`;
       if (index === 0) {
         transactionRow.classList.remove("border-bottom", "border-1");
       }
@@ -192,7 +198,11 @@ const calcDisplayBalance = function (account) {
     .map((transaction) => transaction[0])
     .reduce((acc, el) => acc + el, 0);
   account.balance = balance;
-  balanceEl.textContent = `${balance.toFixed(2)} €`;
+  balanceEl.textContent = `${formattedTransactions(
+    currentAccount,
+    currentAccount.currency,
+    balance
+  )}`;
 };
 
 //
@@ -234,7 +244,11 @@ const calcDisplaySummary = function (account) {
   //   (transaction) => transaction[0] > 0
   // );
   // .reduce((acc, transaction) => acc + transaction[0]);
-  valueInEl.textContent = `${income.toFixed(2)} €`;
+  valueInEl.textContent = formattedTransactions(
+    currentAccount,
+    currentAccount.currency,
+    income
+  );
 
   const outgoing = account.transactions
     .map((transaction) => transaction[0])
@@ -243,7 +257,11 @@ const calcDisplaySummary = function (account) {
   // const outgoing = account.transactions
   //   .filter((transaction) => transaction < 0)
   //   .reduce((acc, transaction) => acc + transaction);
-  valueOutEl.textContent = `${Math.abs(outgoing).toFixed(2)} €`;
+  valueOutEl.textContent = formattedTransactions(
+    currentAccount,
+    currentAccount.currency,
+    Math.abs(outgoing)
+  );
 
   const interest = account.transactions
     .map((transaction) => transaction[0])
@@ -260,7 +278,11 @@ const calcDisplaySummary = function (account) {
   //     return interest >= 1;
   //   })
   //   .reduce((acc, interest) => acc + interest);
-  valueInterestEl.textContent = `${interest.toFixed(2)} €`;
+  valueInterestEl.textContent = formattedTransactions(
+    currentAccount,
+    currentAccount.currency,
+    interest
+  );
 };
 
 /**
@@ -310,6 +332,20 @@ function formatDate(date, acc) {
 // balanceDateEl.textContent = formatDate(new Date(), currentAccount);
 
 // balanceDateEl.textContent = `${loginTime.getDate()}/${month}/${loginTime.getFullYear()}, ${hours}:${minutes}`;
+
+/* ****************************************************************************************************** */
+// TASK - Internationalize Numbers
+// const optionsNum = {
+//   style: "currency",
+//   currency: "USD",
+// };
+
+function formattedTransactions(acc, accCurrency, number) {
+  return new Intl.NumberFormat(acc.locale, {
+    style: "currency",
+    currency: accCurrency,
+  }).format(number);
+}
 
 /* ****************************************************************************************************** */
 // TASK - Login
