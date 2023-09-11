@@ -5,8 +5,17 @@
 //  PROJECT - THE BANKIST APP
 //
 
+// Bootstrap
+const popoverTriggerList = document.querySelectorAll(
+  '[data-bs-toggle="popover"]'
+);
+const popoverList = [...popoverTriggerList].map(
+  (popoverTriggerEl) => new bootstrap.Popover(popoverTriggerEl)
+);
+
 // Misc Elements
 const sortBtn = document.querySelector(".sort-transactions-list");
+const logOutBtn = document.querySelector(".log-out-btn");
 
 // Header elements
 const welcomeMsgEl = document.querySelector(".welcome-msg");
@@ -541,6 +550,16 @@ sortBtn.addEventListener("click", (e) => {
     sorted = false;
     sortBtn.innerHTML = `<i class="bi bi-sort-numeric-down-alt me-2"></i>AMOUNT`;
   }
+});
+
+//
+/* ****************************************************************************************************** */
+// TASK - Log out
+//
+
+logOutBtn.addEventListener("click", () => {
+  appContainerEl.style.opacity = 0;
+  welcomeMsgEl.textContent = "Log in to get started";
 });
 
 //

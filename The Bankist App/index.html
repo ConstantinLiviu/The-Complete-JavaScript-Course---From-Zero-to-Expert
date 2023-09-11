@@ -31,19 +31,28 @@
     </a>
     <section class="bankist-app-container">
       <nav
-        class="login-container d-flex px-4 align-items-center justify-content-between"
+        class="login-container d-flex flex-wrap px-4 align-items-center justify-content-between mb-5"
       >
-        <p class="welcome-msg col-4">Log in to get started</p>
-        <img class="logo" src="logo.png" alt="Logo" />
-        <form class="login-input d-flex col-4 justify-content-end">
+        <div class="col-lg-4 col-md-4 col-sm-6 order-2 order-sm-2 order-md-1 d-flex flex-wrap align-items-center mb-3 my-0 mx-auto mx-md-0 my-md-0">
+          <p class="welcome-msg mb-0">Log in to get started</p>
+          <i class="bi bi-info-circle-fill ms-3 text-danger" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-custom-class="custom-popover" data-bs-placement="bottom" data-bs-content="Useable accounts are as follows (username/pin): 
+          jg/1111, 
+          mm/2222, 
+          jjj/3333, 
+          sd/4444   
+          To transfer money or close accounts use the info above"></i></div>
+        <div class="col-lg-4 col-12 col-md-4 order-1 order-sm-1 order-md-2 d-flex mb-5 mb-md-0">
+          <img class="logo my-0 mx-auto" src="logo.png" alt="Logo" />
+        </div>
+        <form class="login-input d-flex col-lg-4 col-md-4 col-sm-6 order-3 order-sm-3 order-md-3 justify-content-end">
           <input
             type="text"
-            class="form-control py-3 px-5 me-5 rounded-pill text-center username-login"
+            class="form-control py-xxl-3 py-lg-2 me-5 me-md-3 rounded-pill text-center username-login"
             placeholder="user"
           />
           <input
             type="text"
-            class="form-control py-3 px-5 me-5 rounded-pill text-center pin-login"
+            class="form-control py-xxl-3 py-lg-2 me-5 me-md-3 rounded-pill text-center pin-login"
             placeholder="pin"
           />
           <button class="btn btn-outline-dark login-btn">
@@ -51,28 +60,28 @@
           </button>
         </form>
       </nav>
-      <section class="main container p-5 bg-white">
-        <div class="row justify-content-between gx-5 mb-3">
-          <div class="balance-info col-6">
+      <section class="main container p-5 pb-0 bg-white position-relative">
+        <div class="row justify-content-between gx-5 mb-md-3">
+          <div class="balance-info col-12 col-sm-6">
             <h1>Current balance</h1>
             <p class="date">As of <span></span></p>
           </div>
-          <div class="balance-value col-6">
-            <h1 class="text-end"></h1>
+          <div class="balance-value col-12 col-sm-6">
+            <h1 class="text-start text-sm-end"></h1>
           </div>
         </div>
 
         <div class="row justify-content-between gx-5 mb-3">
-          <section class="transactions col-6 pb-4">
+          <section class="transactions col-12 col-md-6 pb-4 mb-5 mb-md-0">
             <div class="transactions-row-container border border-1">
             </div>
           </section>
-          <section class="operations col-6">
-            <section class="operation operation-transfer mb-5 p-5 text-light">
+          <section class="operations col-12 col-md-6">
+            <section class="operation operation-transfer mb-5 p-4 text-light">
               <h2 class="mb-4 text-uppercase">Transfer money</h2>
               <form class="form form-transfer">
-                <div class="d-flex align-items-end">
-                  <div class="form-input-field col-5 me-3">
+                <div class="d-flex align-items-end flex-wrap">
+                  <div class="form-input-field col-5 me-3 col-sm-12 col-md-5">
                     <label for="inputRecipient" class="form-label"
                       >Transfer to</label
                     >
@@ -84,7 +93,7 @@
                       onkeyup="if(value<1 || value>999999999) value=''"
                     />
                   </div>
-                  <div class="form-input-field col-5">
+                  <div class="form-input-field col-5 col-sm-9 col-md-5">
                     <label for="inputAmount" class="form-label">Amount</label>
                     <input
                       type="number"
@@ -100,11 +109,11 @@
                 </button>
               </form>
             </section>
-            <section class="operation operation-loan mb-5 p-5 text-light">
+            <section class="operation operation-loan mb-5 p-4 text-light">
               <h2 class="mb-4 text-uppercase">Request loan</h2>
               <form class="form form-loan">
                 <div class="d-flex align-items-end">
-                  <div class="form-input-field col-5">
+                  <div class="form-input-field col-10 col-sm-9 col-md-5">
                     <label for="amount" class="form-label">Amount</label>
                     <input
                     type="number"
@@ -121,11 +130,11 @@
                 
               </form>
             </section>
-            <section class="operation operation-close mb-5 p-5 bg-danger text-light">
+            <section class="operation operation-close mb-5 p-4 bg-danger text-light">
               <h2 class="mb-4 text-uppercase">Close account</h2>
               <form class="form form-close">
-                <div class="d-flex align-items-end">
-                  <div class="form-input-field col-5 me-3">
+                <div class="d-flex align-items-end flex-wrap">
+                  <div class="form-input-field col-5  col-md-5 me-3 col-sm-12">
                     <label for="confirmUser" class="form-label"
                       >Confirm User</label
                     >
@@ -136,7 +145,7 @@
                       aria-describedby="textHelp"
                     />
                   </div>
-                  <div class="form-input-field col-5 me-3">
+                  <div class="form-input-field col-5 col-md-5 me-3 me-sm-0 col-sm-9">
                     <label for="confirmPIN" class="form-label">Confirm PIN</label>
                     <input type="number" class="form-control" id="confirmPIN" onkeyup="if(value<1 || value>9999) value=''"/>
                   </div>
@@ -149,30 +158,32 @@
           </section>
         </div>
 
-        <div class="row gx-5 mb-3">
-          <section class="summary col-6 d-flex justify-content-between pe-0">
-            <div class="summary-item d-flex align-items-center">
+        <div class="row gx-5 mb-3 last-row">
+          <section class="summary col-6 d-flex flex-wrap justify-content-start pe-0">
+            <div class="summary-item d-flex align-items-center w-50 mb-3">
               <p class="summary-label me-2">In</p>
-              <p class="summary-value value-in">$0000</p>
+              <p class="summary-value value-in"></p>
             </div>
 
-            <div class="summary-item d-flex align-items-center">
+            <div class="summary-item d-flex align-items-center w-50 mb-3">
               <p class="summary-label me-2">Out</p>
-              <p class="summary-value value-out">$0000</p>
+              <p class="summary-value value-out"></p>
             </div>
 
-            <div class="summary-item d-flex align-items-center">
+            <div class="summary-item d-flex align-items-center w-50">
               <p class="summary-label me-2">Interest</p>
-              <p class="summary-value value-interest">$0000</p>
+              <p class="summary-value value-interest"></p>
             </div>
 
-            <button class="btn btn-outline-dark sort-transactions-list">
+            <button class="btn btn-dark sort-transactions-list border-0">
               <!-- <i class="bi bi-sort-numeric-down-alt me-2"></i>AMOUNT -->
             </button>
-            <!-- <i class="bi bi-sort-numeric-up me-2"></i> -->
           </section>
           <section class="logout-timer col-6 d-flex align-items-center justify-content-end">
-            You will be logged out in <span class="timer ms-2"></span>
+            You will be logged out in <span class="timer me-auto ms-2 ms-sm-2 me-md-3"></span>
+            <button class="btn btn-outline-danger log-out-btn fw-semibold">
+              <i class="bi bi-box-arrow-right me-2"></i>LOG OUT
+            </button>
           </section>
         </div>
       </section>
