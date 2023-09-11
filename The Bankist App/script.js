@@ -610,6 +610,7 @@ balanceEl.addEventListener("click", () => {
 
 const bankDepositSum = accounts
   .map((account) => account.transactions)
+  .map((transaction) => transaction[0])
   .flat()
   .filter((transaction) => transaction > 0)
   .reduce((acc, el) => acc + el);
