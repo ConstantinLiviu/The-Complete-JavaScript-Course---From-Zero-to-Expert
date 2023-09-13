@@ -21,7 +21,49 @@ html {
 }
 
 body {
-  background: linear-gradient(to top left, var(--green28), var(--green7d));
+  background: var(--grayf3);
+}
+
+/************************************************HEADER*********************************************************************/
+/* NAV */
+.bankist-logo {
+  height: 5rem;
+  filter: brightness(10);
+}
+
+.nav-link {
+  font-size: 2rem;
+}
+
+.open-account {
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+
+/* MODAL */
+.modal-content {
+  padding: 3rem;
+}
+
+.modal-title {
+  font-size: 3rem;
+}
+
+.inputs label {
+  width: 30%;
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.inputs .form-control {
+  width: 60%;
+  margin-left: auto;
+  font-size: 2rem;
+}
+
+.next button {
+  font-size: 2rem;
 }
 
 /* Mobile */

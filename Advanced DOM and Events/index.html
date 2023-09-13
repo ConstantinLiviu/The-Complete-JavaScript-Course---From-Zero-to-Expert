@@ -23,16 +23,71 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body class="position-relative d-flex flex-column">
-    <a
-      href="../index.html"
-      class="position-sticky btn btn-warning main-page-btn text-uppercase fw-bold"
-    >
-      main page
-    </a>
     <header>
-      <nav>
-        <div class="img-container">
-          <img src="" alt="" />
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            <img src="img/logo.png" alt="Bank logo" class="bankist-logo" />
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasDarkNavbar"
+            aria-controls="offcanvasDarkNavbar"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon fs-1"></span>
+          </button>
+          <div
+            class="offcanvas offcanvas-end text-bg-dark"
+            tabindex="-1"
+            id="offcanvasDarkNavbar"
+            aria-labelledby="offcanvasDarkNavbarLabel"
+          >
+            <div class="offcanvas-header fs-1">
+              <button
+                type="button"
+                class="btn-close btn-close-white"
+                data-bs-dismiss="offcanvas"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="offcanvas-body">
+              <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#"
+                    >Home</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="dropdown-item nav-link active" href="#">Features</a>
+                </li>
+                <li class="nav-item">
+                  <a class="dropdown-item nav-link active" href="#"
+                    >Operations</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link active">Testimonials</a>
+                </li>
+                <li class="nav-item me-4 mb-2 mb-md-0">
+                  <a href="../index.html" class="nav-link active">
+                    Main page
+                  </a>
+                </li>
+                <li class="nav-item d-flex align-items-center">
+                  <a
+                    href="#"
+                    class="text-uppercase fw-bold open-account bg-light text-dark p-2 border rounded"
+                    data-bs-toggle="modal"
+                    data-bs-target="#loginModal"
+                    >open account</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </nav>
       <div class="header-title">
@@ -46,6 +101,66 @@
         </div>
       </div>
     </header>
+    <div
+      class="modal fade"
+      id="loginModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header border-0">
+            <button
+              type="button"
+              class="btn-close fs-2"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body d-flex justify-content-center flex-column">
+            <h1 class="modal-title mb-5" id="exampleModalLabel">
+              Open your bank account in just 5 minutes
+            </h1>
+            <form class="inputs">
+              <div class="mb-3 d-flex flex-wrap align-items-center">
+                <label for="firstName" class="form-label text-uppercase"
+                  >first name</label
+                >
+                <input type="text" class="form-control" id="firstName" />
+              </div>
+
+              <div class="mb-3 d-flex flex-wrap align-items-center">
+                <label for="lastName" class="form-label text-uppercase"
+                  >last name</label
+                >
+                <input type="text" class="form-control" id="lastName" />
+              </div>
+
+              <div class="mb-3 d-flex flex-wrap align-items-center mb-5">
+                <label for="emailAddy" class="form-label text-uppercase"
+                  >Email address</label
+                >
+                <input
+                  type="email"
+                  class="form-control"
+                  id="emailAddy"
+                  aria-describedby="emailHelp"
+                />
+              </div>
+              <div class="next text-center">
+                <button
+                  type="submit"
+                  class="btn btn-outline-success text-uppercase fw-bold p-3 rounded"
+                >
+                  next step <i class="bi bi-arrow-right-short"></i>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
     <section class="section section1"></section>
     <section class="section section2"></section>
     <section class="section section3"></section>
