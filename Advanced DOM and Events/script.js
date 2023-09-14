@@ -1,1 +1,178 @@
 "use strict";
+// ELEMENT SELECTION
+
+// MISC
+const htmlDoc = document.querySelector("html");
+
+// NAVBAR
+const navbarEl = document.querySelector(".navbar");
+
+// SECTIONS
+const section2El = document.getElementById("section2");
+
+// HERO SECTION:
+const scrollBtnHero = document.querySelector(".hero-btn-scroll");
+
+//
+//**************************************************************************************************************************//
+// TASK - enable smooth scrolling
+//
+
+// get the required padding from scrolling, due to fixed navbar height, task handled in html/css
+htmlDoc.style.scrollPaddingTop = getComputedStyle(navbarEl).height;
+
+// // strictly JS method
+// scrollBtnHero.addEventListener("click", (e) => {
+// // OLD WAY
+//   const s2coords = section2El.getBoundingClientRect();
+//   console.log(s2coords);
+
+//   console.log(e.target.getBoundingClientRect());
+//   console.log("Current scroll (X/Y)", window.pageXOffset, window.pageYOffset);
+
+//   console.log(
+//     "height/width viewport",
+//     document.documentElement.clientHeight,
+//     document.documentElement.clientWidth
+//   );
+
+//   //   window.scrollTo(
+//   //     s2coords.left + window.pageXOffset,
+//   //     s2coords.top + window.pageYOffset
+//   //   );
+
+//   window.scrollTo({
+//     left: s2coords.left + window.pageXOffset,
+//     top: s2coords.top + window.pageYOffset,
+//     behavior: "smooth",
+//   });
+
+// // NEW WAY
+//   section2El.scrollIntoView({ behavior: "smooth" });
+// });
+//
+//**************************************************************************************************************************//
+// LESSON - How the DOM works
+//
+
+// The DOM is the interface between JS and the browser. It determines how HTML files are rendered.
+// It is a very complex API that contains a lot of methods and propeties to interact with the document tree
+
+// The DOM tree is a collection of elements and node elements
+// A Node is represented by a Javascript Object (which gets node methods: .textContent .childNodes .parentNode .cloneNode())
+
+// Nodes have children :
+// Element type - > <p>***</p>
+//      .innerHTML .classList .children .parentElement .append() etc.
+//      Element types have a child type. Each element has exactly one type for each child element that exists (a Button type, a link type etc.: HTMLButtonElemen, HTMLDivElement)
+//      For example, an image type has a source attribute that no other element type has. The same for an anchor element and so on.
+
+// Text type -> <p>Some text</p>
+// Comment type -> <!-- Some HTML comment -->
+
+// Document type -> .querySelector(), .createElement(), .getElementByID();
+//      Event listeners work because there is a special node type called EventTarget which is a parent of both the node type and the Window (GLOBAL OBJECTS) node type
+
+// All of this works as such due to INHERITANCE.
+// Inheritance means that all child types get access to methods and properties of all their parent node types.
+// An HTML element  will get access to everything from the element type, like .innerHTML or .classList() and will also get access to anything from the node type because that is also its parent type
+
+//
+//**************************************************************************************************************************//
+// LESSON - Selecting, creating and deleting documents
+//
+
+// // SELECTING ELEMENTS
+
+// // selecting the entire document, head and body
+// console.log(document.documentElement);
+// console.log(document.head);
+// console.log(document.body);
+
+// // selecting elements
+// console.log(document.querySelector(".modal"));
+// console.log(document.getElementById("section1"));
+// const section1Demo = document.getElementById("section1");
+
+// // selecting a node list
+// const allSections = document.querySelectorAll(".section");
+// console.log(allSections);
+
+// // returns an HTML collection (live collection - it's updated automatically and imediately if the DOM changes)
+// console.log(document.getElementsByTagName("button"));
+// console.log(document.getElementsByClassName("section"));
+
+// // CREATING AND INSERTING ELEMENTS
+
+// // .insertAdjecentHTML() - see bankist app
+
+// const message = document.createElement("div");
+// message.classList.add("section-title");
+// // message.textContent = "We use cookies for improved functionality and analytics.";
+// message.innerHTML = `We use cookies for improved functionality and analytics. <button class="btn btn-info deletable" style="background-color:var(--testColor)">OK</button>`;
+// section1Demo.prepend(message);
+// // section1Demo.append(message);
+// section1Demo.after(message);
+
+// // Delete elements
+// document.querySelector(".deletable").addEventListener("click", () => {
+//   message.remove();
+// });
+
+//
+//**************************************************************************************************************************//
+// LESSON - Styles, Attributes and Classes
+//
+
+// // STYLES
+// // set styles
+// message.style.backgroundColor = "#37383d";
+// message.style.width = "120%";
+
+// // reading styles
+// // Only works for inline styling, not class set styling
+// console.log(message.style.height);
+// console.log(message.style.width);
+// const section2Demo = document.getElementById("section2");
+// // console.log(section2Demo);
+// // console.log(section2Demo.style.height);
+
+// // reading styles from classes
+// console.log(getComputedStyle(section2Demo).height);
+// // change style
+// section2Demo.style.height =
+//   Number.parseFloat(getComputedStyle(section2Demo).height, 10) + 100 + "px";
+// console.log(getComputedStyle(section2Demo).height);
+
+// // for custom properties
+// document.documentElement.style.setProperty("--testColor", "orangered");
+
+// // ATTRIBUTES
+// const logo = document.querySelector(".bankist-logo");
+// console.log(logo.alt);
+
+// // absolute path and get att value (relative path); same for href
+// console.log(logo.src);
+// console.log(logo.getAttribute("src"));
+
+// console.log(logo.className);
+
+// console.log(logo.designer); // <-won't work for non-standard attributes
+// console.log(logo.getAttribute("designer")); // how to access non-standard attributes values
+
+// // setting attributes
+// logo.alt = "Alt value changed";
+// console.log(logo.alt);
+// logo.setAttribute("company", "Bankist");
+
+// // DATA ATTRIBUTES
+// console.log(logo.dataset.versionNumber);
+
+// // CLASSES
+// logo.classList.add("c", "j");
+// logo.classList.remove("c");
+// logo.classList.toggle("c");
+// logo.classList.contains("c");
+
+// // will overwrite all existing classes
+// // logo.className = "example";

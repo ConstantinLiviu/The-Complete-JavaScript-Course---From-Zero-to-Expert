@@ -3,6 +3,7 @@
 /* Common */
 html {
   font-size: 62.5%;
+  scroll-behavior: smooth;
 }
 
 .main-page-btn:hover {
@@ -132,7 +133,6 @@ img {
 }
 
 #section2 p {
-  margin-bottom: 5rem;
   font-size: 2rem;
 }
 
