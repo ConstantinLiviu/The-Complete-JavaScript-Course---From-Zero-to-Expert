@@ -282,3 +282,35 @@ htmlDoc.style.scrollPaddingTop = getComputedStyle(navbarEl).height;
 //   }
 //   //   true
 // );
+
+//
+//**************************************************************************************************************************//
+// LESSON - DOM Traversing
+//
+
+// const h1 = document.querySelector(".hero h1");
+
+// // Going downwards: child
+// console.log(h1.querySelectorAll(".highlight"));
+// console.log(h1.children);
+// console.log(h1.firstElementChild);
+// h1.firstElementChild.style.backgroundColor = "red";
+// h1.lastElementChild.style.backgroundColor = "orange";
+
+// // Going upwards: parent
+// console.log(h1.parentNode);
+// console.log(h1.parentElement);
+// h1.closest("div").style.backgroundColor = "blue";
+// // closest is the opposite of querySelector
+
+// // Going Sideways: siblings
+// console.log(h1.previousElementSibling);
+// console.log(h1.nextElementSibling);
+
+// console.log(h1.previousSibling);
+// console.log(h1.nextSibling);
+
+// console.log(h1.parentElement.children);
+// [...h1.parentElement.children].forEach((el) => {
+//   if (el !== h1) el.style.transform = "scale(0.5)";
+// });
