@@ -141,6 +141,15 @@ img {
   font-weight: 600;
 }
 
+/* S3 */
+.tabbed-btns {
+  height: 3rem;
+}
+
+.tabbed-btn {
+  top: -50%;
+}
+
 /* Mobile */
 @media (min-width: 576px) {
 }
