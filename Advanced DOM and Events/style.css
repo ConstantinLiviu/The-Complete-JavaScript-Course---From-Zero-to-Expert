@@ -172,17 +172,21 @@ img {
 }
 
 .tabbed-btn {
-  padding: 1rem 3rem;
+  /* padding: 1rem 3rem; */
+  padding: 0 2rem;
   font-size: 1.6rem;
   transition: all 0.4s ease-in-out;
 }
 
-.tabbed-btn:active {
+.tabbed-btn.active {
   transform: translateX(100%);
 }
 
 /* Mobile */
 @media (min-width: 576px) {
+  .tabbed-btn {
+    padding: 1rem 3rem;
+  }
 }
 
 @media (min-width: 768px) {
@@ -223,7 +227,7 @@ img {
     transform: translateY(-50%);
   }
 
-  .tabbed-btn:active {
+  .tabbed-btn.active {
     transform: translate(0, -60%);
   }
 }
