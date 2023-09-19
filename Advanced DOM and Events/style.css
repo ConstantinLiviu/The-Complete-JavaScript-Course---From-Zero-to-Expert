@@ -145,8 +145,25 @@ img {
 #section3 .container {
   padding: 0 4rem;
 }
+
 #section3 h2 {
   color: var(--green7d);
+}
+
+#section3 .section-text h3 {
+  font-size: 3rem;
+}
+
+#section3 .section-text p {
+  font-size: 1.6rem;
+}
+
+#section3 .container div:last-child {
+  border-radius: 1rem;
+}
+
+#section3 .container .row:first-child {
+  margin-bottom: 5rem;
 }
 
 .tabbed-btns-container {
@@ -157,7 +174,6 @@ img {
 .tabbed-btn {
   padding: 1rem 3rem;
   font-size: 1.6rem;
-  width: 50%;
   transition: all 0.4s ease-in-out;
 }
 
@@ -193,6 +209,14 @@ img {
 
   .hero img {
     height: 45rem;
+  }
+
+  #section3 .container {
+    padding: 0 2rem;
+  }
+
+  .tabbed-btns-container {
+    border-bottom: none;
   }
 
   .tabbed-btn {
