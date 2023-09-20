@@ -1,4 +1,27 @@
 "use strict";
+
+// TABBED CONTENT TEXT
+const tabbedContentText = [
+  [
+    "img/icons.svg#icon-upload",
+    "Tranfser money to anyone, instantly! No fees, no BS.",
+    "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    "bg-warning",
+  ],
+  [
+    "img/icons.svg#icon-home",
+    "Buy a home or make your dreams come true, with instant loans.",
+    "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    "bg-success",
+  ],
+  [
+    "img/icons.svg#icon-user-x",
+    "No longer need your account? No problem! Close it instantly.",
+    "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    "bg-danger",
+  ],
+];
+
 // ELEMENT SELECTION
 
 // MISC
@@ -17,6 +40,13 @@ const section4El = document.getElementById("section4");
 
 // HERO SECTION:
 const scrollBtnHero = document.querySelector(".hero-btn-scroll");
+
+// OPERATIONS SECTION
+const operationsBtnsCnt = document.querySelector(".tabbed-btns-container");
+const operationsBtns = document.querySelectorAll(".tabbed-btn");
+const operationsIconContEl = document.querySelector("#section3 .feature-icon");
+const tabbedTitleEl = document.querySelector("#section3 .section-text h3");
+const tabbedTextEl = document.querySelector("#section3 .section-text p");
 
 //
 //**************************************************************************************************************************//
@@ -90,6 +120,37 @@ htmlDoc.style.scrollPaddingTop = getComputedStyle(navbarEl).height;
 //   }
 // });
 
+//
+//**************************************************************************************************************************//
+// TASK - Tabbed components
+//
+
+operationsBtnsCnt.addEventListener("click", (e) => {
+  // determine click trigger
+  const clicked = e.target;
+  // prevent out of bounds click (guard clause)
+  if (!clicked) return;
+  // get index of clicked element
+  let i = [...operationsBtnsCnt.children].indexOf(clicked);
+
+  operationsBtns.forEach((el) => {
+    el.classList.remove("active");
+  });
+
+  clicked.classList.add("active");
+
+  //   filter to remove preset class
+  let removableClass = [...operationsIconContEl.classList].filter((el) =>
+    el.startsWith("bg")
+  );
+  operationsIconContEl.classList.remove(removableClass);
+  operationsIconContEl.classList.add(tabbedContentText[i][3]);
+  tabbedTitleEl.textContent = tabbedContentText[i][1];
+  tabbedTextEl.textContent = tabbedContentText[i][2];
+  operationsIconContEl
+    .querySelector("svg use")
+    .setAttribute("xlink:href", tabbedContentText[i][0]);
+});
 //
 //**************************************************************************************************************************//
 // LESSON - How the DOM works
