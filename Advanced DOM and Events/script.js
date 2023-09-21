@@ -29,8 +29,10 @@ const htmlDoc = document.querySelector("html");
 
 // NAVBAR
 const navbarEl = document.querySelector(".navbar");
+const navbarElsCnt = document.querySelector(".navbar .container-fluid");
 const navLinksListEl = document.querySelector(".navbar-nav");
 const navLinksEls = document.querySelectorAll(".nav-link");
+const navbarLogoEl = document.querySelector(".bankist-logo");
 
 // SECTIONS
 const section1El = document.getElementById("section1");
@@ -151,6 +153,7 @@ operationsBtnsCnt.addEventListener("click", (e) => {
     .querySelector("svg use")
     .setAttribute("xlink:href", tabbedContentText[i][0]);
 });
+
 //
 //**************************************************************************************************************************//
 // LESSON - How the DOM works
@@ -375,3 +378,70 @@ operationsBtnsCnt.addEventListener("click", (e) => {
 // [...h1.parentElement.children].forEach((el) => {
 //   if (el !== h1) el.style.transform = "scale(0.5)";
 // });
+
+//
+//**************************************************************************************************************************//
+// // LESSON - Passing Arguments to Event Handlers
+// //
+
+// // first method function
+// // const handleHover = function (event, opacity) {
+// //   if (event.target.classList.contains("nav-link")) {
+// //     const link = event.target;
+
+// //     navbarLogoEl.style.opacity = opacity;
+// //     navLinksEls.forEach((el) => {
+// //       if (el !== link) {
+// //         el.style.opacity = opacity;
+// //       }
+// //     });
+// //   }
+// // };
+
+// // second method function
+// // const handleHover = function (event) {
+// //   if (event.target.classList.contains("nav-link")) {
+// //     const link = event.target;
+
+// //     navbarLogoEl.style.opacity = this;
+// //     navLinksEls.forEach((el) => {
+// //       if (el !== link) {
+// //         el.style.opacity = this;
+// //       }
+// //     });
+// //   }
+// // };
+
+// // third method function
+// const handleHover = function (opacity) {
+//   return function (e) {
+//     if (e.target.classList.contains("nav-link")) {
+//       const link = e.target;
+
+//       navbarLogoEl.style.opacity = opacity;
+//       navLinksEls.forEach((el) => {
+//         if (el !== link) {
+//           el.style.opacity = opacity;
+//         }
+//       });
+//     }
+//   };
+// };
+
+// // First method
+// // navbarElsCnt.addEventListener("mouseover", function (e) {
+// //   handleHover(e, 0.5);
+// // });
+
+// // navbarElsCnt.addEventListener("mouseout", function (e) {
+// //   handleHover(e, 1);
+// // });
+
+// // Second method
+// // navbarElsCnt.addEventListener("mouseover", handleHover.bind(0.5));
+
+// // navbarElsCnt.addEventListener("mouseout", handleHover.bind(1));
+
+// //Third method
+// navbarElsCnt.addEventListener("mouseover", handleHover(0.5));
+// navbarElsCnt.addEventListener("mouseout", handleHover(1));
