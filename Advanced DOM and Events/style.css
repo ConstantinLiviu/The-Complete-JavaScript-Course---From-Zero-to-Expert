@@ -21,6 +21,14 @@ img {
   border-radius: 1rem;
 }
 
+/* part of the sticky navigation/intersection observer lesson. Not used in final project */
+/* .sticky {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 99;
+} */
+
 /************************************************HEADER*********************************************************************/
 /* NAV */
 
@@ -74,6 +82,12 @@ img {
 .section {
   padding: 8rem 0;
   border-bottom: 1px solid var(--grayd3);
+  transition: transform 1s, opacity 1s;
+}
+
+.section-hidden {
+  opacity: 0;
+  transform: translateY(8rem);
 }
 
 .feature-column {
@@ -197,7 +211,7 @@ img {
 /* Tablet */
 @media (min-width: 992px) {
   header {
-    margin-bottom: 20rem;
+    margin-bottom: 5rem;
   }
 
   .section {

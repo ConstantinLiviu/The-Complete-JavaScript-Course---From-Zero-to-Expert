@@ -35,6 +35,7 @@ const navLinksEls = document.querySelectorAll(".nav-link");
 const navbarLogoEl = document.querySelector(".bankist-logo");
 
 // SECTIONS
+const allSections = document.querySelectorAll(".section");
 const section1El = document.getElementById("section1");
 const section2El = document.getElementById("section2");
 const section3El = document.getElementById("section3");
@@ -152,6 +153,33 @@ operationsBtnsCnt.addEventListener("click", (e) => {
   operationsIconContEl
     .querySelector("svg use")
     .setAttribute("xlink:href", tabbedContentText[i][0]);
+});
+
+//
+//**************************************************************************************************************************//
+//  TASK- Revealing Elements on Scroll
+//
+const revealSection = function (entries, observer) {
+  const [entry] = entries;
+  console.log(entry);
+
+  if (!entry.isIntersecting) return;
+  entry.target.classList.remove("section-hidden");
+
+  //   unobserving els
+  observer.unobserve(entry.target);
+};
+
+const sectionObserver = new IntersectionObserver(revealSection, {
+  root: null,
+  threshold: 0.15,
+});
+
+allSections.forEach((section, i) => {
+  if (i !== 0) {
+    section.classList.add("section-hidden");
+  }
+  sectionObserver.observe(section);
 });
 
 //
@@ -445,3 +473,44 @@ operationsBtnsCnt.addEventListener("click", (e) => {
 // //Third method
 // navbarElsCnt.addEventListener("mouseover", handleHover(0.5));
 // navbarElsCnt.addEventListener("mouseout", handleHover(1));
+
+//
+//**************************************************************************************************************************//
+//  LESSON - Sticky Navigation: The Scroll Event
+//
+
+// const initialCoords = section1El.getBoundingClientRect();
+// console.log(initialCoords);
+
+// window.addEventListener("scroll", function () {
+//   console.log(window.scrollY);
+
+//   if (window.scrollY > initialCoords.bottom) {
+//     navbarEl.classList.add("sticky");
+//   } else {
+//     navbarEl.classList.remove("sticky");
+//   }
+// });
+
+//
+//**************************************************************************************************************************//
+//  LESSON - The Intersection observer API
+//
+
+// entries = array of threshold entries
+// const observerCallback = function (entries, observer) {
+//   entries.forEach((entry) => {
+//     console.log(entry);
+//   });
+// };
+
+// const observerOptions = {
+//   // the element the target is intercepting
+//   root: null,
+//   // the percentage of intersection at which the callback will be called
+//   threshold: [0, 0.2],
+// };
+
+// const observer = new IntersectionObserver(observerCallback, observerOptions);
+// const sections = document.querySelectorAll(".section");
+// observer.observe(section2El);
