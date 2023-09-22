@@ -26,6 +26,7 @@ const tabbedContentText = [
 
 // MISC
 const htmlDoc = document.querySelector("html");
+const targetImgs = document.querySelectorAll("img[data-src]");
 
 // NAVBAR
 const navbarEl = document.querySelector(".navbar");
@@ -157,11 +158,10 @@ operationsBtnsCnt.addEventListener("click", (e) => {
 
 //
 //**************************************************************************************************************************//
-//  TASK- Revealing Elements on Scroll
+//  TASK - Revealing Elements on Scroll
 //
 const revealSection = function (entries, observer) {
   const [entry] = entries;
-  console.log(entry);
 
   if (!entry.isIntersecting) return;
   entry.target.classList.remove("section-hidden");
@@ -182,6 +182,34 @@ allSections.forEach((section, i) => {
   sectionObserver.observe(section);
 });
 
+//
+//**************************************************************************************************************************//
+//  TASK - Lazy Loading Images
+//
+const unblurImg = function (entries, observer) {
+  const [entry] = entries;
+
+  if (!entry.isIntersecting) return;
+
+  // Replace src with data-src
+  entry.target.src = entry.target.dataset.src;
+
+  entry.target.addEventListener("load", () => {
+    entry.target.classList.remove("lazy-img");
+  });
+
+  observer.unobserve(entry.target);
+};
+
+const imgObserver = new IntersectionObserver(unblurImg, {
+  root: null,
+  threshold: 0,
+  rootMargin: "200px",
+});
+
+targetImgs.forEach((img) => {
+  imgObserver.observe(img);
+});
 //
 //**************************************************************************************************************************//
 // LESSON - How the DOM works

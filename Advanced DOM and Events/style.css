@@ -21,6 +21,14 @@ img {
   border-radius: 1rem;
 }
 
+.lazy-img {
+  filter: blur(1rem);
+}
+
+header {
+  margin-bottom: 10rem;
+}
+
 /* part of the sticky navigation/intersection observer lesson. Not used in final project */
 /* .sticky {
   position: fixed;
@@ -137,6 +145,10 @@ img {
   font-size: 4rem;
 }
 
+#section1 {
+  padding-bottom: 20rem;
+}
+
 #section2 h2 {
   font-weight: 600;
   color: var(--green7d);
@@ -210,10 +222,6 @@ img {
 /* ************************************************************* */
 /* Tablet */
 @media (min-width: 992px) {
-  header {
-    margin-bottom: 5rem;
-  }
-
   .section {
     padding: 15rem 0;
   }
