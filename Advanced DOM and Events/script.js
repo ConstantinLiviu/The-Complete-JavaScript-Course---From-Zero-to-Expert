@@ -59,6 +59,11 @@ const tabbedTextEl = document.querySelector("#section3 .section-text p");
 // let currSlide = 0;
 
 // const dotsEl = document.querySelector(".dots");
+
+// COOKIES
+const cookiesEl = document.querySelector(".cookies");
+const cookiesBtnEl = document.querySelector(".cookies button");
+
 //
 //**************************************************************************************************************************//
 // TASK - enable smooth scrolling
@@ -299,6 +304,15 @@ targetImgs.forEach((img) => {
 //     switchSlides(slide);
 //   }
 // });
+
+//
+//**************************************************************************************************************************//
+//  TASK - Cookies
+//
+
+cookiesBtnEl.addEventListener("click", () => {
+  cookiesEl.style.visibility = "hidden";
+});
 
 //
 //**************************************************************************************************************************//
