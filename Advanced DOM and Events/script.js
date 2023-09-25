@@ -52,13 +52,13 @@ const operationsIconContEl = document.querySelector("#section3 .feature-icon");
 const tabbedTitleEl = document.querySelector("#section3 .section-text h3");
 const tabbedTextEl = document.querySelector("#section3 .section-text p");
 
-// TESTIMONIALS
-const slidersEls = document.querySelectorAll(".sl");
-const btnRight = document.querySelector(".slider__btn--right");
-const btnLeft = document.querySelector(".slider__btn--left");
-let currSlide = 0;
+// // TESTIMONIALS
+// const slidersEls = document.querySelectorAll(".sl");
+// const btnRight = document.querySelector(".slider__btn--right");
+// const btnLeft = document.querySelector(".slider__btn--left");
+// let currSlide = 0;
 
-const dotsEl = document.querySelector(".dots");
+// const dotsEl = document.querySelector(".dots");
 //
 //**************************************************************************************************************************//
 // TASK - enable smooth scrolling
@@ -223,82 +223,82 @@ targetImgs.forEach((img) => {
 //  TASK - Slider component
 //
 
-const createDots = function () {
-  slidersEls.forEach((_, i) => {
-    if (i === 0) {
-      dotsEl.insertAdjacentHTML(
-        "beforeend",
-        `<button class="dots__dot dots__dot--active" data-slide="${i}"></button>`
-      );
-    } else {
-      dotsEl.insertAdjacentHTML(
-        "beforeend",
-        `<button class="dots__dot" data-slide="${i}"></button>`
-      );
-    }
-  });
-};
+// const createDots = function () {
+//   slidersEls.forEach((_, i) => {
+//     if (i === 0) {
+//       dotsEl.insertAdjacentHTML(
+//         "beforeend",
+//         `<button class="dots__dot dots__dot--active" data-slide="${i}"></button>`
+//       );
+//     } else {
+//       dotsEl.insertAdjacentHTML(
+//         "beforeend",
+//         `<button class="dots__dot" data-slide="${i}"></button>`
+//       );
+//     }
+//   });
+// };
 
-createDots();
+// createDots();
 
-const activateDot = function (slide) {
-  document.querySelectorAll(".dots__dot").forEach((dot) => {
-    dot.classList.remove("dots__dot--active");
-  });
+// const activateDot = function (slide) {
+//   document.querySelectorAll(".dots__dot").forEach((dot) => {
+//     dot.classList.remove("dots__dot--active");
+//   });
 
-  document
-    .querySelector(`.dots__dot[data-slide="${slide}"]`)
-    .classList.add("dots__dot--active");
-};
+//   document
+//     .querySelector(`.dots__dot[data-slide="${slide}"]`)
+//     .classList.add("dots__dot--active");
+// };
 
-const switchSlides = function (crrslide) {
-  slidersEls.forEach((slide, i) => {
-    slide.style.transform = `translateX(${(i - crrslide) * 100}%)`;
-  });
-  activateDot(crrslide);
-};
+// const switchSlides = function (crrslide) {
+//   slidersEls.forEach((slide, i) => {
+//     slide.style.transform = `translateX(${(i - crrslide) * 100}%)`;
+//   });
+//   activateDot(crrslide);
+// };
 
-switchSlides(currSlide);
+// switchSlides(currSlide);
 
-const nextSlide = function () {
-  if (currSlide >= slidersEls.length - 1) {
-    currSlide = 0;
-  } else {
-    currSlide++;
-  }
-  switchSlides(currSlide);
-};
+// const nextSlide = function () {
+//   if (currSlide >= slidersEls.length - 1) {
+//     currSlide = 0;
+//   } else {
+//     currSlide++;
+//   }
+//   switchSlides(currSlide);
+// };
 
-const prevSlide = function () {
-  if (currSlide === 0) {
-    currSlide = slidersEls.length - 1;
-  } else {
-    currSlide--;
-  }
-  switchSlides(currSlide);
-};
+// const prevSlide = function () {
+//   if (currSlide === 0) {
+//     currSlide = slidersEls.length - 1;
+//   } else {
+//     currSlide--;
+//   }
+//   switchSlides(currSlide);
+// };
 
-btnRight.addEventListener("click", () => {
-  nextSlide();
-});
+// btnRight.addEventListener("click", () => {
+//   nextSlide();
+// });
 
-btnLeft.addEventListener("click", () => {
-  prevSlide();
-});
+// btnLeft.addEventListener("click", () => {
+//   prevSlide();
+// });
 
-document.addEventListener("keydown", (e) => {
-  if (e.key === "ArrowRight") nextSlide();
-  if (e.key === "ArrowLeft") prevSlide();
-});
+// document.addEventListener("keydown", (e) => {
+//   if (e.key === "ArrowRight") nextSlide();
+//   if (e.key === "ArrowLeft") prevSlide();
+// });
 
-// DOTS
+// // DOTS
 
-dotsEl.addEventListener("click", (e) => {
-  if (e.target.classList.contains("dots__dot")) {
-    const slide = e.target.dataset.slide;
-    switchSlides(slide);
-  }
-});
+// dotsEl.addEventListener("click", (e) => {
+//   if (e.target.classList.contains("dots__dot")) {
+//     const slide = e.target.dataset.slide;
+//     switchSlides(slide);
+//   }
+// });
 
 //
 //**************************************************************************************************************************//
@@ -632,3 +632,50 @@ dotsEl.addEventListener("click", (e) => {
 // const observer = new IntersectionObserver(observerCallback, observerOptions);
 // const sections = document.querySelectorAll(".section");
 // observer.observe(section2El);
+
+//
+//**************************************************************************************************************************//
+//  LESSON - Lifecycle DOM Events
+//
+
+// DOM CONTENT LOADED
+// - the event is fired once all files are parsed (html/scripts executed);
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("html parsed and dom built");
+});
+
+// LOAD EVENT
+// - fired when a complete page has finished loading
+window.addEventListener("load", (e) => {
+  console.log("Page loded", e);
+});
+
+// // BEFOREUNLOAD EVENT
+// window.addEventListener("beforeunload", (e) => {
+//   e.preventDefault();
+//   console.log(e);
+//   // display leaving confirmation;
+//   e.returnValue = "";
+// });
+
+//
+//**************************************************************************************************************************//
+//  LESSON - Efficient Script Loading: defer and async
+//
+
+// There are 3 ways of loading a page:
+// 1. END OF BODY SCRIPT
+// - scripts are fetched and executed after the HTML is completely parsed
+// - useful if you need to support old browsers
+
+// 2. ASYNC IN HEAD
+// - scripts are fetched asynchronously and immediately
+// - usually the DOMContentLoaded event waits for all scripts to execute, except for async scripts. So, DOMContentLoaded does not waut for an async script
+// - scripts are not guaranteed to execute in order
+// - useful for 3rd party scripts, when order doesn't matter (e.g. Google Analytics)
+
+// 3. DEFER IN HEAD
+// - scripts are fetched asynchronously and executed after the HTML is completely parsed
+// - DOMContentLoaded event fires after defer script is executed
+// - scripts are executed in order
+// - this is overall the best solution! Useful when order matters (e.g. including a library)
