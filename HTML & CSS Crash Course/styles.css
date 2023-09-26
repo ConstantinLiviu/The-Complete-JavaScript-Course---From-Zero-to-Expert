@@ -91,6 +91,10 @@ small {
   font-weight: 600;
 }
 
+.main-page-btn {
+  padding-bottom: 3px;
+}
+
 .main-page-btn:hover {
   color: white;
 }
