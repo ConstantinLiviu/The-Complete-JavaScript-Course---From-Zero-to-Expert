@@ -1,33 +1,7 @@
 @import "/css/variables.css";
+@import "/css/common.css";
 
 /* Common */
-html {
-  font-size: 62.5%;
-}
-
-.main-page-btn {
-  top: 0;
-  right: 2rem;
-  margin-top: 2rem;
-  margin-left: auto;
-  margin-bottom: 2rem;
-  font-size: 1.6rem;
-  color: var(--purple97);
-  z-index: 99;
-}
-
-.main-page-btn:hover {
-  color: var(--white);
-}
-
-.taskVariable {
-  color: var(--orangeff);
-  font-style: italic;
-}
-
-.challenges .row {
-  border-radius: 1rem;
-}
 
 pre {
   font-size: 1.2rem;
@@ -42,24 +16,12 @@ pre {
 }
 
 .input-group span,
-.input-group input,
 .input-group select {
   font-size: 1.4rem;
 }
 
-.input-group input::-webkit-outer-spin-button,
-.input-group input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
 .input-group input::placeholder {
   font-style: italic;
-}
-
-.input-group input[type="number"] {
-  -moz-appearance: textfield;
-  appearance: textfield;
 }
 
 .input-group .dog-weight,
@@ -74,10 +36,6 @@ pre {
 .challenge3-add-dog-btn,
 .challenge3-remove-dog-btn {
   font-size: 1.4rem;
-}
-
-body {
-  background: linear-gradient(to top left, var(--green28), var(--green7d));
 }
 
 /* Mobile */

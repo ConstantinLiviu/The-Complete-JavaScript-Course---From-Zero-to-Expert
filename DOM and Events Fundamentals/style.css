@@ -1,28 +1,7 @@
 @import "/css/variables.css";
+@import "/css/common.css";
 
 /* Common */
-html {
-  font-size: 62.5%;
-}
-
-body {
-  background: linear-gradient(to top left, var(--green28), var(--green7d));
-}
-
-.main-page-btn {
-  top: 0;
-  right: 2rem;
-  margin-top: 2rem;
-  margin-left: auto;
-  margin-bottom: 2rem;
-  font-size: 1.6rem;
-  color: var(--purple97);
-  z-index: 99;
-}
-
-.main-page-btn:hover {
-  color: var(--white);
-}
 
 .header button,
 .guess button {
@@ -55,7 +34,7 @@ body {
   margin: 0 auto;
   color: var(--gray1f);
   font-size: 5rem;
-  background-color: white;
+  background-color: var(--white);
   padding: 1rem;
 }
 
@@ -69,13 +48,13 @@ body {
 
 @keyframes win {
   0% {
-    background-color: #212529;
+    background-color: var(--black21);
   }
   50% {
-    background-color: #55aa3e;
+    background-color: var(--green55);
   }
   100% {
-    background-color: #212529;
+    background-color: var(--black21);
   }
 }
 
@@ -149,7 +128,11 @@ body {
 
 /* PIG GAME */
 .challenge-pig-game {
-  background: linear-gradient(to top left, #753682 0%, #bf2e34 100%);
+  background: linear-gradient(
+    to top left,
+    var(--purple75) 0%,
+    var(--redbf) 100%
+  );
 }
 
 .game-container {
@@ -167,7 +150,7 @@ body {
 }
 
 .player h1 {
-  color: #b93d60;
+  color: var(--pinkb9);
 }
 
 .player.current-player h1 {
@@ -197,21 +180,21 @@ body {
   font-size: 3rem;
 }
 .current-player .total-score {
-  color: #ff5484;
+  color: var(--pinkff);
 }
 .current-player .current-score-container {
-  background: #ff5484;
+  background: var(--pinkff);
 }
 
 .total-score {
   font-size: 6rem;
-  color: #c7365f;
+  color: var(--pinkc7);
   margin-bottom: 5rem;
 }
 .current-score-container {
   font-size: 2rem;
   color: var(--white);
-  background: #b93d60;
+  background: var(--pinkb9);
   width: 30%;
   margin: 0 auto;
   border-radius: 1rem;

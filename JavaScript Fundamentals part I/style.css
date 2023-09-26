@@ -1,39 +1,5 @@
 @import "/css/variables.css";
-
-/* Common */
-html {
-  font-size: 62.5%;
-}
-
-body {
-  background: linear-gradient(to top left, var(--green28), var(--green7d));
-}
-
-/* TASK DIV */
-.taskVariable {
-  color: var(--orangeff);
-  font-style: italic;
-}
-
-.main-page-btn {
-  top: 2rem;
-  right: 2rem;
-  margin-left: auto;
-  font-size: 1.6rem;
-  color: var(--purple97);
-}
-
-.main-page-btn:hover {
-  color: var(--white);
-}
-
-.row {
-  border-radius: 1rem;
-}
-
-.task p {
-  font-size: 1.6rem;
-}
+@import "/css/common.css";
 
 /* SOLUTION DIV */
 
@@ -44,31 +10,6 @@ body {
 .input-group label {
   width: 100%;
   font-size: 1.6rem;
-}
-
-.input-group-text,
-.input-group input {
-  font-size: 1.4rem;
-}
-
-.input-group input::-webkit-outer-spin-button,
-.input-group input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-.input-group input[type="number"] {
-  -moz-appearance: textfield;
-  appearance: textfield;
-}
-
-.form-control::placeholder {
-  font-style: italic;
-  opacity: 0.5;
-}
-
-.results p {
-  font-size: 1.5rem;
 }
 
 .mark-BMI-value,
