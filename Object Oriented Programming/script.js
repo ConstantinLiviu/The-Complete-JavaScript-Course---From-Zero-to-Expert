@@ -7,6 +7,31 @@
 
 // TASK - Use a constructor function to implement a Car. A car has a make and a speed property. The speed property is the current speed of the car in km/h;
 
+const Car = function (make, speed) {
+  this.make = make;
+  this.speed = speed;
+};
+
+const dacia = new Car("Dacia", 90);
+const ford = new Car("Ford", 140);
+
+// TASK - Implement an 'accelerate' method that will increase the car's speed by 10, and log the new speed to the console;
+
+Car.prototype.accelerate = function () {
+  return (this.speed += 10);
+};
+
+console.log(dacia.accelerate());
+console.log(ford.accelerate());
+
+// TASK - Implement a 'brake' method that will decrease the car's speed by 5, and log the new speed to the console;
+
+Car.prototype.brake = function () {
+  console.log(this.speed - 5);
+};
+
+dacia.brake();
+ford.brake();
 //
 // *******************************************************************************************************************//
 // LESSON - What is OOP?

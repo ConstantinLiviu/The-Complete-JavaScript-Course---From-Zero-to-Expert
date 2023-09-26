@@ -40,17 +40,17 @@
             <span class="taskVariable">Car</span>. A car has a
             <span class="taskVariable">make</span> and a
             <span class="taskVariable">speed</span> property. The speed property
-            is the current speed of the car in km/h;
+            is the current speed of the car in km/h.
           </p>
           <p>
             Implement an <span class="taskVariable">'accelerate'</span> method
             that will increase the car's speed by 10, and log the new speed to
-            the console;
+            the console.
           </p>
           <p>
             Implement a <span class="taskVariable">'brake'</span> method that
             will decrease the car's speed by 5, and log the new speed to the
-            console;
+            console.
           </p>
           <p class="border-bottom border-dark pb-3">
             Create <span class="taskVariable">2 car objects</span> and
@@ -82,7 +82,7 @@
           </div>
           <div class="input-group mb-3">
             <label class="w-100 mb-2">Car 2</label>
-            <span class="input-group-text">make and speed</span>
+            <span class="input-group-text">Make and speed</span>
             <input
               type="text"
               class="form-control car2-make"
@@ -96,19 +96,21 @@
             />
           </div>
           <button class="mb-2 btn btn-primary submit-btn">Submit</button>
+          <button class="mb-2 btn btn-outline-success acc1">
+            Accelerate C1
+          </button>
+          <button class="mb-2 btn btn-outline-danger br1">Break C1</button>
+          <button class="mb-2 btn btn-outline-success acc2">
+            Accelerate C2
+          </button>
+          <button class="mb-2 btn btn-outline-danger br1">Break C2</button>
           <!-- <p class="error-msg text-danger">
             * One or more required field were left empty. Please input all
             required info
           </p> -->
           <div class="results invisible">
-            <p>
-              <span class="car1"></span> going at
-              <span class="car1speed"></span> km/h
-            </p>
-            <p>
-              <span class="car2"></span> going at
-              <span class="car2speed"></span> km/h
-            </p>
+            <p class="car1result">&nbsp;</p>
+            <p class="car2result">&nbsp;</p>
           </div>
         </div>
       </div>

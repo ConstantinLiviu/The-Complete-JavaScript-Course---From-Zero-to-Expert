@@ -4,7 +4,11 @@
 /* Common */
 
 .input-group label,
-.submit-btn {
+.submit-btn,
+.acc1,
+.acc2,
+.br1,
+.br2 {
   font-size: 1.6rem;
 }
 
