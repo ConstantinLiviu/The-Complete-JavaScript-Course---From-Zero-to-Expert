@@ -5,33 +5,128 @@
 // CHALLENGE #1
 //
 
-// TASK - Use a constructor function to implement a Car. A car has a make and a speed property. The speed property is the current speed of the car in km/h;
+// // TASK - Use a constructor function to implement a Car. A car has a make and a speed property. The speed property is the current speed of the car in km/h;
+
+// const Car = function (make, speed) {
+//   this.make = make;
+//   this.speed = speed;
+// };
+
+// const dacia = new Car("Dacia", 90);
+// const ford = new Car("Ford", 140);
+
+// // TASK - Implement an 'accelerate' method that will increase the car's speed by 10, and log the new speed to the console;
+
+// Car.prototype.accelerate = function () {
+//   return (this.speed += 10);
+// };
+
+// console.log(dacia.accelerate());
+// console.log(ford.accelerate());
+
+// // TASK - Implement a 'brake' method that will decrease the car's speed by 5, and log the new speed to the console;
+
+// Car.prototype.brake = function () {
+//   console.log(this.speed - 5);
+// };
+
+// dacia.brake();
+// ford.brake();
+
+const submitBtn = document.querySelector(".submit-btn");
+const car1AccelerationBtn = document.querySelector(".acc1");
+const car2AccelerationBtn = document.querySelector(".acc2");
+const car1BreakBtn = document.querySelector(".br1");
+const car2BreakBtn = document.querySelector(".br2");
+const car1Make = document.querySelector(".car1-make");
+const car2Make = document.querySelector(".car2-make");
+const car1Speed = document.querySelector(".car1-speed");
+const car2Speed = document.querySelector(".car2-speed");
+
+const resultsEl = document.querySelector(".results");
+const car1ResultEl = document.querySelector(".car1result");
+const car2ResultEl = document.querySelector(".car2result");
 
 const Car = function (make, speed) {
   this.make = make;
   this.speed = speed;
 };
 
-const dacia = new Car("Dacia", 90);
-const ford = new Car("Ford", 140);
-
-// TASK - Implement an 'accelerate' method that will increase the car's speed by 10, and log the new speed to the console;
-
 Car.prototype.accelerate = function () {
   return (this.speed += 10);
 };
 
-console.log(dacia.accelerate());
-console.log(ford.accelerate());
-
-// TASK - Implement a 'brake' method that will decrease the car's speed by 5, and log the new speed to the console;
-
 Car.prototype.brake = function () {
-  console.log(this.speed - 5);
+  if (this.speed === 0) {
+    return (this.speed = 0);
+  } else {
+    return (this.speed -= 5);
+  }
 };
 
-dacia.brake();
-ford.brake();
+let cars = [];
+
+const createCars = function (car) {
+  const carObj = new Car(...car);
+  console.log(carObj);
+  cars.push(carObj);
+};
+
+submitBtn.addEventListener("click", function () {
+  cars = [];
+  const make1 = car1Make.value || "BMW";
+  car1Make.value = "";
+  const speed1 = +car1Speed.value || 120;
+  car1Speed.value = "";
+
+  const make2 = car2Make.value || "Mercedes";
+  car2Make.value = "";
+  const speed2 = +car2Speed.value || 95;
+  car2Speed.value = "";
+
+  let car1 = [make1, speed1];
+  let car2 = [make2, speed2];
+
+  createCars(car1);
+  createCars(car2);
+
+  resultsEl.classList.remove("invisible");
+  car1ResultEl.textContent = `${cars[0].make} going at ${cars[0].speed} km/h`;
+  car2ResultEl.textContent = `${cars[1].make} going at ${cars[1].speed} km/h`;
+});
+
+car1AccelerationBtn.addEventListener("click", function () {
+  car1ResultEl.textContent = `${
+    cars[0].make
+  } going at ${cars[0].accelerate()} km/h`;
+});
+
+car2AccelerationBtn.addEventListener("click", function () {
+  car2ResultEl.textContent = `${
+    cars[1].make
+  } going at ${cars[1].accelerate()} km/h`;
+});
+
+car1BreakBtn.addEventListener("click", function () {
+  if (cars[0].brake() === 0) {
+    car1ResultEl.textContent = `${cars[0].make} has stopped.`;
+  } else {
+    car1ResultEl.textContent = `${
+      cars[0].make
+    } going at ${cars[0].brake()} km/h`;
+  }
+});
+
+car2BreakBtn.addEventListener("click", function () {
+  if (cars[1].brake() === 0) {
+    car2ResultEl.textContent = `${cars[1].make} has stopped.`;
+  } else {
+    car2ResultEl.textContent = `${
+      cars[1].make
+    } going at ${cars[1].brake()} km/h`;
+  }
+});
+
 //
 // *******************************************************************************************************************//
 // LESSON - What is OOP?
