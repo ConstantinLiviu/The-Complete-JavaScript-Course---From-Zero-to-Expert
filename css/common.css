@@ -55,6 +55,7 @@ body {
   opacity: 0.5;
 }
 
-.results p {
+.results p,
+.ch-2-results p {
   font-size: 1.5rem;
 }
