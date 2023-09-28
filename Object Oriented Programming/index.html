@@ -171,6 +171,79 @@
           </div>
         </div>
       </div>
+      <div class="row bg-light-subtle mb-5 col-12 challenge3">
+        <div class="task p-3">
+          <h3 class="text-uppercase fst-italic">challenge #3</h3>
+          <p>
+            Use a constructor function to implement an
+            <span class="taskVariable"
+              >Electric Car (called EV) as a CHILD "class" of Car</span
+            >. Besides a make and current speed, the EV also has the
+            <span class="taskVariable"
+              >current battery charge in % ('charge' property)</span
+            >.
+          </p>
+          <p>
+            Implement a <span class="taskVariable">'chargeBattery'</span> method
+            which takes an argument
+            <span class="taskVariable">'chargeTo'</span> and sets the battery
+            charge to <span class="taskVariable">'chargeTo'</span>.
+          </p>
+          <p>
+            Implement an <span class="taskVariable">'accelerate'</span> method
+            that will
+            <span class="taskVariable">increase the car's speed by 20</span>,
+            and <span class="taskVariable">decrease the charge by 1%</span>.
+            Then log a message like this:
+            <span class="taskVariable"
+              >'Tesla going at 140 km/h, with a charge of 22%'</span
+            >.
+          </p>
+          <p class="border-bottom border-dark pb-3">
+            Implement a <span class="taskVariable">'chargeBattery'</span> method
+            that <span class="taskVariable">charges the battery to 90%</span>.
+          </p>
+          <p class="text-uppercase fw-bold">test data:</p>
+          <p class="taskVariable border-bottom border-dark pb-3 mb-0">
+            DATA CAR 1: 'Tesla' going at 120 km/h, with a charge of 23%
+          </p>
+        </div>
+        <div class="solution p-3 pt-0">
+          <h3 class="text-uppercase fst-italic">solution</h3>
+          <div class="input-group mb-3">
+            <label class="w-100 mb-2">Car 1</label>
+            <span class="input-group-text">Make,speed,charge</span>
+            <input
+              type="text"
+              class="form-control ch3-car2-make"
+              placeholder="Tesla"
+            />
+            <input
+              type="number"
+              class="form-control ch3-car2-speed"
+              placeholder="95"
+              onkeyup="if(value<0) value=''"
+            />
+            <input
+              type="number"
+              class="form-control ch3-car2-speed"
+              placeholder="77"
+              onkeyup="if(value<0) value=''"
+            />
+          </div>
+          <button class="mb-2 btn btn-primary ch3-submit-btn">Submit</button>
+          <button class="mb-2 btn btn-outline-success ch3-acc1">
+            Accelerate C1
+          </button>
+          <button class="mb-2 btn btn-outline-danger ch3-br1">Break C1</button>
+          <button class="mb-2 btn btn-outline-warning ch3-recharge">
+            Recharge
+          </button>
+          <div class="ch-3-results invisible mt-3">
+            <p class="ch-3-car1result taskVariable">&nbsp;</p>
+          </div>
+        </div>
+      </div>
     </section>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"

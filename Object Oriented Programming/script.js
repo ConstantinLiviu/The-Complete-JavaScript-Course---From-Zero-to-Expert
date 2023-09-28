@@ -223,6 +223,11 @@ ch2MphBtn.addEventListener("click", function () {
 
 //
 // *******************************************************************************************************************//
+// CHALLENGE #3
+//
+
+//
+// *******************************************************************************************************************//
 // LESSON - What is OOP?
 //
 
@@ -593,3 +598,55 @@ console.log(steven.__proto__ === PersonProto);
 const sarah = Object.create(PersonProto);
 sarah.init("Sarah", 1980);
 sarah.calcAge();
+
+//
+// *******************************************************************************************************************//
+// LESSON - Inheritance between Classes: Constructor Functions
+//
+
+// Using constructors
+const PersonDuplicate = function (firstName, birthYear) {
+  this.firstName = firstName;
+  this.birthYear = birthYear;
+};
+
+PersonDuplicate.prototype.calcAge = function () {
+  console.log(2023 - this.birthYear);
+};
+
+// The student constructor function and its prototype property and the mike object linked to its prototype (the constructor function's prototype property)
+// The link between instance and prototype has been made automatically by creating the mike object with the new operator
+
+const Student = function (firstName, birthYear, course) {
+  // this.firstName = firstName;
+  // this.birthYear = birthYear;
+
+  PersonDuplicate.call(this, firstName, birthYear);
+  this.course = course;
+};
+
+// We want to make the Student.prototype a child of PersonDuplicate.prototypeso we will use Object.create()
+// This will create an empty object
+// this must be done before any methods are added to the Student object
+
+// Linking prototypes
+Student.prototype = Object.create(PersonDuplicate.prototype);
+
+Student.prototype.introduce = function () {
+  console.log(`Hey! My name is ${this.firstName} and I study ${this.course}`);
+};
+
+const mike = new Student("Mike", 2000, "Computer Science");
+console.log(mike);
+mike.introduce();
+mike.calcAge();
+
+console.log(mike.__proto__);
+console.log(mike.__proto__.__proto__);
+
+console.log(mike instanceof Student);
+console.log(mike instanceof Person);
+console.log(mike instanceof Object);
+
+Student.prototype.constructor = Student;
+console.dir(Student.prototype.constructor);
