@@ -68,7 +68,6 @@ let cars = [];
 
 const createCars = function (car) {
   const carObj = new Car(...car);
-  console.log(carObj);
   cars.push(carObj);
 };
 
@@ -108,23 +107,118 @@ car2AccelerationBtn.addEventListener("click", function () {
 });
 
 car1BreakBtn.addEventListener("click", function () {
-  if (cars[0].brake() === 0) {
-    car1ResultEl.textContent = `${cars[0].make} has stopped.`;
-  } else {
-    car1ResultEl.textContent = `${
-      cars[0].make
-    } going at ${cars[0].brake()} km/h`;
-  }
+  cars[0].brake();
+
+  car1ResultEl.textContent = `${cars[0].make} going at ${
+    cars[0].speed === 0 ? "has stopped" : cars[0].speed + " km/h"
+  }`;
 });
 
 car2BreakBtn.addEventListener("click", function () {
-  if (cars[1].brake() === 0) {
-    car2ResultEl.textContent = `${cars[1].make} has stopped.`;
-  } else {
-    car2ResultEl.textContent = `${
-      cars[1].make
-    } going at ${cars[1].brake()} km/h`;
+  cars[1].brake();
+
+  car2ResultEl.textContent = `${cars[1].make} going at ${
+    cars[1].speed === 0 ? "has stopped" : cars[1].speed + " km/h"
+  }`;
+});
+
+//
+// *******************************************************************************************************************//
+// CHALLENGE #2
+//
+
+const ch2CarMake = document.querySelector(".ch2-car2-make");
+const ch2CarSpeed = document.querySelector(".ch2-car2-speed");
+
+const ch2SubmitBtn = document.querySelector(".ch2-submit-btn");
+const ch2AccBtn = document.querySelector(".ch2-acc1");
+const ch2BrBtn = document.querySelector(".ch2-br1");
+const ch2MphBtn = document.querySelector(".ch2-mph");
+
+const ch2ResultsCnt = document.querySelector(".ch-2-results");
+const ch2ResultEl = document.querySelector(".ch-2-car1result");
+
+// TASK - Re-create challenge 1, but this time using an ES6 class.
+
+// TASK - Add a getter called 'speedUS' which returns the current speed in mi/h (divide by 1.6).
+
+// TASK - Add a setter called 'speedUS' which sets the current speed in mi/h (but converts it to km/h before storing the value, by multiplying the input by 1.6).
+
+class CarClass {
+  constructor(carMake, carSpeed) {
+    this.carMake = carMake;
+    this.carSpeed = carSpeed;
   }
+
+  accelerate = function () {
+    return (this.carSpeed += 10);
+    // this.carSpeed += 10;
+    // console.log(`${this.carMake} is going at ${this.carSpeed}`);
+  };
+
+  brake = function () {
+    if (this.carSpeed === 0) {
+      return (this.carSpeed = 0);
+    } else {
+      return (this.carSpeed -= 5);
+    }
+  };
+
+  get speedUS() {
+    return this.carSpeed / 1.6;
+  }
+
+  set speedUS(speed) {
+    this.carSpeed = speed * 1.6;
+  }
+}
+
+// const ford = new CarClass("Ford", 120);
+// console.log(ford);
+// console.log(ford.speedUS);
+// ford.accelerate();
+// ford.accelerate();
+// console.log(ford.brake());
+// ford.speedUS = 50;
+// console.log(ford.carSpeed);
+
+let cars2 = [];
+
+const createCars2 = function (make, speed) {
+  const car = new CarClass(make, speed);
+  cars2.push(car);
+};
+
+ch2SubmitBtn.addEventListener("click", function () {
+  cars2 = [];
+  const make = ch2CarMake.value || "Ford";
+  ch2CarMake.value = "";
+  const speed = +ch2CarSpeed.value || 120;
+  ch2CarSpeed.value = "";
+
+  createCars2(make, speed);
+  ch2ResultsCnt.classList.remove("invisible");
+  ch2ResultEl.textContent = `${cars2[0].carMake} going at ${cars2[0].carSpeed} km/h`;
+});
+
+ch2AccBtn.addEventListener("click", function () {
+  ch2ResultEl.textContent = `${
+    cars2[0].carMake
+  } going at ${cars2[0].accelerate()} km/h`;
+});
+
+ch2BrBtn.addEventListener("click", function () {
+  cars2[0].brake();
+
+  ch2ResultEl.textContent = `${cars2[0].carMake} going at ${
+    cars2[0].carSpeed === 0 ? "has stopped" : cars2[0].carSpeed + " km/h"
+  }`;
+});
+
+ch2MphBtn.addEventListener("click", function () {
+  ch2ResultEl.textContent = `${cars2[0].carMake} going at ${
+    cars2[0].speedUS === 0 ? "has stopped" : cars2[0].speedUS + " mph"
+  }`;
 });
 
 //
@@ -277,3 +371,225 @@ console.log(arr.unique());
 const btn = document.querySelector(".main-page-btn");
 console.dir(btn);
 console.dir((x) => x + 1);
+
+//
+// *******************************************************************************************************************//
+// LESSON - ES6 Classes
+//
+
+// class expression
+// const PersonCl = class {};
+
+// class declaration
+class PersonCl {
+  // properties
+  constructor(firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+  }
+  // methods - addded to the .prototype property
+  calcAge() {
+    console.log(2023 - this.birthYear);
+  }
+
+  greet() {
+    console.log(`Hey! My name is ${this.firstName}`);
+  }
+}
+
+const jessica = new PersonCl("Jessica", 2000);
+console.log(jessica);
+jessica.calcAge();
+console.log(jessica.__proto__ === PersonCl.prototype);
+
+// PersonCl.prototype.greet = function () {
+//   console.log(`Hey! My name is ${this.firstName}`);
+// };
+jessica.greet();
+
+// 1. Classes are NOT hoisted (unable to use before declaration)
+// 2. Classes are first-class citizens
+// 3. Classes are executed in strict mode
+
+//
+// *******************************************************************************************************************//
+// LESSON - Setters and Getters
+//
+
+// All JS objects can have setters and getters. They are called assesor properties. ("normal" properties are called data properties)
+
+const account = {
+  owner: "Jonas",
+  transactions: [200, 530, 120, 300],
+
+  get latestTransaction() {
+    return this.transactions.slice(-1).pop();
+  },
+
+  set latestTransaction(trans) {
+    this.transactions.push(trans);
+  },
+};
+
+console.log(account.latestTransaction);
+
+account.latestTransaction = 50;
+console.log(account.transactions);
+
+class PersonCl2 {
+  constructor(fullName, birthYear) {
+    this.fullName = fullName;
+    this.birthYear = birthYear;
+  }
+
+  calcAge() {
+    console.log(2023 - this.birthYear);
+  }
+
+  greet() {
+    console.log(`Hey! My name is ${this.firstName}`);
+  }
+
+  get age() {
+    return 2023 - this.birthYear;
+  }
+
+  // when trying to set a property that already exists
+  set fullName(name) {
+    if (name.includes(" ")) {
+      this._fullName = name;
+    } else {
+      alert(`${name} is not a full name!`);
+    }
+  }
+
+  get fullName() {
+    return this._fullName;
+  }
+}
+
+const jimmy = new PersonCl2("Jimmy Drake", 1997);
+console.log(jimmy.age);
+
+const walter = new PersonCl2("Walter White", 1965);
+console.log(walter);
+
+//
+// *******************************************************************************************************************//
+// LESSON - Static Methods
+//
+
+class PersonCl3 {
+  constructor(fullName, birthYear) {
+    this.fullName = fullName;
+    this.birthYear = birthYear;
+  }
+
+  calcAge() {
+    console.log(2023 - this.birthYear);
+  }
+
+  greet() {
+    console.log(`Hey! My name is ${this.firstName}`);
+  }
+
+  get age() {
+    return 2023 - this.birthYear;
+  }
+
+  set fullName(name) {
+    if (name.includes(" ")) {
+      this._fullName = name;
+    } else {
+      alert(`${name} is not a full name!`);
+    }
+  }
+
+  get fullName() {
+    return this._fullName;
+  }
+}
+
+// PersonCl3.prototype.hey = function () {
+//   console.log("Hey! 🖐");
+// };
+
+PersonCl3.hey = function () {
+  console.log("Hey! 🖐");
+  console.log(this);
+};
+
+PersonCl3.hey();
+
+const elena = new PersonCl3("Elena J.", 1970);
+// elena.hey();
+
+// How to use static methods in classes
+class PersonCl4 {
+  constructor(fullName, birthYear) {
+    this.fullName = fullName;
+    this.birthYear = birthYear;
+  }
+
+  calcAge() {
+    console.log(2023 - this.birthYear);
+  }
+
+  greet() {
+    console.log(`Hey! My name is ${this.firstName}`);
+  }
+
+  get age() {
+    return 2023 - this.birthYear;
+  }
+
+  set fullName(name) {
+    if (name.includes(" ")) {
+      this._fullName = name;
+    } else {
+      alert(`${name} is not a full name!`);
+    }
+  }
+
+  get fullName() {
+    return this._fullName;
+  }
+
+  //   above are instance methods
+  //   static method - useful as helper functions for the class
+  static hey() {
+    console.log("Hey there! 😘");
+  }
+}
+
+//
+// *******************************************************************************************************************//
+// LESSON - Object.create
+//
+
+// Maintains the idea of prototypal inheritance, but there are no prototype properties involved, no constructor and no "new" operator
+// We can use Object.create to manually set the prototype of an object to any other object that we want
+
+// recreating the Person class from before
+const PersonProto = {
+  calcAge() {
+    console.log(2023 - this.birthYear);
+  },
+
+  init(firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+  },
+};
+
+const steven = Object.create(PersonProto);
+console.log(steven);
+steven.name = "Steven";
+steven.birthYear = 2002;
+steven.calcAge();
+
+console.log(steven.__proto__ === PersonProto);
+
+const sarah = Object.create(PersonProto);
+sarah.init("Sarah", 1980);
+sarah.calcAge();

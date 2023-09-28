@@ -8,7 +8,11 @@
 .acc1,
 .acc2,
 .br1,
-.br2 {
+.br2,
+.ch2-submit-btn,
+.ch2-acc1,
+.ch2-br1,
+.ch2-mph {
   font-size: 1.6rem;
 }
 

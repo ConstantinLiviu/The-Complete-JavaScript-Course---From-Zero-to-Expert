@@ -114,6 +114,63 @@
           </div>
         </div>
       </div>
+      <div class="row bg-light-subtle mb-5 col-12 challenge2">
+        <div class="task p-3">
+          <h3 class="text-uppercase fst-italic">challenge #2</h3>
+          <p>
+            Re-create challenge 1, but this time using an
+            <span class="taskVariable">ES6 class</span>.
+          </p>
+          <p>
+            Add
+            <span class="taskVariable">a getter called 'speedUS'</span> which
+            returns the current speed in mi/h (divide by 1.6).
+          </p>
+          <p>
+            Add
+            <span class="taskVariable">a setter called 'speedUS'</span> which
+            sets the current speed in mi/h (but converts it to km/h before
+            storing the value, by multiplying the input by 1.6).
+          </p>
+          <p class="border-bottom border-dark pb-3">
+            Create a new car and experiment with the accelerate and brake
+            methods, and with the getter and setter.
+          </p>
+          <p class="text-uppercase fw-bold">test data:</p>
+          <p class="taskVariable border-bottom border-dark pb-3 mb-0">
+            DATA CAR 1: 'Ford' going at 120 km/h
+          </p>
+        </div>
+        <div class="solution p-3 pt-0">
+          <h3 class="text-uppercase fst-italic">solution</h3>
+          <div class="input-group mb-3">
+            <label class="w-100 mb-2">Car 1</label>
+            <span class="input-group-text">Make and speed</span>
+            <input
+              type="text"
+              class="form-control ch2-car2-make"
+              placeholder="Ford"
+            />
+            <input
+              type="number"
+              class="form-control ch2-car2-speed"
+              placeholder="95"
+              onkeyup="if(value<0) value=''"
+            />
+          </div>
+          <button class="mb-2 btn btn-primary ch2-submit-btn">Submit</button>
+          <button class="mb-2 btn btn-outline-success ch2-acc1">
+            Accelerate C1
+          </button>
+          <button class="mb-2 btn btn-outline-danger ch2-br1">Break C1</button>
+          <button class="mb-2 btn btn-outline-warning ch2-mph">
+            Convert to mph
+          </button>
+          <div class="ch-2-results invisible mt-3">
+            <p class="ch-2-car1result taskVariable">&nbsp;</p>
+          </div>
+        </div>
+      </div>
     </section>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
