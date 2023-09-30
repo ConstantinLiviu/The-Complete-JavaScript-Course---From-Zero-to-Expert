@@ -226,6 +226,26 @@ ch2MphBtn.addEventListener("click", function () {
 // CHALLENGE #3
 //
 
+const EV = function (make, speed, charge) {
+  CarClass.call(this, make, speed);
+  this.charge = charge;
+};
+
+EV.prototype = Object.create(CarClass.prototype);
+EV.prototype.chargeBattery = function (chargeTo) {
+  this.charge = chargeTo;
+};
+EV.prototype.accelerate = function () {
+  this.speed += 20;
+  this.charge -= 1;
+  console.log(
+    `${this.make} going at ${this.speed} km/h, with a charge of ${this.charge}%`
+  );
+};
+
+console.dir(EV);
+EV.accelerate();
+
 //
 // *******************************************************************************************************************//
 // LESSON - What is OOP?
