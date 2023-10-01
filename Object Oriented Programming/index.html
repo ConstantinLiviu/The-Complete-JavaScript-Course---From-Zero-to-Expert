@@ -244,6 +244,69 @@
           </div>
         </div>
       </div>
+      <div class="row bg-light-subtle mb-5 col-12 challenge4">
+        <div class="task p-3">
+          <h3 class="text-uppercase fst-italic">challenge #4</h3>
+          <p>
+            1. Re-create challenge #3, but this time using ES6 classes: create
+            an
+            <span class="taskVariable">'EVCl'</span> child class of the
+            <span class="taskVariable">'CarCl'</span> class.
+          </p>
+          <p>
+            2. Make the <span class="taskVariable">'charge'</span> property
+            <span class="taskVariable">private</span>.
+          </p>
+          <p class="border-bottom border-dark pb-3">
+            3. Implement the ability to
+            <span class="taskVariable"
+              >chain the 'accelerate' and 'chargeBattery' methods</span
+            >
+            of this class, and also
+            <span class="taskVariable">update the 'brake' method</span> in the
+            'CarCl' class. Then experiment with chaining!
+          </p>
+          <p class="text-uppercase fw-bold">test data:</p>
+          <p class="taskVariable border-bottom border-dark pb-3 mb-0">
+            DATA CAR 1: 'Rivian' going at 120 km/h, with a charge of 23%
+          </p>
+        </div>
+        <div class="solution p-3 pt-0">
+          <h3 class="text-uppercase fst-italic">solution</h3>
+          <div class="input-group mb-3">
+            <label class="w-100 mb-2">Car 1</label>
+            <span class="input-group-text">Make,speed,charge</span>
+            <input
+              type="text"
+              class="form-control ch4-car1-make"
+              placeholder="Tesla"
+            />
+            <input
+              type="number"
+              class="form-control ch4-car1-speed"
+              placeholder="95"
+              onkeyup="if(value<0) value=''"
+            />
+            <input
+              type="number"
+              class="form-control ch4-car1-speed"
+              placeholder="77"
+              onkeyup="if(value<0) value=''"
+            />
+          </div>
+          <button class="mb-2 btn btn-primary ch4-submit-btn">Submit</button>
+          <button class="mb-2 btn btn-outline-success ch4-acc1">
+            Accelerate C1
+          </button>
+          <button class="mb-2 btn btn-outline-danger ch4-br1">Break C1</button>
+          <button class="mb-2 btn btn-outline-warning ch4-recharge">
+            Recharge
+          </button>
+          <div class="ch-4-results invisible mt-3">
+            <p class="ch-4-car1result taskVariable">&nbsp;</p>
+          </div>
+        </div>
+      </div>
     </section>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
