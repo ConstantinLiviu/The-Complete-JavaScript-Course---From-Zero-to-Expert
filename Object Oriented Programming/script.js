@@ -226,25 +226,57 @@ ch2MphBtn.addEventListener("click", function () {
 // CHALLENGE #3
 //
 
+// Cloned constr for readability purposes
+const CarCh3 = function (make, speed) {
+  this.make = make;
+  this.speed = speed;
+};
+
+CarCh3.prototype.accelerate = function () {
+  this.speed += 10;
+  console.log(`${this.make} is going at ${this.speed} km/h`);
+};
+
+CarCh3.prototype.brake = function () {
+  this.speed -= 5;
+  console.log(`${this.make} is going at ${this.speed} km/h`);
+};
+
+// TASK - Use a constructor function to implement an Electric Car (called EV) as a CHILD "class" of Car. Besides a make and current speed, the EV also has the current battery charge in % ('charge' property).
+
 const EV = function (make, speed, charge) {
-  CarClass.call(this, make, speed);
+  CarCh3.call(this, make, speed);
   this.charge = charge;
 };
 
-EV.prototype = Object.create(CarClass.prototype);
+// link prototypes
+EV.prototype = Object.create(CarCh3.prototype);
+
+// TASK - Implement a 'chargeBattery' method which takes an argument 'chargeTo' and sets the battery charge to 'chargeTo'.
 EV.prototype.chargeBattery = function (chargeTo) {
   this.charge = chargeTo;
 };
+
+// TASK - Implement an 'accelerate' method that will increase the car's speed by 20, and decrease the charge by 1%. Then log a message like this: 'Tesla going at 140 km/h, with a charge of 22%'.
 EV.prototype.accelerate = function () {
   this.speed += 20;
-  this.charge -= 1;
+  this.charge--;
   console.log(
-    `${this.make} going at ${this.speed} km/h, with a charge of ${this.charge}%`
+    `${this.make} is going at ${this.speed} km/h, with a charge of ${this.charge}`
   );
 };
 
-console.dir(EV);
-EV.accelerate();
+const tesla = new EV("Tesla", 120, 23);
+
+console.log(tesla);
+
+// TASK -  Set 'chargeBattery' method to charge the battery to 90%.
+tesla.chargeBattery(90);
+
+tesla.brake();
+tesla.accelerate();
+tesla.accelerate();
+tesla.accelerate();
 
 //
 // *******************************************************************************************************************//
