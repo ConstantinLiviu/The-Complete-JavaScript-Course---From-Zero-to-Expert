@@ -226,6 +226,12 @@ ch2MphBtn.addEventListener("click", function () {
 // CHALLENGE #3
 //
 
+const submitBtnCh3 = document.querySelector(".ch3-submit-btn");
+const acc1Ch3Btn = document.querySelector(".ch3-acc1");
+const brakeCh3Btn = document.querySelector(".ch3-br1");
+const chargeCh3Btn = document.querySelector(".ch3-recharge");
+const resultCh3El = document.querySelector(".ch-3-results");
+
 // Cloned constr for readability purposes
 const CarCh3 = function (make, speed) {
   this.make = make;
