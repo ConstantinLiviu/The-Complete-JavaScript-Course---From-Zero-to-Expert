@@ -226,12 +226,6 @@ ch2MphBtn.addEventListener("click", function () {
 // CHALLENGE #3
 //
 
-const submitBtnCh3 = document.querySelector(".ch3-submit-btn");
-const acc1Ch3Btn = document.querySelector(".ch3-acc1");
-const brakeCh3Btn = document.querySelector(".ch3-br1");
-const chargeCh3Btn = document.querySelector(".ch3-recharge");
-const resultCh3El = document.querySelector(".ch-3-results");
-
 // Cloned constr for readability purposes
 const CarCh3 = function (make, speed) {
   this.make = make;
@@ -283,6 +277,33 @@ tesla.brake();
 tesla.accelerate();
 tesla.accelerate();
 tesla.accelerate();
+
+// With UI
+let cars3 = [];
+
+const submitBtnCh3 = document.querySelector(".ch3-submit-btn");
+const acc1Ch3Btn = document.querySelector(".ch3-acc1");
+const brakeCh3Btn = document.querySelector(".ch3-br1");
+const chargeCh3Btn = document.querySelector(".ch3-recharge");
+
+const makeCh3El = document.querySelector(".ch3-car2-make");
+const speedCh3El = document.querySelector(".ch3-car2-speed");
+const chargeCh3El = document.querySelector(".ch3-car2-charge");
+
+const resultCh3El = document.querySelector(".ch-3-results");
+
+submitBtnCh3.addEventListener("click", function () {
+  const make = makeCh3El.value || "Tesla";
+  ch2CarMake.value = "";
+  const speed = +speedCh3El.value || 140;
+  ch2CarSpeed.value = "";
+  const charge = +chargeCh3El.value || 23;
+  chargeCh3El.value = "";
+
+  ch2ResultsCnt.classList.remove("invisible");
+  // ch2ResultEl.textContent = `${cars2[0].carMake} going at ${cars2[0].carSpeed} km/h`;
+  console.log(make, speed, charge);
+});
 
 //
 // *******************************************************************************************************************//
