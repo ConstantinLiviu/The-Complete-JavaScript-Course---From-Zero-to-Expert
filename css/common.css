@@ -56,6 +56,8 @@ body {
 }
 
 .results p,
-.ch-2-results p {
+.ch-2-results p,
+.ch-3-car1result,
+.ch-4-results {
   font-size: 1.5rem;
 }

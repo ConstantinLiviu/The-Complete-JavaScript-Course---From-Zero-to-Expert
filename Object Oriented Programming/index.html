@@ -228,7 +228,7 @@
               type="number"
               class="form-control ch3-car2-charge"
               placeholder="77"
-              onkeyup="if(value<0) value=''"
+              onkeyup="if(value<1 || value>100) value=''"
             />
           </div>
           <button class="mb-2 btn btn-primary ch3-submit-btn">Submit</button>

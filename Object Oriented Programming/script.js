@@ -239,7 +239,13 @@ CarCh3.prototype.accelerate = function () {
 
 CarCh3.prototype.brake = function () {
   this.speed -= 5;
-  console.log(`${this.make} is going at ${this.speed} km/h`);
+  if (this.speed < 1) {
+    resultCh3Txt.textContent = `${this.make} has stopped`;
+    this.charge = 0;
+  } else {
+    console.log(`${this.make} is going at ${this.speed} km/h`);
+    resultCh3Txt.textContent = `${this.make} is going at ${this.speed} km/h, with a charge of ${this.charge}%`;
+  }
 };
 
 // TASK - Use a constructor function to implement an Electric Car (called EV) as a CHILD "class" of Car. Besides a make and current speed, the EV also has the current battery charge in % ('charge' property).
@@ -254,29 +260,40 @@ EV.prototype = Object.create(CarCh3.prototype);
 
 // TASK - Implement a 'chargeBattery' method which takes an argument 'chargeTo' and sets the battery charge to 'chargeTo'.
 EV.prototype.chargeBattery = function (chargeTo) {
-  this.charge = chargeTo;
+  if (chargeTo < this.charge) {
+    resultCh3Txt.textContent = `Charging goes up, not down!`;
+  } else {
+    this.charge = chargeTo;
+    resultCh3Txt.textContent = `${this.make} battery recharged to ${this.charge}%`;
+  }
 };
 
 // TASK - Implement an 'accelerate' method that will increase the car's speed by 20, and decrease the charge by 1%. Then log a message like this: 'Tesla going at 140 km/h, with a charge of 22%'.
 EV.prototype.accelerate = function () {
   this.speed += 20;
   this.charge--;
-  console.log(
-    `${this.make} is going at ${this.speed} km/h, with a charge of ${this.charge}`
-  );
+  if (this.charge < 1) {
+    resultCh3Txt.textContent = `${this.make} is out of Juice. Recharge the battery!`;
+    this.charge = 0;
+  } else {
+    console.log(
+      `${this.make} is going at ${this.speed} km/h, with a charge of ${this.charge}`
+    );
+    resultCh3Txt.textContent = `${this.make} is going at ${this.speed} km/h, with a charge of ${this.charge}%`;
+  }
 };
 
-const tesla = new EV("Tesla", 120, 23);
+// const tesla = new EV("Tesla", 120, 23);
 
-console.log(tesla);
+// console.log(tesla);
 
-// TASK -  Set 'chargeBattery' method to charge the battery to 90%.
-tesla.chargeBattery(90);
+// // TASK -  Set 'chargeBattery' method to charge the battery to 90%.
+// tesla.chargeBattery(90);
 
-tesla.brake();
-tesla.accelerate();
-tesla.accelerate();
-tesla.accelerate();
+// tesla.brake();
+// tesla.accelerate();
+// tesla.accelerate();
+// tesla.accelerate();
 
 // With UI
 let cars3 = [];
@@ -291,8 +308,10 @@ const speedCh3El = document.querySelector(".ch3-car2-speed");
 const chargeCh3El = document.querySelector(".ch3-car2-charge");
 
 const resultCh3El = document.querySelector(".ch-3-results");
+const resultCh3Txt = document.querySelector(".ch-3-car1result");
 
 submitBtnCh3.addEventListener("click", function () {
+  cars3 = [];
   const make = makeCh3El.value || "Tesla";
   ch2CarMake.value = "";
   const speed = +speedCh3El.value || 140;
@@ -300,9 +319,25 @@ submitBtnCh3.addEventListener("click", function () {
   const charge = +chargeCh3El.value || 23;
   chargeCh3El.value = "";
 
-  ch2ResultsCnt.classList.remove("invisible");
-  // ch2ResultEl.textContent = `${cars2[0].carMake} going at ${cars2[0].carSpeed} km/h`;
-  console.log(make, speed, charge);
+  const tesla = new EV(make, speed, charge);
+  cars3.push(tesla);
+
+  resultCh3El.classList.remove("invisible");
+  resultCh3Txt.textContent = `${cars3[0].make} is going at ${cars3[0].speed} km/h, with a charge of ${cars3[0].charge}%`;
+});
+
+acc1Ch3Btn.addEventListener("click", function () {
+  cars3[0].accelerate();
+});
+
+brakeCh3Btn.addEventListener("click", function () {
+  cars3[0].brake();
+});
+
+chargeCh3Btn.addEventListener("click", function () {
+  if (cars3.length === 0) return;
+  cars3[0].chargeBattery(+chargeCh3El.value);
+  chargeCh3El.value = "";
 });
 
 //
