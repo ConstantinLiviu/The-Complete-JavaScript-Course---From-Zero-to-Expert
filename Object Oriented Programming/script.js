@@ -336,6 +336,7 @@ brakeCh3Btn.addEventListener("click", function () {
 
 chargeCh3Btn.addEventListener("click", function () {
   if (cars3.length === 0) return;
+  if (!chargeCh3El.value) chargeCh3El.value = 1;
   cars3[0].chargeBattery(+chargeCh3El.value);
   chargeCh3El.value = "";
 });
