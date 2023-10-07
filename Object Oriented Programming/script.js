@@ -776,3 +776,109 @@ console.log(mike instanceof Object);
 
 Student.prototype.constructor = Student;
 console.dir(Student.prototype.constructor);
+
+//
+// *******************************************************************************************************************//
+// LESSON - Inheritance between Classes: Classes
+//
+
+class Human {
+  constructor(fullName, birthYear) {
+    this.fullName = fullName;
+    this.birthYear = birthYear;
+  }
+
+  // Instance methods
+  calcAge() {
+    console.log(2023 - this.birthYear);
+  }
+
+  greet() {
+    console.log(`Hey ${this.fullName}`);
+  }
+
+  get age() {
+    return 2023 - this.birthYear;
+  }
+
+  set fullName(name) {
+    if (name.includes(" ")) this._fullName = name;
+    else alert(`${name} is not a full name!`);
+  }
+
+  get fullName() {
+    return this._fullName;
+  }
+
+  // Static method
+  static hey() {
+    console.log("Hey there!");
+  }
+}
+
+class Pupil extends Human {
+  // When it comes to class inheritance, as long as we don't need any new methods we can skip the constructor
+  constructor(fullName, birthYear, course) {
+    // Always needs to happen first!
+    // The super function creates the "this" keyword in the child class
+    super(fullName, birthYear);
+    this.course = course;
+  }
+
+  introduce() {
+    console.log(`My name is ${this.fullName} and I study ${this.course}`);
+  }
+
+  calcAge() {
+    console.log(
+      `I'm ${
+        2023 - this.birthYear
+      } years old, but as a student I feel more like ${
+        2023 - this.birthYear + 10
+      } years old`
+    );
+  }
+}
+
+const martha = new Pupil("Martha Miller", 2000, "English");
+console.log(martha);
+martha.introduce();
+martha.calcAge();
+
+//
+// *******************************************************************************************************************//
+// LESSON - Inheritance between Classes: Object.create()
+//
+
+const HumanProto = {
+  calcAge() {
+    console.log(2023 - this.birthYear);
+  },
+
+  init(firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+  },
+};
+
+const michael = Object.create(HumanProto);
+
+// make an empty object
+// a prototype for Students
+// StudentProto inherits directly from HumanProto
+const StudentProto = Object.create(HumanProto);
+StudentProto.init = function (firstName, birthYear, course) {
+  HumanProto.init.call(this, firstName, birthYear);
+  this.course = course;
+};
+
+StudentProto.introduce = function () {
+  console.log(`My name is ${this.firstName} and I study ${this.course}`);
+};
+
+// instance
+const jason = Object.create(StudentProto);
+jason.init("Jason", 2002, "Maths");
+console.log(jason);
+jason.introduce();
+jason.calcAge();
