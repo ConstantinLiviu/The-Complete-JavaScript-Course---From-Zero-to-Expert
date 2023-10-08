@@ -1,0 +1,44 @@
+@import "/css/variables.css";
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  background: linear-gradient(to top left, var(--green28), var(--green7d));
+}
+
+.main-page-btn {
+  top: 0;
+  right: 2rem;
+  margin-top: 2rem;
+  margin-left: auto;
+  margin-bottom: 2rem;
+  font-size: 1.6rem;
+  color: var(--purple97);
+  z-index: 99;
+}
+
+.main-page-btn:hover {
+  color: var(--white);
+}
+
+/* Mobile */
+@media (min-width: 576px) {
+}
+
+@media (min-width: 768px) {
+}
+
+/* ************************************************************* */
+/* Tablet */
+@media (min-width: 992px) {
+}
+
+@media (min-width: 1200px) {
+}
+
+/* ************************************************************* */
+/* Desktop */
+@media (min-width: 1400px) {
+}
