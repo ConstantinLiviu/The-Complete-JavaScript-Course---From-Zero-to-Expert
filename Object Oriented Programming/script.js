@@ -882,3 +882,232 @@ jason.init("Jason", 2002, "Maths");
 console.log(jason);
 jason.introduce();
 jason.calcAge();
+
+//
+// *******************************************************************************************************************//
+// LESSON - Another Class Example
+//
+
+class Account {
+  constructor(owner, currency, pin) {
+    this.owner = owner;
+    this.currency = currency;
+    this.pin = pin;
+    this.transactions = [];
+    this.locale = navigator.language;
+
+    console.log(`Thanks for opening an account, ${owner}!`);
+  }
+
+  // Public interface
+  deposit(value) {
+    this.transactions.push(value);
+  }
+
+  withdraw(value) {
+    this.deposit(-value);
+  }
+
+  requestLoan(value) {
+    if (this.approveLoan(value)) {
+      this.deposit(value);
+      console.log("Loan approved!");
+    }
+  }
+
+  approveLoan(value) {
+    return true;
+  }
+}
+
+const acc1 = new Account("John", "EUR", 1111);
+console.log(acc1);
+// acc1.transactions.push(250);
+acc1.deposit(250);
+acc1.withdraw(140);
+acc1.requestLoan(500);
+
+//
+// *******************************************************************************************************************//
+// LESSON - Encapsulation: Protected Properties and Methods
+//
+
+class AccountEn {
+  constructor(owner, currency, pin) {
+    this.owner = owner;
+    this.currency = currency;
+    // Protected property (by convention)
+    this._pin = pin;
+    this._transactions = [];
+
+    this.locale = navigator.language;
+
+    console.log(`Thanks for opening an account, ${owner}!`);
+  }
+
+  // Public interface (API)
+  getTransactions() {
+    return this._transactions;
+  }
+
+  deposit(value) {
+    this._transactions.push(value);
+  }
+
+  withdraw(value) {
+    this.deposit(-value);
+  }
+
+  requestLoan(value) {
+    if (this._approveLoan(value)) {
+      this.deposit(value);
+      console.log("Loan approved!");
+    }
+  }
+
+  _approveLoan(value) {
+    return true;
+  }
+}
+
+const acc2 = new AccountEn("Jim", "USD", 2222);
+console.log(acc2);
+
+acc2.deposit(250);
+acc2.withdraw(140);
+acc2.requestLoan(1200);
+
+console.log(acc2.getTransactions());
+
+//
+// *******************************************************************************************************************//
+// LESSON - Encapsulation: Private Class Fields and Methods
+//
+
+// There are:
+// Public fields/Public methods
+// Private fields/Private methods
+// They also come with the static version
+
+// We can think of fields as properties that will be available on all instances - public instance fields
+
+class AccPrivate {
+  // fields are still accessible using the "this" keyword
+
+  // Adding public fields (added to instances, not prototype)
+  locale = navigator.language;
+
+  // Adding private fields (added to instances, not prototype)
+  #transactions = [];
+  #pin; // empty variable, will be redefined in the constructor
+
+  constructor(owner, currency, pin) {
+    this.owner = owner;
+    this.currency = currency;
+    this.#pin = pin;
+    // this.transactions = [];
+    // this.locale = navigator.language;
+
+    console.log(`Thanks for opening an account, ${owner}!`);
+  }
+
+  // The methods below are public methods
+  // Public interface
+  getTransactions() {
+    return this.#transactions;
+  }
+
+  deposit(value) {
+    this.#transactions.push(value);
+  }
+
+  withdraw(value) {
+    this.deposit(-value);
+  }
+
+  requestLoan(value) {
+    if (this.#approveLoan(value)) {
+      this.deposit(value);
+      console.log("Loan approved!");
+    }
+  }
+
+  // Private methods
+  #approveLoan(value) {
+    return true;
+  }
+
+  // Static methods - not available on instances, but on the class itself
+  static helper() {
+    console.log("Helper");
+  }
+}
+
+const acc3 = new AccPrivate("Erik", "GBP", 3333);
+console.log(acc3);
+
+acc3.deposit(100);
+acc3.deposit(60);
+acc3.deposit(96);
+// console.log(acc3.#transactions);
+console.log(acc3.getTransactions());
+// console.log(acc3.#pin);
+// acc3.#approveLoan();
+acc3.requestLoan(300);
+
+// acc3.helper();
+AccPrivate.helper();
+
+//
+// *******************************************************************************************************************//
+// LESSON - Chaining Methods
+//
+
+class AccPrivateChaining {
+  locale = navigator.language;
+  #transactions = [];
+  #pin; // empty variable, will be redefined in the constructor
+
+  constructor(owner, currency, pin) {
+    this.owner = owner;
+    this.currency = currency;
+    this.#pin = pin;
+    console.log(`Thanks for opening an account, ${owner}!`);
+  }
+
+  getTransactions() {
+    return this.#transactions;
+  }
+
+  deposit(value) {
+    this.#transactions.push(value);
+    return this;
+  }
+
+  withdraw(value) {
+    this.deposit(-value);
+    return this;
+  }
+
+  requestLoan(value) {
+    if (this.#approveLoan(value)) {
+      this.deposit(value);
+      console.log("Loan approved!");
+      return this;
+    }
+  }
+
+  #approveLoan(value) {
+    return true;
+  }
+
+  static helper() {
+    console.log("Helper");
+  }
+}
+
+const acc4 = new AccPrivateChaining("Sonia", "YEN", 4444);
+console.log(acc4);
+
+acc4.deposit(400).deposit(100).withdraw(35).requestLoan(25000).withdraw(4000);
+console.log(acc4.getTransactions());
