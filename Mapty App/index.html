@@ -36,5 +36,83 @@
     >
       main page
     </a>
+    <section class="app-container container">
+      <section class="journal bg-dark text-center rounded col-lg-4">
+        <img src="img/Glogo.png" alt="" class="logo my-4" />
+        <form action="" class="container d-flex flex-wrap py-3">
+          <div class="input-group mb-3">
+            <span
+              class="input-group-text bg-transparent text-light border-0 ps-0"
+              >Type</span
+            >
+            <button
+              class="btn btn-outline-secondary dropdown-toggle border-light rounded text-light"
+              type="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Dropdown
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end rounded">
+              <li><a class="dropdown-item" href="#">Running</a></li>
+              <li><a class="dropdown-item" href="#">Cycling</a></li>
+            </ul>
+          </div>
+          <div class="input-group mb-3">
+            <span
+              class="input-group-text bg-transparent text-light border-0 ps-0"
+              >Distance</span
+            >
+            <input
+              type="number"
+              class="form-control rounded"
+              placeholder="km"
+              onkeyup="if(value<1 || value>9999) value=''"
+            />
+          </div>
+          <div class="input-group">
+            <span
+              class="input-group-text bg-transparent text-light border-0 ps-0"
+              >Duration</span
+            >
+            <input
+              type="number"
+              class="form-control rounded"
+              placeholder="min"
+              onkeyup="if(value<1 || value>9999) value=''"
+            />
+          </div>
+          <div class="input-group">
+            <span
+              class="input-group-text bg-transparent text-light border-0 ps-0"
+              >Cadence</span
+            >
+            <input
+              type="number"
+              class="form-control rounded"
+              placeholder="steps/min"
+              onkeyup="if(value<1 || value>9999) value=''"
+            />
+          </div>
+        </form>
+        <div class="list-container container mt-3">
+          <ul class="activities text-light text-start mt-3 ps-0">
+            <li
+              class="activity-item border-start border-info rounded border-5 px-3 py-2 mb-3"
+            >
+              <p class="activity-title">
+                <span class="activity-type">Running</span> on
+                <span class="activity-date">October 9</span>
+              </p>
+              <p class="activity-data mb-0">
+                <span>10km</span> <span>50 min</span> <span>5 min/km</span>
+                <span>175spm</span>
+              </p>
+            </li>
+          </ul>
+        </div>
+      </section>
+      <section class="map col-lg-8"></section>
+    </section>
   </body>
 </html>

@@ -23,6 +23,75 @@ body {
   color: var(--white);
 }
 
+.app-container {
+  margin-bottom: 5rem;
+}
+
+.input-group {
+  width: 50%;
+}
+
+.input-group input::-webkit-outer-spin-button,
+.input-group input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.input-group input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
+.form-control::placeholder {
+  font-style: italic;
+  opacity: 0.8;
+  font-size: 1.6rem;
+}
+
+.input-group:nth-child(odd) {
+  padding-right: 1%;
+}
+
+.input-group:nth-child(even) {
+  padding-left: 1%;
+}
+
+.input-group span {
+  /* width: 8rem; */
+  /* margin-right: 3rem; */
+  font-size: 1.8rem;
+  width: 100%;
+}
+
+.input-group .dropdown-toggle,
+.dropdown-item {
+  flex-grow: 1;
+  font-size: 1.6rem;
+}
+
+.dropdown-menu.show {
+  width: 100%;
+}
+
+.activities {
+  list-style: none;
+  overflow-x: hidden;
+  max-height: 25rem;
+}
+.activity-item {
+  background: var(--purple3f);
+}
+
+.activity-title {
+  font-size: 1.8rem;
+}
+
+.activity-data {
+  font-size: 1.4rem;
+}
+
 /* Mobile */
 @media (min-width: 576px) {
 }
