@@ -6,6 +6,7 @@ html {
 
 body {
   background: linear-gradient(to top left, var(--green28), var(--green7d));
+  height: 100vh;
 }
 
 .main-page-btn {
@@ -25,6 +26,7 @@ body {
 
 .app-container {
   margin-bottom: 5rem;
+  height: 100%;
 }
 
 .input-group {
@@ -92,6 +94,30 @@ body {
   font-size: 1.4rem;
 }
 
+.journal {
+  flex-grow: 1;
+}
+
+#map {
+  min-height: 30rem;
+}
+
+/* Pop-ups */
+.leaflet-popup-content-wrapper {
+  background-color: var(--gray1f);
+  color: var(--grayf3);
+  border-radius: 0.5rem;
+  font-size: 1.6rem;
+}
+
+.running-pop-up .leaflet-popup-content-wrapper {
+  border-left: 0.6rem solid var(--green28);
+}
+
+.cycling-pop-up .leaflet-popup-content-wrapper {
+  border-left: 0.6rem solid var(--yellowf7);
+}
+
 /* Mobile */
 @media (min-width: 576px) {
 }
@@ -102,6 +128,19 @@ body {
 /* ************************************************************* */
 /* Tablet */
 @media (min-width: 992px) {
+  body {
+    height: 100vh;
+  }
+
+  .journal {
+    border-bottom-right-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+  }
+
+  #map {
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+  }
 }
 
 @media (min-width: 1200px) {
@@ -110,4 +149,10 @@ body {
 /* ************************************************************* */
 /* Desktop */
 @media (min-width: 1400px) {
+}
+
+@media (min-width: 1900px) {
+  .app-container {
+    max-width: 70%;
+  }
 }
