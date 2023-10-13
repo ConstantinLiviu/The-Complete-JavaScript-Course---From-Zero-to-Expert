@@ -29,7 +29,8 @@ body {
   height: 100%;
 }
 
-.input-group {
+.input-group,
+.dropdown {
   width: 50%;
 }
 
@@ -52,7 +53,8 @@ body {
   font-size: 1.6rem;
 }
 
-.input-group:nth-child(odd) {
+.input-group:nth-child(odd),
+.dropdown {
   padding-right: 1%;
 }
 
@@ -60,11 +62,16 @@ body {
   padding-left: 1%;
 }
 
-.input-group span {
+.input-group span,
+.dropdown span {
   /* width: 8rem; */
   /* margin-right: 3rem; */
   font-size: 1.8rem;
   width: 100%;
+}
+
+.dropdown span {
+  flex-grow: 1;
 }
 
 .input-group .dropdown-toggle,

@@ -34,6 +34,17 @@
 // LESSON - Displaying a Map Using a Leaflet Library
 // LESSON - Displaying a Map Marker
 
+const formEl = document.querySelector("form");
+const dropdownEl = document.querySelector(".dropdown-toggle");
+// const
+// const
+// const
+
+dropdownEl.addEventListener("click", (e) => {
+  console.log(dropdownEl.value);
+  if (e.value === "running") console.log("fuj!");
+});
+
 if (navigator.geolocation) {
   navigator.geolocation.getCurrentPosition(
     function (position) {
@@ -88,5 +99,5 @@ if (navigator.geolocation) {
 
 //
 // ************************************************************************************************************************ //
-//
+// LESSON - Rendering Workout Input Form
 //
