@@ -35,15 +35,10 @@
 // LESSON - Displaying a Map Marker
 
 const formEl = document.querySelector("form");
-const dropdownEl = document.querySelector(".dropdown-toggle");
+const distanceInputEl = document.querySelector(".distance-input");
 // const
 // const
 // const
-
-dropdownEl.addEventListener("click", (e) => {
-  console.log(dropdownEl.value);
-  if (e.value === "running") console.log("fuj!");
-});
 
 if (navigator.geolocation) {
   navigator.geolocation.getCurrentPosition(
@@ -70,6 +65,9 @@ if (navigator.geolocation) {
       console.log(map);
 
       map.on("click", function (mapEvent) {
+        formEl.classList.remove("invisible");
+        distanceInputEl.focus();
+
         console.log(mapEvent.latlng);
         const { lat, lng } = mapEvent.latlng;
 
