@@ -55,47 +55,19 @@
     >
       <section class="journal bg-dark text-center rounded col-lg-4">
         <img src="img/Glogo.png" alt="" class="logo my-4" />
-        <form action="" class="container d-flex flex-wrap py-3">
-          <!-- <div class="input-group mb-3">
+        <form action="" class="container d-flex flex-wrap py-3 invisible">
+          <div class="dropdown-container mb-3">
             <span
               class="input-group-text bg-transparent text-light border-0 ps-0"
               >Type</span
             >
-            <button
-              class="btn btn-outline-secondary dropdown-toggle border-light rounded text-light"
-              type="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-              id="exerciseType"
+            <select
+              class="form-select form-select-lg mb-0"
+              aria-label="Large select example"
             >
-              Dropdown
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end rounded">
-              <li>
-                <a class="dropdown-item" href="#" onclick="exerciseType(this)"
-                  >Running</a
-                >
-              </li>
-              <li><a class="dropdown-item" href="#">Cycling</a></li>
-            </ul>
-          </div> -->
-          <div class="dropdown mb-3">
-            <span
-              class="input-group-text bg-transparent text-light border-0 ps-0"
-              >Type</span
-            >
-            <button
-              class="btn btn-outline-secondary dropdown-toggle border-light rounded text-light"
-              type="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              Dropdown button
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end rounded">
-              <li><a class="dropdown-item" href="#">Running</a></li>
-              <li><a class="dropdown-item" href="#">Cycling</a></li>
-            </ul>
+              <option selected value="running">Running</option>
+              <option value="cycling">Cycling</option>
+            </select>
           </div>
           <div class="input-group mb-3">
             <span

@@ -30,7 +30,7 @@ body {
 }
 
 .input-group,
-.dropdown {
+.dropdown-container {
   width: 50%;
 }
 
@@ -54,7 +54,7 @@ body {
 }
 
 .input-group:nth-child(odd),
-.dropdown {
+.dropdown-container {
   padding-right: 1%;
 }
 
@@ -62,26 +62,20 @@ body {
   padding-left: 1%;
 }
 
-.input-group span,
-.dropdown span {
+.input-group span {
   /* width: 8rem; */
   /* margin-right: 3rem; */
   font-size: 1.8rem;
   width: 100%;
 }
 
-.dropdown span {
-  flex-grow: 1;
+.dropdown-container span {
+  font-size: 1.8rem;
 }
 
-.input-group .dropdown-toggle,
-.dropdown-item {
-  flex-grow: 1;
+.form-select,
+option {
   font-size: 1.6rem;
-}
-
-.dropdown-menu.show {
-  width: 100%;
 }
 
 .activities {
