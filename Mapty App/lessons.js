@@ -35,10 +35,14 @@
 // LESSON - Displaying a Map Marker
 
 const formEl = document.querySelector("form");
-const distanceInputEl = document.querySelector(".distance-input");
-// const
-// const
-// const
+const distanceInputEl = document.getElementById("inputDistance");
+const durationInputEl = document.getElementById("inputDuration");
+const cadenceContainerEl = document.querySelector(".cadence-container");
+const elevationContainerEl = document.querySelector(".elevation-container");
+const selectInputEl = document.getElementById("selectOptions");
+
+let map;
+let mapEvent;
 
 if (navigator.geolocation) {
   navigator.geolocation.getCurrentPosition(
@@ -50,7 +54,7 @@ if (navigator.geolocation) {
 
       const coordinates = [latitude, longitude];
 
-      const map = L.map("map").setView(coordinates, 15);
+      map = L.map("map").setView(coordinates, 15);
 
       L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
         attribution:
@@ -62,31 +66,16 @@ if (navigator.geolocation) {
       //   .bindPopup("A pretty CSS popup.<br> Easily customizable.")
       //   .openPopup();
 
-      console.log(map);
+      // console.log(map);
 
-      map.on("click", function (mapEvent) {
+      map.on("click", function (e) {
+        mapEvent = e;
         formEl.classList.remove("invisible");
         distanceInputEl.focus();
 
-        console.log(mapEvent.latlng);
-        const { lat, lng } = mapEvent.latlng;
+        // // console.log(mapEvent.latlng);
 
-        console.log(lat);
-        const coords = [lat, lng];
-
-        L.marker(coords)
-          .addTo(map)
-          .bindPopup(
-            L.popup([coords], {
-              maxWidth: 250,
-              minWidth: 100,
-              autoClose: false,
-              closeOnClick: false,
-              className: "running-pop-up",
-            })
-          )
-          .setPopupContent("Workout")
-          .openPopup();
+        // // console.log(lat);
       });
     },
     function () {
@@ -95,6 +84,32 @@ if (navigator.geolocation) {
   );
 }
 
+formEl.addEventListener("submit", () => {
+  const { lat, lng } = mapEvent.latlng;
+  const coords = [lat, lng];
+
+  // console.log(map);
+  // console.log(mapEvent);
+
+  L.marker(coords)
+    .addTo(map)
+    .bindPopup(
+      L.popup([coords], {
+        maxWidth: 250,
+        minWidth: 100,
+        autoClose: false,
+        closeOnClick: false,
+        className: "running-pop-up",
+      })
+    )
+    .setPopupContent("Workout")
+    .openPopup();
+});
+
+selectInputEl.addEventListener("change", () => {
+  cadenceContainerEl.classList.toggle("d-none");
+  elevationContainerEl.classList.toggle("d-none");
+});
 //
 // ************************************************************************************************************************ //
 // LESSON - Rendering Workout Input Form

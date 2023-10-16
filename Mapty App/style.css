@@ -34,13 +34,13 @@ body {
   width: 50%;
 }
 
-.input-group input::-webkit-outer-spin-button,
-.input-group input::-webkit-inner-spin-button {
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-.input-group input[type="number"] {
+input[type="number"] {
   -moz-appearance: textfield;
   appearance: textfield;
   font-size: 1.6rem;
@@ -53,21 +53,25 @@ body {
   font-size: 1.6rem;
 }
 
-.input-group:nth-child(odd),
-.dropdown-container {
+form div:nth-child(odd) {
   padding-right: 1%;
 }
 
-.input-group:nth-child(even) {
+form div:nth-child(even),
+.elevation-container {
   padding-left: 1%;
 }
 
-.input-group span {
-  /* width: 8rem; */
-  /* margin-right: 3rem; */
+label {
+  font-size: 1.8rem;
+}
+
+/* .input-group span {
+  width: 8rem;
+  margin-right: 3rem;
   font-size: 1.8rem;
   width: 100%;
-}
+} */
 
 .dropdown-container span {
   font-size: 1.8rem;

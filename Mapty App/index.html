@@ -55,56 +55,74 @@
     >
       <section class="journal bg-dark text-center rounded col-lg-4">
         <img src="img/Glogo.png" alt="" class="logo my-4" />
-        <form action="" class="container d-flex flex-wrap py-3 invisible">
-          <div class="dropdown-container mb-3">
-            <span
-              class="input-group-text bg-transparent text-light border-0 ps-0"
-              >Type</span
+        <form action="" class="container d-flex flex-wrap py-3">
+          <div class="mb-3 type-select-container text-start col-6">
+            <label for="selectOptions" class="form-label text-light"
+              >Type</label
             >
             <select
-              class="form-select form-select-lg mb-0"
-              aria-label="Large select example"
+              class="form-select"
+              aria-label="Default select example"
+              id="selectOptions"
+              name="selectOptions"
             >
               <option selected value="running">Running</option>
               <option value="cycling">Cycling</option>
             </select>
           </div>
-          <div class="input-group mb-3">
-            <span
-              class="input-group-text bg-transparent text-light border-0 ps-0"
-              >Distance</span
+          <div class="mb-3 distance-container col-6 text-start">
+            <label for="inputDistance" class="form-label text-light"
+              >Distance</label
             >
             <input
               type="number"
-              class="form-control rounded distance-input"
+              name="inputDistance"
+              class="form-control"
               placeholder="km"
+              id="inputDistance"
               onkeyup="if(value<1 || value>9999) value=''"
             />
           </div>
-          <div class="input-group">
-            <span
-              class="input-group-text bg-transparent text-light border-0 ps-0"
-              >Duration</span
+          <div class="duration-container col-6 text-start">
+            <label for="inputDuration" class="form-label text-light"
+              >Duration</label
             >
             <input
               type="number"
-              class="form-control rounded"
+              name="inputDuration"
+              class="form-control"
               placeholder="min"
+              id="inputDuration"
               onkeyup="if(value<1 || value>9999) value=''"
             />
           </div>
-          <div class="input-group">
-            <span
-              class="input-group-text bg-transparent text-light border-0 ps-0"
-              >Cadence</span
+          <div class="cadence-container col-6 text-start">
+            <label for="inputCadence" class="form-label text-light"
+              >Cadence</label
             >
             <input
               type="number"
-              class="form-control rounded"
+              name="inputCadence"
+              class="form-control"
               placeholder="steps/min"
+              id="inputCadence"
               onkeyup="if(value<1 || value>9999) value=''"
             />
           </div>
+          <div class="elevation-container col-6 text-start d-none pe-0">
+            <label for="inputElevation" class="form-label text-light"
+              >Elevation Gain</label
+            >
+            <input
+              type="number"
+              name="inputElevation"
+              class="form-control"
+              placeholder="meters"
+              id="inputElevation"
+              onkeyup="if(value<1 || value>9999) value=''"
+            />
+          </div>
+          <button type="submit" class="btn d-none"></button>
         </form>
         <div class="list-container container mt-3">
           <ul class="activities text-light text-start mt-3 ps-0">
