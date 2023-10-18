@@ -55,7 +55,7 @@
     >
       <section class="journal bg-dark text-center rounded col-lg-4">
         <img src="img/Glogo.png" alt="" class="logo my-4" />
-        <form action="" class="container d-flex flex-wrap py-3">
+        <form action="" class="container d-flex flex-wrap py-3 invisible">
           <div class="mb-3 type-select-container text-start col-6">
             <label for="selectOptions" class="form-label text-light"
               >Type</label
@@ -119,7 +119,7 @@
               class="form-control"
               placeholder="meters"
               id="inputElevation"
-              onkeyup="if(value<1 || value>9999) value=''"
+              onkeyup="if(value<-3000 || value>8848) value=''"
             />
           </div>
           <button type="submit" class="btn d-none"></button>

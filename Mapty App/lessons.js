@@ -131,6 +131,7 @@ class App {
   // using private classfield to avoid using global variables
   #map;
   #mapEvent;
+  #workouts = [];
 
   // using the constructor to get position and generate a map on page load
   constructor() {
@@ -183,14 +184,50 @@ class App {
   _newWorkout(e) {
     e.preventDefault();
     // Clear input fields
+
+    const { lat, lng } = this.#mapEvent.latlng;
+    const workoutType = selectInputEl.value;
+    const workoutDistance = +distanceInputEl.value;
+    console.log(workoutDistance);
+    const workoutDuration = +durationInputEl.value;
+    let workout;
+
+    // if running - running obj
+    if (workoutType === "running") {
+      const workoutCadence = +cadenceInputEl.value;
+      workout = new Running(
+        [lat, lng],
+        workoutDistance,
+        workoutDuration,
+        workoutCadence
+      );
+    }
+
+    // if cycling - cycling obj
+    if (workoutType === "cycling") {
+      const workoutElevation = +elevationInputEl.value;
+      workout = new Cycling(
+        [lat, lng],
+        workoutDistance,
+        workoutDuration,
+        workoutElevation
+      );
+    }
+
+    // render workout in list
+    this.#workouts.push(workout);
+    console.log(workout);
+
     distanceInputEl.value =
       durationInputEl.value =
       cadenceInputEl.value =
       elevationInputEl.value =
         "";
 
+    // render workout on map
+
     // Display marker
-    const { lat, lng } = this.#mapEvent.latlng;
+
     const coords = [lat, lng];
 
     L.marker(coords)
@@ -201,11 +238,13 @@ class App {
           minWidth: 100,
           autoClose: false,
           closeOnClick: false,
-          className: "running-pop-up",
+          className: `${workoutType}-pop-up`,
         })
       )
       .setPopupContent("Workout")
       .openPopup();
+
+    formEl.classList.add("invisible");
   }
 }
 
@@ -213,5 +252,51 @@ const app = new App();
 console.log(app);
 
 // ************************************************************************************************************************ //
-// LESSON - Refactoring for Project Architecture
+// LESSON - Managing Workout Data: Creating Classes
+//
+
+class Workout {
+  date = new Date();
+  id = (Date.now() + "").slice(-10);
+
+  constructor(coordinates, distance, duration) {
+    this.coordinates = coordinates; // [lat, long];
+    this.distance = distance; // km
+    this.duration = duration; // min
+  }
+}
+
+class Running extends Workout {
+  constructor(coordinates, distance, duration, cadence) {
+    super(coordinates, distance, duration);
+    this.cadence = cadence;
+    this.calcPace();
+  }
+
+  calcPace() {
+    // min/km
+    this.pace = this.duration / this.distance;
+    return this.pace;
+  }
+}
+class Cycling extends Workout {
+  constructor(coordinates, distance, duration, elevation) {
+    super(coordinates, distance, duration);
+    this.elevation = elevation;
+    this.calcSpeed();
+  }
+
+  calcSpeed() {
+    // km/h
+    this.speed = this.distance / (this.duration / 60);
+    return this.speed;
+  }
+}
+
+// const run = new Running([39, -12], 5.2, 24, 178);
+// const cycling = new Cycling([39, -12], 27, 95, 523);
+// console.log(run, cycling);
+
+// ************************************************************************************************************************ //
+// LESSON - Creating a New Workout
 //
