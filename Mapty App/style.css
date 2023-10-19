@@ -83,16 +83,20 @@ option {
 }
 
 .activities {
-  list-style: none;
   overflow-x: hidden;
   max-height: 25rem;
 }
 .activity-item {
   background: var(--purple3f);
+  list-style: none;
 }
 
 .activity-title {
   font-size: 1.8rem;
+}
+
+.activity-type {
+  text-transform: capitalize;
 }
 
 .activity-data {

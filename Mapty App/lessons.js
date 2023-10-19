@@ -43,6 +43,8 @@ const cadenceInputEl = document.getElementById("inputCadence");
 const elevationContainerEl = document.querySelector(".elevation-container");
 const selectInputEl = document.getElementById("selectOptions");
 const elevationInputEl = document.getElementById("inputElevation");
+const activityDataRelatedEl = document.querySelector(".activity-data-variable");
+const activitiesListEl = document.querySelector(".activities");
 
 // let map;
 // let mapEvent;
@@ -224,27 +226,60 @@ class App {
       elevationInputEl.value =
         "";
 
-    // render workout on map
-
-    // Display marker
-
     const coords = [lat, lng];
 
-    L.marker(coords)
+    this.renderWorkoutMarker(workout);
+
+    formEl.classList.add("invisible");
+  }
+
+  renderWorkoutMarker(workout) {
+    L.marker(workout.coordinates)
       .addTo(this.#map)
       .bindPopup(
-        L.popup([coords], {
+        L.popup({
           maxWidth: 250,
           minWidth: 100,
           autoClose: false,
           closeOnClick: false,
-          className: `${workoutType}-pop-up`,
+          className: `${workout.type}-pop-up`,
         })
       )
-      .setPopupContent("Workout")
+      .setPopupContent(`${workout.distance}`)
       .openPopup();
+    this.addWorkoutToList(workout);
+  }
 
-    formEl.classList.add("invisible");
+  addWorkoutToList(workout) {
+    const html = `<li
+    class="activity-item text-start text-light border-start border-${
+      workout.type === "running" ? "success" : "warning"
+    } rounded border-5 px-3 py-2 mb-3" data-id="${workout.id}"
+  >
+    <p class="activity-title">
+      <span class="activity-type">${workout.type}</span> on
+      <span class="activity-date">${workout.description}</span>
+    </p>
+    <p class="activity-data mb-0">
+      <span>${workout.distance} km</span> <span>${
+      workout.duration
+    } min</span> <span>${
+      workout.type === "running"
+        ? workout.pace + " spm"
+        : workout.speed + " km/h"
+    } </span>
+      </p>
+    </p>
+  </li>`;
+
+    // if (workout.type === "running") {
+    //   activityDataRelatedEl.textContent = `${workout.pace.toFixed(1)} spm`;
+    // }
+    // if (workout.type === "cycling") {
+    //   activityDataRelatedEl.textContent = `${workout.elevation.toFixed(1)} m`;
+    // }
+
+    activitiesListEl.insertAdjacentHTML("afterend", html);
   }
 }
 
@@ -264,13 +299,22 @@ class Workout {
     this.distance = distance; // km
     this.duration = duration; // min
   }
+  _setDescription() {
+    // prettier-ignore
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+    this.description = `${months[this.date.getMonth()]} ${this.date.getDate()}`;
+    return this;
+  }
 }
 
 class Running extends Workout {
+  type = "running";
   constructor(coordinates, distance, duration, cadence) {
     super(coordinates, distance, duration);
     this.cadence = cadence;
     this.calcPace();
+    this._setDescription();
   }
 
   calcPace() {
@@ -280,18 +324,22 @@ class Running extends Workout {
   }
 }
 class Cycling extends Workout {
+  type = "cycling";
   constructor(coordinates, distance, duration, elevation) {
     super(coordinates, distance, duration);
     this.elevation = elevation;
     this.calcSpeed();
+    this._setDescription();
   }
 
   calcSpeed() {
     // km/h
     this.speed = this.distance / (this.duration / 60);
+    console.log(this.speed);
     return this.speed;
   }
 }
+``;
 
 // const run = new Running([39, -12], 5.2, 24, 178);
 // const cycling = new Cycling([39, -12], 27, 95, 523);
