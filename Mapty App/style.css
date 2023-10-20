@@ -99,6 +99,11 @@ option {
   text-transform: capitalize;
 }
 
+.disable-form {
+  pointer-events: none;
+  opacity: 0.3;
+}
+
 .activity-data {
   font-size: 1.4rem;
 }

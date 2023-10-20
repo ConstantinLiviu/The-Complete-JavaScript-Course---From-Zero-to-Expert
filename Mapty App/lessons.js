@@ -174,7 +174,7 @@ class App {
 
   _showForm(mapE) {
     this.#mapEvent = mapE;
-    formEl.classList.remove("invisible");
+    formEl.classList.remove("disable-form");
     distanceInputEl.focus();
   }
 
@@ -230,7 +230,7 @@ class App {
 
     this.renderWorkoutMarker(workout);
 
-    formEl.classList.add("invisible");
+    formEl.classList.add("disable-form");
   }
 
   renderWorkoutMarker(workout) {
@@ -245,7 +245,13 @@ class App {
           className: `${workout.type}-pop-up`,
         })
       )
-      .setPopupContent(`${workout.distance}`)
+      .setPopupContent(
+        `${
+          workout.type === "running"
+            ? "🏃‍♂️ " + workout.description
+            : "🚴‍♂️ " + workout.description
+        }`
+      )
       .openPopup();
     this.addWorkoutToList(workout);
   }
@@ -265,8 +271,8 @@ class App {
       workout.duration
     } min</span> <span>${
       workout.type === "running"
-        ? workout.pace + " spm"
-        : workout.speed + " km/h"
+        ? workout.pace.toFixed(1) + " spm"
+        : workout.speed.toFixed(1) + " km/h"
     } </span>
       </p>
     </p>
@@ -303,7 +309,21 @@ class Workout {
     // prettier-ignore
     const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-    this.description = `${months[this.date.getMonth()]} ${this.date.getDate()}`;
+    let ordinal;
+    switch (this.date.getDate() % 10) {
+      case 1:
+        ordinal = "st";
+      case 2:
+        ordinal = "nd";
+      case 3:
+        ordinal = "rd";
+      default:
+        ordinal = "th";
+    }
+
+    this.description = `${
+      months[this.date.getMonth()]
+    } ${this.date.getDate()}${ordinal}`;
     return this;
   }
 }
