@@ -132,6 +132,7 @@ const activitiesListEl = document.querySelector(".activities");
 class App {
   // using private classfield to avoid using global variables
   #map;
+  #zoomLevel = 15;
   #mapEvent;
   #workouts = [];
 
@@ -143,6 +144,7 @@ class App {
       "change",
       this._toggleElevationField.bind(this)
     );
+    activitiesListEl.addEventListener("click", this._moveToPopup.bind(this));
   }
 
   _getPosition() {
@@ -162,7 +164,7 @@ class App {
 
     const coordinates = [latitude, longitude];
 
-    this.#map = L.map("map").setView(coordinates, 15);
+    this.#map = L.map("map").setView(coordinates, this.#zoomLevel);
 
     L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
       attribution:
@@ -257,11 +259,23 @@ class App {
   }
 
   addWorkoutToList(workout) {
-    const html = `<li
-    class="activity-item text-start text-light border-start border-${
-      workout.type === "running" ? "success" : "warning"
-    } rounded border-5 px-3 py-2 mb-3" data-id="${workout.id}"
-  >
+    const html = document.createElement("li");
+    html.classList.add(
+      "activity-item",
+      "text-start",
+      "text-light",
+      "border-start",
+      "rounded",
+      "border-5",
+      "px-3",
+      "py-2",
+      "mb-3"
+    );
+    html.classList.add(
+      `border-${workout.type === "running" ? "success" : "warning"}`
+    );
+    html.dataset.id = `${workout.id}`;
+    html.innerHTML = `
     <p class="activity-title">
       <span class="activity-type">${workout.type}</span> on
       <span class="activity-date">${workout.description}</span>
@@ -275,17 +289,30 @@ class App {
         : workout.speed.toFixed(1) + " km/h"
     } </span>
       </p>
-    </p>
-  </li>`;
+    </p>`;
 
-    // if (workout.type === "running") {
-    //   activityDataRelatedEl.textContent = `${workout.pace.toFixed(1)} spm`;
-    // }
-    // if (workout.type === "cycling") {
-    //   activityDataRelatedEl.textContent = `${workout.elevation.toFixed(1)} m`;
-    // }
+    activitiesListEl.prepend(html);
+  }
 
-    activitiesListEl.insertAdjacentHTML("afterend", html);
+  _moveToPopup(e) {
+    const listEntry = e.target.closest(".activity-item");
+    console.log(listEntry);
+
+    if (!listEntry) return;
+
+    const workoutEntry = this.#workouts.find(
+      (el) => el.id === listEntry.dataset.id
+    );
+
+    this.#map.setView(workoutEntry.coordinates, this.#zoomLevel, {
+      animate: true,
+      pan: {
+        duration: 0.5,
+      },
+    });
+
+    // using a public interface
+    workoutEntry.click();
   }
 }
 
@@ -299,6 +326,7 @@ console.log(app);
 class Workout {
   date = new Date();
   id = (Date.now() + "").slice(-10);
+  clicks = 0;
 
   constructor(coordinates, distance, duration) {
     this.coordinates = coordinates; // [lat, long];
@@ -325,6 +353,11 @@ class Workout {
       months[this.date.getMonth()]
     } ${this.date.getDate()}${ordinal}`;
     return this;
+  }
+
+  click() {
+    this.clicks++;
+    console.log(this.clicks);
   }
 }
 
