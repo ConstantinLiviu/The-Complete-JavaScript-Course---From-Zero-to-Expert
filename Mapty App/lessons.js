@@ -45,6 +45,7 @@ const selectInputEl = document.getElementById("selectOptions");
 const elevationInputEl = document.getElementById("inputElevation");
 const activityDataRelatedEl = document.querySelector(".activity-data-variable");
 const activitiesListEl = document.querySelector(".activities");
+const resetBtn = document.querySelector(".resetBtn");
 
 // let map;
 // let mapEvent;
@@ -138,7 +139,13 @@ class App {
 
   // using the constructor to get position and generate a map on page load
   constructor() {
+    // Get user's position
     this._getPosition();
+
+    // Fetch local storage data
+    this._getLocalStorage();
+
+    // Event handlers
     formEl.addEventListener("submit", this._newWorkout.bind(this));
     selectInputEl.addEventListener(
       "change",
@@ -172,6 +179,10 @@ class App {
     }).addTo(this.#map);
 
     this.#map.on("click", this._showForm.bind(this));
+
+    this.#workouts.forEach((work) => {
+      this.renderWorkoutMarker(work);
+    });
   }
 
   _showForm(mapE) {
@@ -233,6 +244,9 @@ class App {
     this.renderWorkoutMarker(workout);
 
     formEl.classList.add("disable-form");
+
+    // Set local storage
+    this._setLocalStorage();
   }
 
   renderWorkoutMarker(workout) {
@@ -312,12 +326,41 @@ class App {
     });
 
     // using a public interface
-    workoutEntry.click();
+    // workoutEntry.click();
+  }
+
+  _setLocalStorage() {
+    localStorage.setItem("workouts", JSON.stringify(this.#workouts));
+  }
+
+  _getLocalStorage() {
+    const loadData = JSON.parse(localStorage.getItem("workouts"));
+    console.log(loadData);
+
+    if (!loadData) return;
+
+    this.#workouts = loadData;
+
+    this.#workouts.forEach((work) => {
+      this.addWorkoutToList(work);
+    });
+
+    //
+  }
+
+  reset() {
+    localStorage.removeItem("workouts");
+    location.reload();
   }
 }
 
 const app = new App();
 console.log(app);
+
+resetBtn.addEventListener("click", (e) => {
+  console.log("merge");
+  app.reset();
+});
 
 // ************************************************************************************************************************ //
 // LESSON - Managing Workout Data: Creating Classes
@@ -355,10 +398,10 @@ class Workout {
     return this;
   }
 
-  click() {
-    this.clicks++;
-    console.log(this.clicks);
-  }
+  // click() {
+  //   this.clicks++;
+  //   console.log(this.clicks);
+  // }
 }
 
 class Running extends Workout {
@@ -399,5 +442,5 @@ class Cycling extends Workout {
 // console.log(run, cycling);
 
 // ************************************************************************************************************************ //
-// LESSON - Creating a New Workout
+// LESSON - Local Storage
 //

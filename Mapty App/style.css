@@ -9,15 +9,18 @@ body {
   height: 100vh;
 }
 
-.main-page-btn {
+.btns-container {
   top: 0;
   right: 2rem;
   margin-top: 2rem;
   margin-left: auto;
   margin-bottom: 2rem;
+  z-index: 99;
+}
+
+.main-page-btn {
   font-size: 1.6rem;
   color: var(--purple97);
-  z-index: 99;
 }
 
 .main-page-btn:hover {
@@ -89,6 +92,7 @@ option {
 .activity-item {
   background: var(--purple3f);
   list-style: none;
+  cursor: pointer;
 }
 
 .activity-title {
