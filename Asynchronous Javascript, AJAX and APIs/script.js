@@ -30,18 +30,22 @@ const getCountryData = function (country) {
     console.log(data);
 
     const html = document.createElement("div");
-    html.classList.add("card-container");
+    html.classList.add("card-container", "col-lg-4", "px-3", "mb-3");
     html.innerHTML = `
-    <img class="flag" src="${data.flags.svg}" alt="${data.flags.alt}"/>
-    <div class="country-data">
-        <div class="country-name">
-            <h2 class="name">${data.name.official}</h2>
+    <img class="flag w-100 rounded-top" src="${data.flags.svg}" alt="${
+      data.flags.alt
+    }"/>
+    <div class="country-data bg-light px-3 rounded-bottom py-3">
+        <div class="country-name mb-4">
+            <h2 class="name text-uppercase">${data.name.official}</h2>
             <h3 class="continent">${data.region}</h3>
         </div>
         <div class="country-data">
-            <p class="population">${(+data.population / 1000000).toFixed(1)}</p>
-            <p class="language">${Object.values(data.languages)[0]}</p>
-            <p class="currency">${
+            <p class="population">🙍‍♂️ ${(+data.population / 1000000).toFixed(
+              1
+            )}</p>
+            <p class="language">🗣 ${Object.values(data.languages)[0]}</p>
+            <p class="currency">💰 ${
               Object.entries(Object.values(data.currencies)[0])[0][1]
             }</p>
         </div>

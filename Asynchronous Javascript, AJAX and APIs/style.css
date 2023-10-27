@@ -3,6 +3,18 @@
 
 /* Common */
 
+.population,
+.language,
+.currency {
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.name,
+.continent {
+  font-size: 2rem;
+}
+
 /* Mobile */
 @media (min-width: 576px) {
 }
